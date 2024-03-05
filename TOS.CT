@@ -842,6 +842,1446 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
               </CheatEntries>
             </CheatEntry>
             <CheatEntry>
+              <ID>1449</ID>
+              <Description>"[Equipment]"</Description>
+              <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+              <Color>FF80FF</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1450</ID>
+                  <Description>"Lloyd"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>LloydPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1448</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1456</ID>
+                  <Description>"Colette"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>ColettePointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1457</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1481</ID>
+                  <Description>"Genis"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>GenisPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1482</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1479</ID>
+                  <Description>"Raine"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>RainePointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1480</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1477</ID>
+                  <Description>"Sheena"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>SheenaPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1478</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1483</ID>
+                  <Description>"Zelos"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>ZelosPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1484</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1470</ID>
+                  <Description>"Presea"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>PreseaPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1471</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1463</ID>
+                  <Description>"Regal"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>RegalPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1464</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1485</ID>
+                  <Description>"Kratos"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>KratosPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1486</ID>
+                      <Description>"Weapon"</Description>
+                      <DropDownList ReadOnly="1" DisplayValueAsItem="1">135:Wooden Blade
+136:Rapier
+137:Mumei
+138:Knight's Saber
+139:Masamune
+140:Osafune
+141:Sinclair
+142:Nimble Rapier
+143:Ogre Sword
+144:Kotetsu
+145:Shiden
+146:Saint Rapier
+147:Dragon Tooth
+148:Defenser
+149:Elemental Brand
+150:Muramasa
+151:Waiser Rapier
+152:Angel's Tear
+153:Ninja Sword
+154:Material Blade
+155:Kusanagi Blade
+156:Valkyrie Saber
+157:Paper Fan
+158:Nebilim
+159:Chakram
+160:Flying Disk
+161:Duel Ring
+162:Slicer Ring
+163:Mystic Ring
+164:Stinger Ring
+165:Ray Thrust
+166:Mythril Ring
+167:Shuriken
+168:Solar Spinner
+169:Lunar Ring
+170:Toroid
+171:Stardust
+172:Angel's Halo
+173:Tambourine
+174:Evil Eye
+175:Nova
+176:Fine Star
+177:Duel Star
+178:Falling Star
+179:Cool Orbit
+180:Thunderbolt
+181:Shining Star
+182:Shadow Dancer
+183:Cor Leonis
+184:Northern Lights
+185:Southern Cross
+186:Final Prayer
+187:One World
+188:Phantasmagoria
+189:Disaster
+190:Rod
+191:Battle Staff
+192:Gem Rod
+193:Earth Rod
+194:Ruby Wand
+195:Rune Staff
+196:Gale Staff
+197:Phoenix Rod
+198:Holy Staff
+199:Thunder Scepter
+200:Ancient Rod
+201:Hanuman's Staff
+202:Crystal Rod
+203:Deck Brush
+204:Hearts of Chaos
+205:Spell Card
+206:Card of Water
+207:Card of Earth
+208:Card of Fire
+209:Card of Lightning
+210:Card of Wind
+211:Card of Ice
+212:Vajra
+213:Yaksa
+214:Asura
+215:Acalantha
+216:Divine Judgment
+217:Moneybag
+218:Gates of Hell
+219:Stiletto
+220:Earth Dagger
+221:Hydra Dagger
+222:Assault Dagger
+223:Flame Dagger
+224:Gladius
+225:Crystal Dagger
+226:Toy Dagger
+227:Fafnir
+228:Long Sword
+229:Steel Sword
+230:Silver Sword
+231:Aqua Brand
+232:Sand Saber
+233:Lightning Sword
+234:Ice Coffin
+235:Ether Sword
+236:Flamberg
+237:Laser Blade
+238:Excalibur
+239:Last Fencer
+240:Baseball Bat
+241:Soul Eater
+242:Francesca
+243:Battle Axe
+244:Great Axe
+245:Crescent Axe
+246:Tomahawk Lance
+247:Halberd
+248:Bardiche
+249:Mythril Axe
+250:War Hammer
+251:Battle Pick
+252:Strike Axe
+253:Ogre Axe
+254:Bahamut's Tear
+255:Gaia Cleaver
+256:Pow Hammer DX
+257:Diablos
+258:Leather Greaves
+259:Iron Greaves
+260:Power Greaves
+261:Venom
+262:Bear Claw
+263:Ghost Shell
+264:Mythril Greaves
+265:Aqua Greaves
+266:Crystal Shell
+267:Flare Greaves
+268:Dragon Fang
+269:Diamond Shell
+270:Kaiser Greaves
+271:Dynast
+272:Glory Arts
+273:Apocalypse
+</DropDownList>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>FF8080</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+4A</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
               <ID>858</ID>
               <Description>"[Items]"</Description>
               <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
@@ -4008,7 +5448,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                         </CheatEntry>
                         <CheatEntry>
                           <ID>1210</ID>
-                          <Description>"Gauntlet (Lloyd/Kratos)"</Description>
+                          <Description>"Gauntlet (Lloyd/Kratos/Zelos/Presea)"</Description>
                           <Options moHideChildren="1"/>
                           <Color>FF8080</Color>
                           <GroupHeader>1</GroupHeader>
