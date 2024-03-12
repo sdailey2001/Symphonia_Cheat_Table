@@ -10073,7 +10073,7 @@ TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
             <CheatEntry>
               <ID>100</ID>
               <Description>"[Free Run]"</Description>
-              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
               <Color>FF80FF</Color>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
