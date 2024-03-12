@@ -1194,6 +1194,702 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                     </CheatEntry>
                   </CheatEntries>
                 </CheatEntry>
+                <CheatEntry>
+                  <ID>1551</ID>
+                  <Description>"Colette"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>ColettePointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1552</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1553</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1554</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1555</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1556</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1557</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1558</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1559</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1542</ID>
+                  <Description>"Genis"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>GenisPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1543</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1544</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1545</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1546</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1547</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1548</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1549</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1550</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1533</ID>
+                  <Description>"Raine"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>RainePointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1534</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1535</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1536</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1537</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1538</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1539</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1540</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1541</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1524</ID>
+                  <Description>"Sheena"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>SheenaPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1525</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1526</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1527</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1528</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1529</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1530</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1531</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1532</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1587</ID>
+                  <Description>"Zelos"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>ZelosPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1588</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1589</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1590</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1591</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1592</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1593</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1594</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1595</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1578</ID>
+                  <Description>"Presea"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>PreseaPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1579</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1580</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1581</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1582</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1583</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1584</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1585</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1586</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1569</ID>
+                  <Description>"Regal"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>RegalPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1570</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1571</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1572</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1573</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1574</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1575</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1576</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1577</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1560</ID>
+                  <Description>"Kratos"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>KratosPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1561</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1562</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1563</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1564</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1565</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1566</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1567</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1568</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
               </CheatEntries>
             </CheatEntry>
             <CheatEntry>
