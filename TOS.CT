@@ -8460,7 +8460,7 @@ db 48 6F 6C 79 20 42 69 6E 64 73 00 00 00 00 00 00
 [ENABLE]
 
 aobscanmodule(ARTESWAP,TOS.exe,89 4E 10 8B D1) // should be unique
-alloc(newmem,$1000,ARTESWAP)
+alloc(newmem,$4000,ARTESWAP)
 
 alloc(Controls,48)
 
@@ -9029,81 +9029,85 @@ P1_Slot:
 cmp byte [PartyPointer],(int)1
 je LloydArtes
 cmp byte [PartyPointer],(int)2
-je LloydArtes
+je ColetteArtes
 cmp byte [PartyPointer],(int)3
-je LloydArtes
+je GenisArtes
 cmp byte [PartyPointer],(int)4
-je LloydArtes
+je RaineArtes
 cmp byte [PartyPointer],(int)5
-je LloydArtes
+je SheenaArtes
 cmp byte [PartyPointer],(int)6
-je LloydArtes
+je ZelosArtes
 cmp byte [PartyPointer],(int)7
-je LloydArtes
+je PreseaArtes
 cmp byte [PartyPointer],(int)8
-je LloydArtes
+je RegalArtes
 cmp byte [PartyPointer],(int)9
-je LloydArtes
+je KratosArtes
+jmp SendInput
 
 P2_Slot:
 cmp byte [PartyPointer+1],(int)1
 je LloydArtes
 cmp byte [PartyPointer+1],(int)2
-je LloydArtes
+je ColetteArtes
 cmp byte [PartyPointer+1],(int)3
-je LloydArtes
+je GenisArtes
 cmp byte [PartyPointer+1],(int)4
-je LloydArtes
+je RaineArtes
 cmp byte [PartyPointer+1],(int)5
-je LloydArtes
+je SheenaArtes
 cmp byte [PartyPointer+1],(int)6
-je LloydArtes
+je ZelosArtes
 cmp byte [PartyPointer+1],(int)7
-je LloydArtes
+je PreseaArtes
 cmp byte [PartyPointer+1],(int)8
-je LloydArtes
+je RegalArtes
 cmp byte [PartyPointer+1],(int)9
-je LloydArtes
+je KratosArtes
+jmp SendInput
 
 P3_Slot:
 cmp byte [PartyPointer+2],(int)1
 je LloydArtes
 cmp byte [PartyPointer+2],(int)2
-je LloydArtes
+je ColetteArtes
 cmp byte [PartyPointer+2],(int)3
-je LloydArtes
+je GenisArtes
 cmp byte [PartyPointer+2],(int)4
-je LloydArtes
+je RaineArtes
 cmp byte [PartyPointer+2],(int)5
-je LloydArtes
+je SheenaArtes
 cmp byte [PartyPointer+2],(int)6
-je LloydArtes
+je ZelosArtes
 cmp byte [PartyPointer+2],(int)7
-je LloydArtes
+je PreseaArtes
 cmp byte [PartyPointer+2],(int)8
-je LloydArtes
+je RegalArtes
 cmp byte [PartyPointer+2],(int)9
-je LloydArtes
+je KratosArtes
+jmp SendInput
 
 P4_Slot:
 cmp byte [PartyPointer+3],(int)1
 je LloydArtes
 cmp byte [PartyPointer+3],(int)2
-je LloydArtes
+je ColetteArtes
 cmp byte [PartyPointer+3],(int)3
-je LloydArtes
+je GenisArtes
 cmp byte [PartyPointer+3],(int)4
-je LloydArtes
+je RaineArtes
 cmp byte [PartyPointer+3],(int)5
-je LloydArtes
+je SheenaArtes
 cmp byte [PartyPointer+3],(int)6
-je LloydArtes
+je ZelosArtes
 cmp byte [PartyPointer+3],(int)7
-je LloydArtes
+je PreseaArtes
 cmp byte [PartyPointer+3],(int)8
-je LloydArtes
+je RegalArtes
 cmp byte [PartyPointer+3],(int)9
-je LloydArtes
+je KratosArtes
+jmp SendInput
 
 
 
@@ -9808,9 +9812,6 @@ code: //just existing for the heck of it [Weee]
   jmp return
 
 
-
-
-
 LloydArtesMain: //Copy Artes from Address [Working]
 readmem(LloydPointer+D8,14)
 //db 01 00 06 00 0D 00 14 00 11 00 00 00 01 00
@@ -10073,7 +10074,7 @@ TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
             <CheatEntry>
               <ID>100</ID>
               <Description>"[Free Run]"</Description>
-              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
               <Color>FF80FF</Color>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
@@ -10132,8 +10133,6 @@ label(exit6)
 
 alloc(freerun_mem,128)
 registersymbol(freerun_mem)
-label(chr_freerun)
-registersymbol(chr_freerun)
 
 newmem6: //this is allocated memory, you have read,write,execute access
 //place your code here
@@ -10142,8 +10141,7 @@ originalcode6:
 
 push ebx
 mov ebx,[chr_freerun]
-//cmp ebx,0
-cmp byte [P1_LT],(int)0
+cmp ebx,0
 pop ebx
 
 jg here_do
@@ -10300,9 +10298,7 @@ originalcode:
 push ebx
 push esi
 
-//xor ebx,ebx
-//test ebx,ebx
-mov ebx,[TMP_LT]
+xor ebx,ebx
 mov [chr_freerun],ebx
 
 mov ebx,eax
@@ -10425,7 +10421,6 @@ db 7A 2C
 */
 
 dealloc(freerun_mem)
-unregistersymbol(chr_freerun)
 unregistersymbol(freerun_mem)
 
 dealloc(newmem)
@@ -10460,8 +10455,7 @@ push esi
 
 
 movzx eax,byte ptr [ebx+00001322]
-cmp byte [P1_LT],(int)0
-//cmp eax,0
+cmp eax,0
 je non_ghost
 
 movzx eax,byte ptr [ebx+00001321]
@@ -10492,10 +10486,10 @@ movq xmm5,edx
 cvtdq2ps,xmm3,xmm3
 cvtdq2ps,xmm5,xmm5
 
-mulss xmm3,[mval+4] //mval+4
-mulss xmm5,[mval+4] //mval+4
+mulss xmm3,[mval+4]
+mulss xmm5,[mval+4]
 
-mulss xmm3,[mval+1c] //mval+1c
+mulss xmm3,[mval+1c]
 //divss xmm3,[mval+18]
 //divss xmm5,[mval+18]
 
@@ -10535,8 +10529,8 @@ pop edx
 movss xmm6,[fcalc+4]
 movss xmm7,[fcalc]
 
-mulss xmm7,[mval+1c] //mval+1c
-mulss xmm6,[mval+1c] //mval+1c
+mulss xmm7,[mval+1c]
+mulss xmm6,[mval+1c]
 
 movss [esi+8],xmm6
 movss [esi],xmm7
@@ -10576,8 +10570,8 @@ dd (float)-1
 gtest:
 dq (double)32
 dq (double)16
-dd (int)2
-dd (int)2
+dd (int)32
+dd (int)32
 ftest:
 dd (float)32
 dd (float)16
@@ -10590,8 +10584,8 @@ nop
 returnhere:
 
 
- 
- 
+
+
 [DISABLE]
 //code from here till the end of the code will be used to disable the cheat
 dealloc(newmem)
@@ -10808,6 +10802,20 @@ unregistersymbol(TextPointer)
           </CheatEntries>
         </CheatEntry>
       </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1596</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>P1_LB</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1597</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>LloydArtesState</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
