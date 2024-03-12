@@ -8642,7 +8642,7 @@ je Player3
 cmp byte [rsp+44],(int)1
 je Player4
 
-jmp Player1
+jmp code
 //cmp [TOS.exe+712CEC],(byte)1
 //jne endingA
 
@@ -8721,8 +8721,8 @@ cmp [Controls+1],(int)1
 jl P1_UpdateInputs
 sub byte [Controls+1],(int)1
 mov byte [P1_LB],(int)1
-cmp byte [TOS.exe+712CEC],(int)1 //In Battle?
-jne P1_UpdateInputs
+//cmp byte [TOS.exe+712CEC],(int)1 //In Battle?
+//jne P1_UpdateInputs
 //cmp byte [TOS.exe+18366FC],(int)0
 //je P1_ArtesMenu
 //P1_ArtesMenu:
