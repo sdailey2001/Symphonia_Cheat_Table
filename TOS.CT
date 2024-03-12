@@ -134,13 +134,8 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
               <ID>964</ID>
               <Description>"[Party Formation]"</Description>
               <Options moHideChildren="1"/>
-              <Color>FF80FF</Color>
-              <GroupHeader>1</GroupHeader>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>27</ID>
-                  <Description>"Slot 1"</Description>
-                  <DropDownList ReadOnly="1" DisplayValueAsItem="1">1:Lloyd
+              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:Empty
+1:Lloyd
 2:Colette
 3:Genis
 4:Raine
@@ -149,8 +144,14 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
 7:Presea
 8:Regal
 9:Kratos
-10:Noishe?(Don't Use)
 </DropDownList>
+              <Color>FF80FF</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>27</ID>
+                  <Description>"Slot 1"</Description>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -159,7 +160,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>28</ID>
                   <Description>"Slot 2"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -168,7 +169,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>29</ID>
                   <Description>"Slot 3"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -177,7 +178,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>30</ID>
                   <Description>"Slot 4"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -186,7 +187,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>31</ID>
                   <Description>"Slot 5"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -195,7 +196,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>32</ID>
                   <Description>"Slot 6"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -204,7 +205,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>33</ID>
                   <Description>"Slot 7"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -213,7 +214,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                 <CheatEntry>
                   <ID>34</ID>
                   <Description>"Slot 8"</Description>
-                  <DropDownListLink>Slot 1</DropDownListLink>
+                  <DropDownListLink>[Party Formation]</DropDownListLink>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C080FF</Color>
                   <VariableType>Byte</VariableType>
@@ -280,7 +281,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1400</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Formal Attire
 2:Pirate
 3:Default?
 4:Swimsuit
@@ -351,7 +352,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1412</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default?
-1:Elegant Attire
+1:Formal Attire
 2:Maid Outfit
 3:Default
 4:Swimsuit
@@ -422,7 +423,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1426</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Formal Attire
 2:Katz Suit
 3:Katz?
 4:Swimsuit
@@ -490,7 +491,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1429</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Formal Attire
 2:Performer
 3:Default?
 4:Swimsuit
@@ -557,11 +558,11 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1432</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
-2:Ninja
+1:Formal Attire
+2:Suzu
 3:Injured
 4:Swimsuit
-5:Hunter
+5:Rider
 6:Judith
 </DropDownList>
                       <ShowAsSigned>0</ShowAsSigned>
@@ -623,7 +624,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1441</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Formal Attire
 2:Masked Man
 3:Soulless
 4:Swimsuit
@@ -688,7 +689,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1435</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Formal Attire
 2:Klonoa
 3:Soulless
 4:Swimsuit
@@ -753,11 +754,11 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1438</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Formal Attire
 2:Chef Suit
 3:Soulless
 4:Swimsuit
-5:Duke
+5:President
 6:Malik
 </DropDownList>
                       <ShowAsSigned>0</ShowAsSigned>
@@ -813,7 +814,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <ID>1444</ID>
                       <Description>"Costume (Resets on Title Change)"</Description>
                       <DropDownList DisplayValueAsItem="1">0:Default
-1:Elegant Attire
+1:Cruxis
 2:Alt White Tailcoat
 3:Alt White Tailcoat
 4:Alt White Tailcoat
@@ -836,6 +837,360 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <VariableType>Array of byte</VariableType>
                       <ByteLength>4</ByteLength>
                       <Address>+20</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1507</ID>
+              <Description>"[Artes]"</Description>
+              <Options moHideChildren="1"/>
+              <DropDownList ReadOnly="1" DisplayValueAsItem="1">-1:Evolved Tech required
+:FOR EVOLVE/LEARN CONDITIONS ONLY
+0:Nothing
+1:Demon Fang
+2:Double Demon Fang
+3:Demonic Chaos
+4:Fierce Demon Fang
+5:Demonic Circle
+6:Tiger Blade
+7:Tiger Rage
+8:Heavy Tiger Blade
+9:Twin Tiger Blade
+10:Sonic Thrust
+11:Hurricane Thrust
+12:Super Sonic Thrust
+13:Sword Rain
+14:Sword Rain: Alpha
+15:Sword Rain: Beta
+16:Sonic Sword Rain
+17:Tempest
+18:Omega Tempest
+19:Psi Tempest
+20:Beast
+21:Raging Beast
+22:Hunting Beast
+23:Demonic Tiger Blade
+24:Demonic Thrust
+25:Raining Tiger Blade
+26:Tempest Thrust
+27:Tempest Beast
+28:Beast Sword Rain
+29:Rising Falcon
+30:Sword Rain: Tempest
+31:Sonic Burst
+32:Aurora Slash
+33:Holy Guardian
+34:Guardian
+35:Ray Thrust
+36:Dual Ray Thrust
+37:Triple Ray Thrust
+38:Ray Satellite
+39:Triple Ray Satellite
+40:Pow Hammer
+41:Pow Pow Hammer
+42:Hammer Rain
+43:Para Ball
+44:Torrential Para Ball
+45:Ring Whirlwind
+46:Ring Cyclone
+47:Listra
+48:Whirlwind Rush
+49:Listra
+50:Grand Chariot
+51:(no name)
+52:Stardust Cross
+53:(no name)
+54:(no name)
+55:(no name)
+56:Angel Feathers
+57:Holy Song
+58:Judgment
+59:Sacrifice
+60:Grand Cross
+61:(no name)
+62:Aqua Edge
+63:Spread
+64:Tidal Wave
+65:Aqua Laser
+66:Fire Ball
+67:Eruption
+68:Explosion
+69:Flame Lance
+70:Wind Blade
+71:Air Thrust
+72:Cyclone
+73:Air Blade
+74:Stone Blast
+75:Stalagmite
+76:Ground Dasher
+77:Grave
+78:Lightning
+79:Spark Wave
+80:Indignation
+81:Thunder Blade
+82:Icicle
+83:Ice Tornado
+84:Freeze Lancer
+85:Raging Mist
+86:Dreaded Wave
+87:(no name)
+88:Spiral Flare
+89:Thunder Arrow
+90:Gravity Well
+91:Atlas
+92:Absolute
+93:Earth Bite
+94:Prism Sword
+95:Meteor Storm
+96:Indignation Judg.
+97:(no name)
+98:First Aid
+99:Nurse
+100:Heal
+101:Recover
+102:Purify
+103:Restore
+104:Dispel
+105:Nullify
+106:Anti-Magic
+107:Sharpness
+108:Acuteness
+109:Keenness
+110:Barrier
+111:Field Barrier
+112:Permaguard
+113:Photon
+114:Ray
+115:Holy Lance
+116:Charge
+117:Healing Stream
+118:Healing Wind
+119:Cure
+120:Healing Circle
+121:Resurrection
+122:Revitalize
+123:Revive
+124:Judgment
+125:Pyre Seal
+126:Power Seal
+127:Power Seal Pinion
+128:Power Seal Absolute
+129:Serpent Seal
+130:Serpent Seal Pinion
+131:S. Seal Absolute
+132:Mirage Seal
+133:Mirage Seal Pinion
+134:M. Seal Absolute
+135:Life Seal
+136:Spirit Seal
+137:S. Seal: Fire
+138:T. Seal: Earth
+139:Summon: Corrine
+140:Force Seal
+141:Demon Seal
+142:Purgatory Seal
+143:Cyclone Seal
+144:(no name)
+145:Light Spear
+146:Victory Light Spear
+147:Light Spear Cannon
+148:Hell Pyre
+149:Lightning Blade
+150:Demon Spear
+151:S. Lightning Blade
+152:Guardian Field
+153:Holy Binds
+154:Destruction
+155:Deadly Destruction
+156:Infinite Destruction
+157:Fiery Destruction
+158:Ultimate
+159:Punishment
+160:Dual Punishment
+161:Rising Punishment
+162:Finality Punishment
+163:Infliction
+164:Dual Infliction
+165:Resolute Infliction
+166:Finality Infliction
+167:Devastation
+168:Finite Devastation
+169:Mass Devastation
+170:Fiery Infliction
+171:Eternal Damnation
+172:Beast
+173:Endless Infliction
+174:(no name)
+175:Eternal Devastation
+176:Crescent Moon
+177:Spin Kick
+178:Triple Kick
+179:Wolverine
+180:Heel Kick
+181:Dragon Fang
+182:Swallow Kick
+183:Swallow Dance
+184:Dragon Dance
+185:Eagle Dive
+186:Eagle Rage
+187:Eagle Fall
+188:Rising Dragon
+189:Dragon Fury
+190:Dragon Rage
+191:Heaven's Charge
+192:Healer
+193:Chi Healer
+194:Grand Healer
+195:Triple Rage Kick
+196:Force
+197:Crescent Dark Moon
+198:Heaven Rising
+199:Dragon's Talon
+200:Fanged Finality
+201:Mirage
+202:Damage Guard
+203:Force Field
+204:Guardian Seal
+205:Earthly Protection
+206:Bastion
+207:Demon Fang
+208:Double Demon Fang
+209:Fierce Demon Fang
+210:Sonic Thrust
+211:Hurricane Thrust
+212:Super Sonic Thrust
+213:Fire Ball
+214:Eruption
+215:Wind Blade
+216:Air Thrust
+217:Stone Blast
+218:Grave
+219:Lightning
+220:Thunder Blade
+221:First Aid
+222:Sacred Light
+223:Item Thief
+224:Item Rover
+225:Inspect Magic
+226:Acid Rain
+227:Time Stop
+228:Falcon's Crest
+229:S. Seal: Water
+230:S. Seal: Wind
+231:S. Seal: Light
+232:T. Seal: Ice
+233:T. Seal: Lightning
+234:T. Seal: Darkness
+235:Summon: Fire
+236:Summon: Water
+237:Summon: Wind
+238:Summon: Light
+239:Summon: Earth
+240:Summon: Ice
+241:Summon: Lightning
+242:Summon: Darkness
+243:Summon: Origin
+244:Summon: Birth
+245:Summon: Heart
+246:Dark Sphere
+247:Fairy Circle
+248:(no name)
+249:Holy Binds
+250:Bloody Lance
+251:-????-
+252:Judgment
+253:Infernal Ruin
+254:Crimson Devastation
+</DropDownList>
+              <Color>FF80FF</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1508</ID>
+                  <Description>"Lloyd"</Description>
+                  <Options moHideChildren="1"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C080FF</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <Address>LloydPointer</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1509</ID>
+                      <Description>"Neutral"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+D8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1510</ID>
+                      <Description>"Up"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DA</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1511</ID>
+                      <Description>"Down"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1512</ID>
+                      <Description>"Side"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+DE</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1513</ID>
+                      <Description>"Shortcut 1"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E0</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1515</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>1514</ID>
+                      <Description>"Shortcut 2"</Description>
+                      <DropDownListLink>[Artes]</DropDownListLink>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>C08000</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+E2</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1516</ID>
+                          <Description>"Character"</Description>
+                          <DropDownListLink>[Party Formation]</DropDownListLink>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <Color>FF8080</Color>
+                          <VariableType>Byte</VariableType>
+                          <Address>+3</Address>
+                        </CheatEntry>
+                      </CheatEntries>
                     </CheatEntry>
                   </CheatEntries>
                 </CheatEntry>
@@ -7169,6 +7524,130 @@ db 46 61 6C 63 6F 6E 27 73 20 43 72 65 73 74 00 00
 </AssemblerScript>
                 </CheatEntry>
                 <CheatEntry>
+                  <ID>1489</ID>
+                  <Description>"Divine Judgment"</Description>
+                  <Color>C080FF</Color>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+TextPointer+6A240:
+db 44 69 76 69 6E 65 20 4A 75 64 67 6D 65 6E 74 00
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+
+TextPointer+6A240:
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1492</ID>
+                  <Description>"Equipment"</Description>
+                  <Color>C080FF</Color>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+TextPointer+52820:
+//Chakram
+db 43 68 61 6B 72 61 6D 00 00 00 00 00 00 00 00 00
+TextPointer+52880:
+//Axe
+db 41 78 65 00 00 00 00 00 00 00 00 00 00 00 00 00
+TextPointer+52890:
+//Greave
+db 47 72 65 61 76 65 00 00 00 00 00 00 00 00 00 00
+
+
+
+TextPointer+71E40:
+//Ogre Axe
+db 4F 67 72 65 20 41 78 65 00 00 00 00 00 00 00 00
+TextPointer+71E50:
+//[Desc]
+db 41 6E 20 61 78 65 20 77 69 74 68 20 61 20 62 6C 61 64 65 20 61 73 20 62 69 67 20 61 73 20 0A 61 6E 20 6F 67 72 65 2E 00 00 00 00 00 00 00 00 00
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+
+
+
+
+TextPointer+71E50:
+//[Desc]
+db 41 6E 20 61 78 20 77 69 74 68 20 61 20 62 6C 61 64 65 20 61 73 20 62 69 67 20 61 73 20 0A 61 6E 20 6F 67 72 65 2E 00 00 00 00 00 00 00 00 00 00
+TextPointer+71E40:
+//Ogre Ax
+db 4F 67 72 65 20 41 78 00 00 00 00 00 00 00 00 00
+
+
+TextPointer+52890:
+//Leg Guard
+db 4C 65 67 20 47 75 61 72 64 00 00 00 00 00 00 00
+TextPointer+52880:
+//Ax
+db 41 78 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+TextPointer+52820:
+//Ring
+db 52 69 6E 67 00 00 00 00 00 00 00 00 00 00 00 00
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1491</ID>
+                  <Description>"Titles"</Description>
+                  <Color>C080FF</Color>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+TextPointer+7800:
+//(Genis) Beachcomber
+db 42 65 61 63 68 63 6F 6D 62 65 72 00 00 00 00 00
+
+TextPointer+9540:
+//(Zelos) Sword for Hire
+db 53 77 6F 72 64 20 66 6F 72 20 48 69 72 65 00 00
+
+TextPointer+99B0:
+//(Presea) Axeman
+db 41 78 65 6D 61 6E 00 00 00 00 00 00 00 00 00 00
+TextPointer+9A30:
+//[Desc] Run right and boom! Run left and boom! The axe she wields shakes the earth!
+db 52 75 6E 20 72 69 67 68 74 20 61 6E 64 20 62 6F 6F 6D 21 20 52 75 6E 20 6C 65 66 74 20 61 6E 64 20 62 6F 6F 6D 21 0A 54 68 65 20 61 78 65 20 73 68 65 20 77 69 65 6C 64 73 20 73 68 61 6B 65 73 20 74 68 65 20 65 61 72 74 68 21 00 00 00 00 00
+
+TextPointer+9E70:
+//(Regal) God of the Kitchen
+db 47 6F 64 20 6F 66 20 74 68 65 20 4B 69 74 63 68 65 6E 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+
+TextPointer+9E70:
+//(Regal) God of The Kitchen
+db 47 6F 64 20 6F 66 20 54 68 65 20 4B 69 74 63 68 65 6E 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+TextPointer+9A30:
+//[Desc] Run right and boom! Run left and boom! The ax she wields shakes the earth!
+db 52 75 6E 20 72 69 67 68 74 20 61 6E 64 20 62 6F 6F 6D 21 20 52 75 6E 20 6C 65 66 74 20 61 6E 64 20 62 6F 6F 6D 21 0A 54 68 65 20 61 78 20 73 68 65 20 77 69 65 6C 64 73 20 73 68 61 6B 65 73 20 74 68 65 20 65 61 72 74 68 21 0A 00 00 00 00 00
+TextPointer+99B0:
+//(Presea) Axman
+db 41 78 6D 61 6E 00 00 00 00 00 00 00 00 00 00 00
+
+TextPointer+9540:
+//(Zelos) Sword For Hire
+db 53 77 6F 72 64 20 46 6F 72 20 48 69 72 65 00 00
+
+TextPointer+7800:
+//(Genis) Beach Comber
+db 42 65 61 63 68 20 43 6F 6D 62 65 72 00 00 00 00
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
                   <ID>7</ID>
                   <Description>"Indignation Judgment"</Description>
                   <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
@@ -7271,15 +7750,1640 @@ db 48 6F 6C 79 20 42 69 6E 64 73 00 00 00 00 00 00
               </CheatEntries>
             </CheatEntry>
             <CheatEntry>
+              <ID>1523</ID>
+              <Description>"TestingArteSwapping"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-03-06
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ARTESWAP,TOS.exe,89 4E 10 8B D1) // should be unique
+alloc(newmem,$1000,ARTESWAP)
+
+alloc(Controls,48)
+
+alloc(TMP_A,1)
+alloc(TMP_B,1)
+alloc(TMP_X,1)
+alloc(TMP_Y,1)
+alloc(TMP_LB,1)
+alloc(TMP_RB,1)
+alloc(TMP_LT,1)
+alloc(TMP_RT,1)
+
+alloc(P1_A,1)
+alloc(P1_B,1)
+alloc(P1_X,1)
+alloc(P1_Y,1)
+alloc(P1_LB,1)
+alloc(P1_RB,1)
+alloc(P1_LT,1)
+alloc(P1_RT,1)
+
+alloc(P2_A,1)
+alloc(P2_B,1)
+alloc(P2_X,1)
+alloc(P2_Y,1)
+alloc(P2_LB,1)
+alloc(P2_RB,1)
+alloc(P2_LT,1)
+alloc(P2_RT,1)
+
+alloc(P3_A,1)
+alloc(P3_B,1)
+alloc(P3_X,1)
+alloc(P3_Y,1)
+alloc(P3_LB,1)
+alloc(P3_RB,1)
+alloc(P3_LT,1)
+alloc(P3_RT,1)
+
+alloc(P4_A,1)
+alloc(P4_B,1)
+alloc(P4_X,1)
+alloc(P4_Y,1)
+alloc(P4_LB,1)
+alloc(P4_RB,1)
+alloc(P4_LT,1)
+alloc(P4_RT,1)
+
+alloc(LloydArtesState,1)
+alloc(LloydArtesMain,14)
+alloc(LloydArtesAlt,14)
+
+alloc(ColetteArtesState,1)
+alloc(ColetteArtesMain,14)
+alloc(ColetteArtesAlt,14)
+
+alloc(GenisArtesState,1)
+alloc(GenisArtesMain,14)
+alloc(GenisArtesAlt,14)
+
+alloc(RaineArtesState,1)
+alloc(RaineArtesMain,14)
+alloc(RaineArtesAlt,14)
+
+alloc(SheenaArtesState,1)
+alloc(SheenaArtesMain,14)
+alloc(SheenaArtesAlt,14)
+
+alloc(ZelosArtesState,1)
+alloc(ZelosArtesMain,14)
+alloc(ZelosArtesAlt,14)
+
+alloc(PreseaArtesState,1)
+alloc(PreseaArtesMain,14)
+alloc(PreseaArtesAlt,14)
+
+alloc(RegalArtesState,1)
+alloc(RegalArtesMain,14)
+alloc(RegalArtesAlt,14)
+
+alloc(KratosArtesState,1)
+alloc(KratosArtesMain,14)
+alloc(KratosArtesAlt,14)
+
+label(code)
+label(return)
+
+registersymbol(Controls)
+
+registersymbol(TMP_A)
+registersymbol(TMP_B)
+registersymbol(TMP_X)
+registersymbol(TMP_Y)
+registersymbol(TMP_LB)
+registersymbol(TMP_RB)
+registersymbol(TMP_LT)
+registersymbol(TMP_RT)
+
+registersymbol(P1_A)
+registersymbol(P1_B)
+registersymbol(P1_X)
+registersymbol(P1_Y)
+registersymbol(P1_LB)
+registersymbol(P1_RB)
+registersymbol(P1_LT)
+registersymbol(P1_RT)
+
+registersymbol(P2_A)
+registersymbol(P2_B)
+registersymbol(P2_X)
+registersymbol(P2_Y)
+registersymbol(P2_LB)
+registersymbol(P2_RB)
+registersymbol(P2_LT)
+registersymbol(P2_RT)
+
+registersymbol(P3_A)
+registersymbol(P3_B)
+registersymbol(P3_X)
+registersymbol(P3_Y)
+registersymbol(P3_LB)
+registersymbol(P3_RB)
+registersymbol(P3_LT)
+registersymbol(P3_RT)
+
+registersymbol(P4_A)
+registersymbol(P4_B)
+registersymbol(P4_X)
+registersymbol(P4_Y)
+registersymbol(P4_LB)
+registersymbol(P4_RB)
+registersymbol(P4_LT)
+registersymbol(P4_RT)
+
+registersymbol(LloydArtesState)
+registersymbol(LloydArtesMain)
+registersymbol(LloydArtesAlt)
+
+registersymbol(ColetteArtesState)
+registersymbol(ColetteArtesMain)
+registersymbol(ColetteArtesAlt)
+
+registersymbol(GenisArtesState)
+registersymbol(GenisArtesMain)
+registersymbol(GenisArtesAlt)
+
+registersymbol(RaineArtesState)
+registersymbol(RaineArtesMain)
+registersymbol(RaineArtesAlt)
+
+registersymbol(SheenaArtesState)
+registersymbol(SheenaArtesMain)
+registersymbol(SheenaArtesAlt)
+
+registersymbol(ZelosArtesState)
+registersymbol(ZelosArtesMain)
+registersymbol(ZelosArtesAlt)
+
+registersymbol(PreseaArtesState)
+registersymbol(PreseaArtesMain)
+registersymbol(PreseaArtesAlt)
+
+registersymbol(RegalArtesState)
+registersymbol(RegalArtesMain)
+registersymbol(RegalArtesAlt)
+
+registersymbol(KratosArtesState)
+registersymbol(KratosArtesMain)
+registersymbol(KratosArtesAlt)
+
+
+newmem: //Read Controller Input
+cmp byte [rsp+44],(int)4
+je Player1
+cmp byte [rsp+44],(int)3
+je Player2
+cmp byte [rsp+44],(int)2
+je Player3
+cmp byte [rsp+44],(int)1
+je Player4
+
+jmp Player1
+//cmp [TOS.exe+712CEC],(byte)1
+//jne endingA
+
+Player1:
+//cmp byte [rsp+44],(int)4
+//jne Player2
+mov [Controls],ecx
+
+GetP1_Y:
+mov byte [P1_Y],(int)0
+mov byte [TMP_Y],(int)0
+cmp [Controls+1],(int)128
+jl GetP1_X
+sub byte [Controls+1],(int)128
+mov byte [P1_Y],(int)1
+mov byte [TMP_Y],(int)1
+
+GetP1_X:
+mov byte [P1_X],(int)0
+mov byte [TMP_X],(int)0
+cmp [Controls+1],(int)64
+jl GetP1_B
+sub byte [Controls+1],(int)64
+mov byte [P1_X],(int)1
+mov byte [TMP_X],(int)1
+
+GetP1_B:
+mov byte [P1_B],(int)0
+mov byte [TMP_B],(int)0
+cmp [Controls+1],(int)32
+jl GetP1_A
+sub byte [Controls+1],(int)32
+mov byte [P1_B],(int)1
+mov byte [TMP_B],(int)1
+
+GetP1_A:
+mov byte [P1_A],(int)0
+mov byte [TMP_A],(int)0
+cmp [Controls+1],(int)16
+jl GetP1_RT
+sub byte [Controls+1],(int)16
+mov byte [P1_A],(int)1
+mov byte [TMP_A],(int)1
+
+GetP1_RT:
+mov byte [P1_RT],(int)0
+mov byte [TMP_RT],(int)0
+cmp [Controls+1],(int)8
+jl GetP1_LT
+sub byte [Controls+1],(int)8
+mov byte [P1_RT],(int)1
+mov byte [TMP_RT],(int)1
+
+GetP1_LT:
+mov byte [P1_LT],(int)0
+mov byte [TMP_LT],(int)0
+cmp [Controls+1],(int)4
+jl GetP1_RB
+sub byte [Controls+1],(int)4
+mov byte [P1_LT],(int)1
+mov byte [TMP_LT],(int)1
+
+GetP1_RB:
+mov byte [P1_RB],(int)0
+mov byte [TMP_RB],(int)0
+cmp [Controls+1],(int)2
+jl GetP1_LB
+sub byte [Controls+1],(int)2
+mov byte [P1_RB],(int)1
+mov byte [TMP_RB],(int)1
+
+GetP1_LB:
+mov byte [P1_LB],(int)0
+mov byte [TMP_LB],(int)0
+cmp [Controls+1],(int)1
+jl P1_UpdateInputs
+sub byte [Controls+1],(int)1
+mov byte [P1_LB],(int)1
+cmp byte [TOS.exe+712CEC],(int)1 //In Battle?
+jne P1_UpdateInputs
+//cmp byte [TOS.exe+18366FC],(int)0
+//je P1_ArtesMenu
+//P1_ArtesMenu:
+//cmp byte [TOS.exe+70DDC4],(int)0
+//jne P1_UpdateInputs
+mov byte [TMP_LB],(int)1
+jmp P1_UpdateInputs
+
+
+Player2:
+//cmp byte [rsp+44],(int)3
+//jne Player3
+mov [Controls],ecx
+
+GetP2_Y:
+mov byte [P2_Y],(int)0
+mov byte [TMP_Y],(int)0
+cmp [Controls+1],(int)128
+jl GetP2_X
+sub byte [Controls+1],(int)128
+mov byte [P2_Y],(int)1
+mov byte [TMP_Y],(int)1
+
+GetP2_X:
+mov byte [P2_X],(int)0
+mov byte [TMP_X],(int)0
+cmp [Controls+1],(int)64
+jl GetP2_B
+sub byte [Controls+1],(int)64
+mov byte [P2_X],(int)1
+mov byte [TMP_X],(int)1
+
+GetP2_B:
+mov byte [P2_B],(int)0
+mov byte [TMP_B],(int)0
+cmp [Controls+1],(int)32
+jl GetP2_A
+sub byte [Controls+1],(int)32
+mov byte [P2_B],(int)1
+mov byte [TMP_B],(int)1
+
+GetP2_A:
+mov byte [P2_A],(int)0
+mov byte [TMP_A],(int)0
+cmp [Controls+1],(int)16
+jl GetP2_RT
+sub byte [Controls+1],(int)16
+mov byte [P2_A],(int)1
+mov byte [TMP_A],(int)1
+
+GetP2_RT:
+mov byte [P2_RT],(int)0
+mov byte [TMP_RT],(int)0
+cmp [Controls+1],(int)8
+jl GetP2_LT
+sub byte [Controls+1],(int)8
+mov byte [P2_RT],(int)1
+mov byte [TMP_RT],(int)1
+
+GetP2_LT:
+mov byte [P2_LT],(int)0
+mov byte [TMP_LT],(int)0
+cmp [Controls+1],(int)4
+jl GetP2_RB
+sub byte [Controls+1],(int)4
+mov byte [P2_LT],(int)1
+mov byte [TMP_LT],(int)1
+
+GetP2_RB:
+mov byte [P2_RB],(int)0
+mov byte [TMP_RB],(int)0
+cmp [Controls+1],(int)2
+jl GetP2_LB
+sub byte [Controls+1],(int)2
+mov byte [P2_RB],(int)1
+mov byte [TMP_RB],(int)1
+
+GetP2_LB:
+mov byte [P2_LB],(int)0
+mov byte [TMP_LB],(int)0
+cmp [Controls+1],(int)1
+jl P2_UpdateInputs
+sub byte [Controls+1],(int)1
+mov byte [P2_LB],(int)1
+//cmp byte [TOS.exe+712CEC],(int)1
+//jne P2_UpdateInputs
+//cmp byte [TOS.exe+18366FC],(int)0
+//je P2_ArtesMenu
+//P2_ArtesMenu:
+//cmp byte [TOS.exe+70DDC4],(int)0
+//jne P2_UpdateInputs
+mov byte [TMP_LB],(int)1
+jmp P2_UpdateInputs
+
+
+Player3:
+//cmp byte [rsp+44],(int)2
+//jne Player4
+mov [Controls],ecx
+
+GetP3_Y:
+mov byte [P3_Y],(int)0
+mov byte [TMP_Y],(int)0
+cmp [Controls+1],(int)128
+jl GetP3_X
+sub byte [Controls+1],(int)128
+mov byte [P3_Y],(int)1
+mov byte [TMP_Y],(int)1
+
+GetP3_X:
+mov byte [P3_X],(int)0
+mov byte [TMP_X],(int)0
+cmp [Controls+1],(int)64
+jl GetP3_B
+sub byte [Controls+1],(int)64
+mov byte [P3_X],(int)1
+mov byte [TMP_X],(int)1
+
+GetP3_B:
+mov byte [P3_B],(int)0
+mov byte [TMP_B],(int)0
+cmp [Controls+1],(int)32
+jl GetP3_A
+sub byte [Controls+1],(int)32
+mov byte [P3_B],(int)1
+mov byte [TMP_B],(int)1
+
+GetP3_A:
+mov byte [P3_A],(int)0
+mov byte [TMP_A],(int)0
+cmp [Controls+1],(int)16
+jl GetP3_RT
+sub byte [Controls+1],(int)16
+mov byte [P3_A],(int)1
+mov byte [TMP_A],(int)1
+
+GetP3_RT:
+mov byte [P3_RT],(int)0
+mov byte [TMP_RT],(int)0
+cmp [Controls+1],(int)8
+jl GetP3_LT
+sub byte [Controls+1],(int)8
+mov byte [P3_RT],(int)1
+mov byte [TMP_RT],(int)1
+
+GetP3_LT:
+mov byte [P3_LT],(int)0
+mov byte [TMP_LT],(int)0
+cmp [Controls+1],(int)4
+jl GetP3_RB
+sub byte [Controls+1],(int)4
+mov byte [P3_LT],(int)1
+mov byte [TMP_LT],(int)1
+
+GetP3_RB:
+mov byte [P3_RB],(int)0
+mov byte [TMP_RB],(int)0
+cmp [Controls+1],(int)2
+jl GetP3_LB
+sub byte [Controls+1],(int)2
+mov byte [P3_RB],(int)1
+mov byte [TMP_RB],(int)1
+
+GetP3_LB:
+mov byte [P3_LB],(int)0
+mov byte [TMP_LB],(int)0
+cmp [Controls+1],(int)1
+jl P3_UpdateInputs
+sub byte [Controls+1],(int)1
+mov byte [P3_LB],(int)1
+//cmp byte [TOS.exe+712CEC],(int)1
+//jne P3_UpdateInputs
+//cmp byte [TOS.exe+18366FC],(int)0
+//je P3_ArtesMenu
+//P3_ArtesMenu:
+//cmp byte [TOS.exe+70DDC4],(int)0
+//jne P3_UpdateInputs
+mov byte [TMP_LB],(int)1
+jmp P3_UpdateInputs
+
+
+Player4:
+//cmp byte [rsp+44],(int)3
+//jne code
+mov [Controls],ecx
+
+GetP4_Y:
+mov byte [P4_Y],(int)0
+mov byte [TMP_Y],(int)0
+cmp [Controls+1],(int)128
+jl GetP4_X
+sub byte [Controls+1],(int)128
+mov byte [P4_Y],(int)1
+mov byte [TMP_Y],(int)1
+
+GetP4_X:
+mov byte [P4_X],(int)0
+mov byte [TMP_X],(int)0
+cmp [Controls+1],(int)64
+jl GetP4_B
+sub byte [Controls+1],(int)64
+mov byte [P4_X],(int)1
+mov byte [TMP_X],(int)1
+
+GetP4_B:
+mov byte [P4_B],(int)0
+mov byte [TMP_B],(int)0
+cmp [Controls+1],(int)32
+jl GetP4_A
+sub byte [Controls+1],(int)32
+mov byte [P4_B],(int)1
+mov byte [TMP_B],(int)1
+
+GetP4_A:
+mov byte [P4_A],(int)0
+mov byte [TMP_A],(int)0
+cmp [Controls+1],(int)16
+jl GetP4_RT
+sub byte [Controls+1],(int)16
+mov byte [P4_A],(int)1
+mov byte [TMP_A],(int)1
+
+GetP4_RT:
+mov byte [P4_RT],(int)0
+mov byte [TMP_RT],(int)0
+cmp [Controls+1],(int)8
+jl GetP4_LT
+sub byte [Controls+1],(int)8
+mov byte [P4_RT],(int)1
+mov byte [TMP_RT],(int)1
+
+GetP4_LT:
+mov byte [P4_LT],(int)0
+mov byte [TMP_LT],(int)0
+cmp [Controls+1],(int)4
+jl GetP4_RB
+sub byte [Controls+1],(int)4
+mov byte [P4_LT],(int)1
+mov byte [TMP_LT],(int)1
+
+GetP4_RB:
+mov byte [P4_RB],(int)0
+mov byte [TMP_RB],(int)0
+cmp [Controls+1],(int)2
+jl GetP4_LB
+sub byte [Controls+1],(int)2
+mov byte [P4_RB],(int)1
+mov byte [TMP_RB],(int)1
+
+GetP4_LB:
+mov byte [P4_LB],(int)0
+mov byte [TMP_LB],(int)0
+cmp [Controls+1],(int)1
+jl P4_UpdateInputs
+sub byte [Controls+1],(int)1
+mov byte [P4_LB],(int)1
+//cmp byte [TOS.exe+712CEC],(int)1
+//jne P4_UpdateInputs
+//cmp byte [TOS.exe+18366FC],(int)0
+//je P4_ArtesMenu
+//P4_ArtesMenu:
+//cmp byte [TOS.exe+70DDC4],(int)0
+//jne P4_UpdateInputs
+mov byte [TMP_LB],(int)1
+jmp P4_UpdateInputs
+
+
+P1_UpdateInputs:
+mov [Controls],ecx
+
+cmp byte [TMP_LB],(int)1
+jl P1_Slot
+sub [Controls+1],(int)1
+jmp P1_Slot
+
+P2_UpdateInputs:
+mov [Controls],ecx
+
+cmp byte [TMP_LB],(int)1
+jl P2_Slot
+sub [Controls+1],(int)1
+jmp P2_Slot
+
+P3_UpdateInputs:
+mov [Controls],ecx
+
+cmp byte [TMP_LB],(int)1
+jl P3_Slot
+sub [Controls+1],(int)1
+jmp P3_Slot
+
+P4_UpdateInputs:
+mov [Controls],ecx
+
+cmp byte [TMP_LB],(int)1
+jl P4_Slot
+sub [Controls+1],(int)1
+jmp P4_Slot
+
+
+
+
+P1_Slot:
+cmp byte [PartyPointer],(int)1
+je LloydArtes
+cmp byte [PartyPointer],(int)2
+je LloydArtes
+cmp byte [PartyPointer],(int)3
+je LloydArtes
+cmp byte [PartyPointer],(int)4
+je LloydArtes
+cmp byte [PartyPointer],(int)5
+je LloydArtes
+cmp byte [PartyPointer],(int)6
+je LloydArtes
+cmp byte [PartyPointer],(int)7
+je LloydArtes
+cmp byte [PartyPointer],(int)8
+je LloydArtes
+cmp byte [PartyPointer],(int)9
+je LloydArtes
+
+P2_Slot:
+cmp byte [PartyPointer+1],(int)1
+je LloydArtes
+cmp byte [PartyPointer+1],(int)2
+je LloydArtes
+cmp byte [PartyPointer+1],(int)3
+je LloydArtes
+cmp byte [PartyPointer+1],(int)4
+je LloydArtes
+cmp byte [PartyPointer+1],(int)5
+je LloydArtes
+cmp byte [PartyPointer+1],(int)6
+je LloydArtes
+cmp byte [PartyPointer+1],(int)7
+je LloydArtes
+cmp byte [PartyPointer+1],(int)8
+je LloydArtes
+cmp byte [PartyPointer+1],(int)9
+je LloydArtes
+
+P3_Slot:
+cmp byte [PartyPointer+2],(int)1
+je LloydArtes
+cmp byte [PartyPointer+2],(int)2
+je LloydArtes
+cmp byte [PartyPointer+2],(int)3
+je LloydArtes
+cmp byte [PartyPointer+2],(int)4
+je LloydArtes
+cmp byte [PartyPointer+2],(int)5
+je LloydArtes
+cmp byte [PartyPointer+2],(int)6
+je LloydArtes
+cmp byte [PartyPointer+2],(int)7
+je LloydArtes
+cmp byte [PartyPointer+2],(int)8
+je LloydArtes
+cmp byte [PartyPointer+2],(int)9
+je LloydArtes
+
+P4_Slot:
+cmp byte [PartyPointer+3],(int)1
+je LloydArtes
+cmp byte [PartyPointer+3],(int)2
+je LloydArtes
+cmp byte [PartyPointer+3],(int)3
+je LloydArtes
+cmp byte [PartyPointer+3],(int)4
+je LloydArtes
+cmp byte [PartyPointer+3],(int)5
+je LloydArtes
+cmp byte [PartyPointer+3],(int)6
+je LloydArtes
+cmp byte [PartyPointer+3],(int)7
+je LloydArtes
+cmp byte [PartyPointer+3],(int)8
+je LloydArtes
+cmp byte [PartyPointer+3],(int)9
+je LloydArtes
+
+
+
+
+
+
+
+LloydArtes:
+
+LloydMain:
+cmp byte [LloydArtesState],(int)0
+jne LloydAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [LloydArtesState],(int)1
+jmp LloydSaveMain
+
+LloydAlt:
+cmp byte [LloydArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [LloydArtesState],(int)0
+jmp LloydSaveAlt
+
+
+LloydSaveMain:
+push eax
+mov eax,[LloydPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [LloydArtesMain],eax //Sets 4 Bytes
+mov eax,[LloydPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [LloydArtesMain+4],eax //Sets 4 Bytes
+mov eax,[LloydPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [LloydArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [LloydPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [LloydArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp LloydSendAlt
+
+LloydSaveAlt:
+push eax
+mov eax,[LloydPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [LloydArtesAlt],eax //Sets 4 Bytes
+mov eax,[LloydPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [LloydArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[LloydPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [LloydArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [LloydPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [LloydArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp LloydSendMain
+
+
+LloydSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[LloydArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [LloydPointer+D8],eax //Sets 4 Bytes
+mov eax,[LloydArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [LloydPointer+DC],eax //Sets 4 Bytes
+mov eax,[LloydArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [LloydPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [LloydArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [LloydPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+LloydSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[LloydArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [LloydPointer+D8],eax //Sets 4 Bytes
+mov eax,[LloydArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [LloydPointer+DC],eax //Sets 4 Bytes
+mov eax,[LloydArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [LloydPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [LloydArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [LloydPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+ColetteArtes:
+
+ColetteMain:
+cmp byte [ColetteArtesState],(int)0
+jne ColetteAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [ColetteArtesState],(int)1
+jmp ColetteSaveMain
+
+ColetteAlt:
+cmp byte [ColetteArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [ColetteArtesState],(int)0
+jmp ColetteSaveAlt
+
+
+ColetteSaveMain:
+push eax
+mov eax,[ColettePointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [ColetteArtesMain],eax //Sets 4 Bytes
+mov eax,[ColettePointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesMain+4],eax //Sets 4 Bytes
+mov eax,[ColettePointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ColettePointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [ColetteArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp ColetteSendAlt
+
+ColetteSaveAlt:
+push eax
+mov eax,[ColettePointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [ColetteArtesAlt],eax //Sets 4 Bytes
+mov eax,[ColettePointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ColettePointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ColettePointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [ColetteArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp ColetteSendMain
+
+
+ColetteSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[ColetteArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [ColettePointer+D8],eax //Sets 4 Bytes
+mov eax,[ColetteArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [ColettePointer+DC],eax //Sets 4 Bytes
+mov eax,[ColetteArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [ColettePointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [ColetteArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [ColettePointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+ColetteSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[ColetteArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [ColettePointer+D8],eax //Sets 4 Bytes
+mov eax,[ColetteArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [ColettePointer+DC],eax //Sets 4 Bytes
+mov eax,[ColetteArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [ColettePointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [ColetteArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [ColettePointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+GenisArtes:
+
+GenisMain:
+cmp byte [GenisArtesState],(int)0
+jne GenisAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [GenisArtesState],(int)1
+jmp GenisSaveMain
+
+GenisAlt:
+cmp byte [GenisArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [GenisArtesState],(int)0
+jmp GenisSaveAlt
+
+
+GenisSaveMain:
+push eax
+mov eax,[GenisPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [GenisArtesMain],eax //Sets 4 Bytes
+mov eax,[GenisPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [GenisArtesMain+4],eax //Sets 4 Bytes
+mov eax,[GenisPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [GenisArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [GenisPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [GenisArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp GenisSendAlt
+
+GenisSaveAlt:
+push eax
+mov eax,[GenisPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [GenisArtesAlt],eax //Sets 4 Bytes
+mov eax,[GenisPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [GenisArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[GenisPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [GenisArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [GenisPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [GenisArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp GenisSendMain
+
+
+GenisSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[GenisArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [GenisPointer+D8],eax //Sets 4 Bytes
+mov eax,[GenisArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [GenisPointer+DC],eax //Sets 4 Bytes
+mov eax,[GenisArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [GenisPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [GenisArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [GenisPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+GenisSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[GenisArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [GenisPointer+D8],eax //Sets 4 Bytes
+mov eax,[GenisArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [GenisPointer+DC],eax //Sets 4 Bytes
+mov eax,[GenisArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [GenisPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [GenisArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [GenisPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+RaineArtes:
+
+RaineMain:
+cmp byte [RaineArtesState],(int)0
+jne RaineAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [RaineArtesState],(int)1
+jmp RaineSaveMain
+
+RaineAlt:
+cmp byte [RaineArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [RaineArtesState],(int)0
+jmp RaineSaveAlt
+
+
+RaineSaveMain:
+push eax
+mov eax,[RainePointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [RaineArtesMain],eax //Sets 4 Bytes
+mov eax,[RainePointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [RaineArtesMain+4],eax //Sets 4 Bytes
+mov eax,[RainePointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [RaineArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [RainePointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [RaineArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp RaineSendAlt
+
+RaineSaveAlt:
+push eax
+mov eax,[RainePointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [RaineArtesAlt],eax //Sets 4 Bytes
+mov eax,[RainePointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [RaineArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[RainePointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [RaineArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [RainePointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [RaineArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp RaineSendMain
+
+
+RaineSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[RaineArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [RainePointer+D8],eax //Sets 4 Bytes
+mov eax,[RaineArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [RainePointer+DC],eax //Sets 4 Bytes
+mov eax,[RaineArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [RainePointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [RaineArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [RainePointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+RaineSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[RaineArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [RainePointer+D8],eax //Sets 4 Bytes
+mov eax,[RaineArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [RainePointer+DC],eax //Sets 4 Bytes
+mov eax,[RaineArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [RainePointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [RaineArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [RainePointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+SheenaArtes:
+
+SheenaMain:
+cmp byte [SheenaArtesState],(int)0
+jne SheenaAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [SheenaArtesState],(int)1
+jmp SheenaSaveMain
+
+SheenaAlt:
+cmp byte [SheenaArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [SheenaArtesState],(int)0
+jmp SheenaSaveAlt
+
+
+SheenaSaveMain:
+push eax
+mov eax,[SheenaPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [SheenaArtesMain],eax //Sets 4 Bytes
+mov eax,[SheenaPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesMain+4],eax //Sets 4 Bytes
+mov eax,[SheenaPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [SheenaPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [SheenaArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp SheenaSendAlt
+
+SheenaSaveAlt:
+push eax
+mov eax,[SheenaPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [SheenaArtesAlt],eax //Sets 4 Bytes
+mov eax,[SheenaPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[SheenaPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [SheenaPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [SheenaArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp SheenaSendMain
+
+
+SheenaSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[SheenaArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [SheenaPointer+D8],eax //Sets 4 Bytes
+mov eax,[SheenaArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [SheenaPointer+DC],eax //Sets 4 Bytes
+mov eax,[SheenaArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [SheenaPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [SheenaArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [SheenaPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+SheenaSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[SheenaArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [SheenaPointer+D8],eax //Sets 4 Bytes
+mov eax,[SheenaArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [SheenaPointer+DC],eax //Sets 4 Bytes
+mov eax,[SheenaArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [SheenaPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [SheenaArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [SheenaPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+ZelosArtes:
+
+ZelosMain:
+cmp byte [ZelosArtesState],(int)0
+jne ZelosAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [ZelosArtesState],(int)1
+jmp ZelosSaveMain
+
+ZelosAlt:
+cmp byte [ZelosArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [ZelosArtesState],(int)0
+jmp ZelosSaveAlt
+
+
+ZelosSaveMain:
+push eax
+mov eax,[ZelosPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [ZelosArtesMain],eax //Sets 4 Bytes
+mov eax,[ZelosPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesMain+4],eax //Sets 4 Bytes
+mov eax,[ZelosPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ZelosPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [ZelosArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp ZelosSendAlt
+
+ZelosSaveAlt:
+push eax
+mov eax,[ZelosPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [ZelosArtesAlt],eax //Sets 4 Bytes
+mov eax,[ZelosPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ZelosPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ZelosPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [ZelosArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp ZelosSendMain
+
+
+ZelosSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[ZelosArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [ZelosPointer+D8],eax //Sets 4 Bytes
+mov eax,[ZelosArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [ZelosPointer+DC],eax //Sets 4 Bytes
+mov eax,[ZelosArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [ZelosPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [ZelosArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [ZelosPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+ZelosSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[ZelosArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [ZelosPointer+D8],eax //Sets 4 Bytes
+mov eax,[ZelosArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [ZelosPointer+DC],eax //Sets 4 Bytes
+mov eax,[ZelosArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [ZelosPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [ZelosArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [ZelosPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+PreseaArtes:
+
+PreseaMain:
+cmp byte [PreseaArtesState],(int)0
+jne PreseaAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [PreseaArtesState],(int)1
+jmp PreseaSaveMain
+
+PreseaAlt:
+cmp byte [PreseaArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [PreseaArtesState],(int)0
+jmp PreseaSaveAlt
+
+
+PreseaSaveMain:
+push eax
+mov eax,[PreseaPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [PreseaArtesMain],eax //Sets 4 Bytes
+mov eax,[PreseaPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesMain+4],eax //Sets 4 Bytes
+mov eax,[PreseaPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [PreseaPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [PreseaArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp PreseaSendAlt
+
+PreseaSaveAlt:
+push eax
+mov eax,[PreseaPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [PreseaArtesAlt],eax //Sets 4 Bytes
+mov eax,[PreseaPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[PreseaPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [PreseaPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [PreseaArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp PreseaSendMain
+
+
+PreseaSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[PreseaArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [PreseaPointer+D8],eax //Sets 4 Bytes
+mov eax,[PreseaArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [PreseaPointer+DC],eax //Sets 4 Bytes
+mov eax,[PreseaArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [PreseaPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [PreseaArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [PreseaPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+PreseaSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[PreseaArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [PreseaPointer+D8],eax //Sets 4 Bytes
+mov eax,[PreseaArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [PreseaPointer+DC],eax //Sets 4 Bytes
+mov eax,[PreseaArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [PreseaPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [PreseaArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [PreseaPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+RegalArtes:
+
+RegalMain:
+cmp byte [RegalArtesState],(int)0
+jne RegalAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [RegalArtesState],(int)1
+jmp RegalSaveMain
+
+RegalAlt:
+cmp byte [RegalArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [RegalArtesState],(int)0
+jmp RegalSaveAlt
+
+
+RegalSaveMain:
+push eax
+mov eax,[RegalPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [RegalArtesMain],eax //Sets 4 Bytes
+mov eax,[RegalPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [RegalArtesMain+4],eax //Sets 4 Bytes
+mov eax,[RegalPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [RegalArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [RegalPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [RegalArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp RegalSendAlt
+
+RegalSaveAlt:
+push eax
+mov eax,[RegalPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [RegalArtesAlt],eax //Sets 4 Bytes
+mov eax,[RegalPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [RegalArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[RegalPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [RegalArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [RegalPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [RegalArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp RegalSendMain
+
+
+RegalSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[RegalArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [RegalPointer+D8],eax //Sets 4 Bytes
+mov eax,[RegalArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [RegalPointer+DC],eax //Sets 4 Bytes
+mov eax,[RegalArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [RegalPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [RegalArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [RegalPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+RegalSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[RegalArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [RegalPointer+D8],eax //Sets 4 Bytes
+mov eax,[RegalArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [RegalPointer+DC],eax //Sets 4 Bytes
+mov eax,[RegalArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [RegalPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [RegalArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [RegalPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+KratosArtes:
+
+KratosMain:
+cmp byte [KratosArtesState],(int)0
+jne KratosAlt
+cmp byte [TMP_LB],(int)0
+je SendInputs
+mov byte [KratosArtesState],(int)1
+jmp KratosSaveMain
+
+KratosAlt:
+cmp byte [KratosArtesState],(int)1
+jne SendInputs
+cmp byte [TMP_LB],(int)1
+je SendInputs
+mov byte [KratosArtesState],(int)0
+jmp KratosSaveAlt
+
+
+KratosSaveMain:
+push eax
+mov eax,[KratosPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [KratosArtesMain],eax //Sets 4 Bytes
+mov eax,[KratosPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [KratosArtesMain+4],eax //Sets 4 Bytes
+mov eax,[KratosPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [KratosArtesMain+8],eax //Sets 4 Bytes
+movzx eax,word ptr [KratosPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [KratosArtesMain+C],ax //Sets 2 Bytes
+pop eax
+jmp KratosSendAlt
+
+KratosSaveAlt:
+push eax
+mov eax,[KratosPointer+D8] //Reads 4 Bytes and Writes to RAX
+mov [KratosArtesAlt],eax //Sets 4 Bytes
+mov eax,[KratosPointer+DC] // Reads 4 Bytes and Writes to EAX
+mov [KratosArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[KratosPointer+E0] // Reads 4 Bytes and Writes to EAX
+mov [KratosArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [KratosPointer+E4] //Reads 2 Byte Data and Writes to EAX
+mov [KratosArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+jmp KratosSendMain
+
+
+KratosSendMain:
+//Reset Artes with Main [Working]
+push eax
+mov eax,[KratosArtesMain] //Reads 4 Bytes and Writes to RAX
+mov [KratosPointer+D8],eax //Sets 4 Bytes
+mov eax,[KratosArtesMain+4] // Reads 4 Bytes and Writes to EAX
+mov [KratosPointer+DC],eax //Sets 4 Bytes
+mov eax,[KratosArtesMain+8] // Reads 4 Bytes and Writes to EAX
+mov [KratosPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [KratosArtesMain+C] //Reads 2 Byte Data and Writes to EAX
+mov [KratosPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+KratosSendAlt:
+//Swap Artes with Alt [Working]
+push eax
+mov eax,[KratosArtesAlt] //Reads 4 Bytes and Writes to EAX
+mov [KratosPointer+D8],eax //Sets 4 Bytes
+mov eax,[KratosArtesAlt+4] // Reads 4 Bytes and Writes to EAX
+mov [KratosPointer+DC],eax //Sets 4 Bytes
+mov eax,[KratosArtesAlt+8] // Reads 4 Bytes and Writes to EAX
+mov [KratosPointer+E0],eax //Sets 4 Bytes
+movzx eax,word ptr [KratosArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
+mov [KratosPointer+E4],ax //Sets 2 Bytes
+pop eax
+jmp SendInputs
+
+
+
+SendInputs: //Push Inputs onto Variable and Send to Game [Working]
+push ecx
+movzx ecx,word [Controls]
+mov [esi+10],ecx
+mov edx,ecx
+pop ecx
+jmp return
+
+
+//UpdateInputs:
+//cmp byte [P1_LB],(int)1
+//jl SendInputs
+//sub [Controls+1],(int)1
+//jmp SendInputs
+
+code: //just existing for the heck of it [Weee]
+  mov [esi+10],ecx
+  mov edx,ecx
+  jmp return
+
+
+
+
+
+LloydArtesMain: //Copy Artes from Address [Working]
+readmem(LloydPointer+D8,14)
+//db 01 00 06 00 0D 00 14 00 11 00 00 00 01 00
+LloydArtesAlt:
+readmem(LloydPointer+D8,14)
+//db 02 00 07 00 0B 00 16 00 12 00 00 00 01 00
+
+ColetteArtesMain: //Copy Artes from Address [Working]
+readmem(ColettePointer+D8,14)
+ColetteArtesAlt:
+readmem(ColettePointer+D8,14)
+
+GenisArtesMain: //Copy Artes from Address [Working]
+readmem(GenisPointer+D8,14)
+GenisArtesAlt:
+readmem(GenisPointer+D8,14)
+
+RaineArtesMain: //Copy Artes from Address [Working]
+readmem(RainePointer+D8,14)
+RaineArtesAlt:
+readmem(RainePointer+D8,14)
+
+SheenaArtesMain: //Copy Artes from Address [Working]
+readmem(SheenaPointer+D8,14)
+SheenaArtesAlt:
+readmem(SheenaPointer+D8,14)
+
+ZelosArtesMain: //Copy Artes from Address [Working]
+readmem(ZelosPointer+D8,14)
+ZelosArtesAlt:
+readmem(ZelosPointer+D8,14)
+
+PreseaArtesMain: //Copy Artes from Address [Working]
+readmem(PreseaPointer+D8,14)
+PreseaArtesAlt:
+readmem(PreseaPointer+D8,14)
+
+RegalArtesMain: //Copy Artes from Address [Working]
+readmem(RegalPointer+D8,14)
+RegalArtesAlt:
+readmem(RegalPointer+D8,14)
+
+KratosArtesMain: //Copy Artes from Address [Working]
+readmem(KratosPointer+D8,14)
+KratosArtesAlt:
+readmem(KratosPointer+D8,14)
+
+
+
+ARTESWAP:
+  jmp newmem
+return:
+registersymbol(ARTESWAP)
+
+[DISABLE]
+
+ARTESWAP:
+  db 89 4E 10 8B D1
+
+
+unregistersymbol(KratosArtesAlt)
+unregistersymbol(KratosArtesMain)
+unregistersymbol(KratosArtesState)
+
+unregistersymbol(RegalArtesAlt)
+unregistersymbol(RegalArtesMain)
+unregistersymbol(RegalArtesState)
+
+unregistersymbol(PreseaArtesAlt)
+unregistersymbol(PreseaArtesMain)
+unregistersymbol(PreseaArtesState)
+
+unregistersymbol(ZelosArtesAlt)
+unregistersymbol(ZelosArtesMain)
+unregistersymbol(ZelosArtesState)
+
+unregistersymbol(SheenaArtesAlt)
+unregistersymbol(SheenaArtesMain)
+unregistersymbol(SheenaArtesState)
+
+unregistersymbol(RaineArtesAlt)
+unregistersymbol(RaineArtesMain)
+unregistersymbol(RaineArtesState)
+
+unregistersymbol(GenisArtesAlt)
+unregistersymbol(GenisArtesMain)
+unregistersymbol(GenisArtesState)
+
+unregistersymbol(ColetteArtesAlt)
+unregistersymbol(ColetteArtesMain)
+unregistersymbol(ColetteArtesState)
+
+unregistersymbol(LloydArtesAlt)
+unregistersymbol(LloydArtesMain)
+unregistersymbol(LloydArtesState)
+
+unregistersymbol(P4_RT)
+unregistersymbol(P4_LT)
+unregistersymbol(P4_RB)
+unregistersymbol(P4_LB)
+unregistersymbol(P4_Y)
+unregistersymbol(P4_X)
+unregistersymbol(P4_B)
+unregistersymbol(P4_A)
+
+unregistersymbol(P3_RT)
+unregistersymbol(P3_LT)
+unregistersymbol(P3_RB)
+unregistersymbol(P3_LB)
+unregistersymbol(P3_Y)
+unregistersymbol(P3_X)
+unregistersymbol(P3_B)
+unregistersymbol(P3_A)
+
+unregistersymbol(P2_RT)
+unregistersymbol(P2_LT)
+unregistersymbol(P2_RB)
+unregistersymbol(P2_LB)
+unregistersymbol(P2_Y)
+unregistersymbol(P2_X)
+unregistersymbol(P2_B)
+unregistersymbol(P2_A)
+
+unregistersymbol(P1_RT)
+unregistersymbol(P1_LT)
+unregistersymbol(P1_RB)
+unregistersymbol(P1_LB)
+unregistersymbol(P1_Y)
+unregistersymbol(P1_X)
+unregistersymbol(P1_B)
+unregistersymbol(P1_A)
+
+unregistersymbol(TMP_RT)
+unregistersymbol(TMP_LT)
+unregistersymbol(TMP_RB)
+unregistersymbol(TMP_LB)
+unregistersymbol(TMP_Y)
+unregistersymbol(TMP_X)
+unregistersymbol(TMP_B)
+unregistersymbol(TMP_A)
+
+unregistersymbol(Controls)
+
+unregistersymbol(ARTESWAP)
+
+dealloc(KratosArtesAlt)
+dealloc(KratosArtesMain)
+dealloc(KratosArtesState)
+
+dealloc(RegalArtesAlt)
+dealloc(RegalArtesMain)
+dealloc(RegalArtesState)
+
+dealloc(PreseaArtesAlt)
+dealloc(PreseaArtesMain)
+dealloc(PreseaArtesState)
+
+dealloc(ZelosArtesAlt)
+dealloc(ZelosArtesMain)
+dealloc(ZelosArtesState)
+
+dealloc(SheenaArtesAlt)
+dealloc(SheenaArtesMain)
+dealloc(SheenaArtesState)
+
+dealloc(RaineArtesAlt)
+dealloc(RaineArtesMain)
+dealloc(RaineArtesState)
+
+dealloc(GenisArtesAlt)
+dealloc(GenisArtesMain)
+dealloc(GenisArtesState)
+
+dealloc(ColetteArtesAlt)
+dealloc(ColetteArtesMain)
+dealloc(ColetteArtesState)
+
+dealloc(LloydArtesAlt)
+dealloc(LloydArtesMain)
+dealloc(LloydArtesState)
+
+dealloc(P4_RT)
+dealloc(P4_LT)
+dealloc(P4_RB)
+dealloc(P4_LB)
+dealloc(P4_Y)
+dealloc(P4_X)
+dealloc(P4_B)
+dealloc(P4_A)
+
+dealloc(P3_RT)
+dealloc(P3_LT)
+dealloc(P3_RB)
+dealloc(P3_LB)
+dealloc(P3_Y)
+dealloc(P3_X)
+dealloc(P3_B)
+dealloc(P3_A)
+
+dealloc(P2_RT)
+dealloc(P2_LT)
+dealloc(P2_RB)
+dealloc(P2_LB)
+dealloc(P2_Y)
+dealloc(P2_X)
+dealloc(P2_B)
+dealloc(P2_A)
+
+dealloc(P1_RT)
+dealloc(P1_LT)
+dealloc(P1_RB)
+dealloc(P1_LB)
+dealloc(P1_Y)
+dealloc(P1_X)
+dealloc(P1_B)
+dealloc(P1_A)
+
+dealloc(TMP_RT)
+dealloc(TMP_LT)
+dealloc(TMP_RB)
+dealloc(TMP_LB)
+dealloc(TMP_Y)
+dealloc(TMP_X)
+dealloc(TMP_B)
+dealloc(TMP_A)
+
+dealloc(Controls)
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20CC53
+
+TOS.exe+20CC3F: CC        - int 3 
+TOS.exe+20CC40: 55        - push ebp
+TOS.exe+20CC41: 8B EC     - mov ebp,esp
+TOS.exe+20CC43: 83 EC 20  - sub esp,20
+TOS.exe+20CC46: 8B 08     - mov ecx,[eax]
+TOS.exe+20CC48: 89 4E 0C  - mov [esi+0C],ecx
+TOS.exe+20CC4B: 8B 48 04  - mov ecx,[eax+04]
+TOS.exe+20CC4E: 53        - push ebx
+TOS.exe+20CC4F: 57        - push edi
+TOS.exe+20CC50: 8B 7E 10  - mov edi,[esi+10]
+// ---------- INJECTING HERE ----------
+TOS.exe+20CC53: 89 4E 10  - mov [esi+10],ecx
+// ---------- DONE INJECTING  ----------
+TOS.exe+20CC56: 8B D1     - mov edx,ecx
+TOS.exe+20CC58: 33 D7     - xor edx,edi
+TOS.exe+20CC5A: 8B FA     - mov edi,edx
+TOS.exe+20CC5C: 23 F9     - and edi,ecx
+TOS.exe+20CC5E: 89 7E 14  - mov [esi+14],edi
+TOS.exe+20CC61: F7 D1     - not ecx
+TOS.exe+20CC63: 23 CA     - and ecx,edx
+TOS.exe+20CC65: 8B 50 08  - mov edx,[eax+08]
+TOS.exe+20CC68: 89 4E 18  - mov [esi+18],ecx
+TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
               <ID>100</ID>
               <Description>"[Free Run]"</Description>
-              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
               <Color>FF80FF</Color>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
                 <CheatEntry>
                   <ID>98</ID>
-                  <Description>"all stick walk check"</Description>
+                  <Description>"all stick walk check (Walk Fix During Freerun)"</Description>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
 //code from here to '[DISABLE]' will be used to enable the cheat
@@ -7322,7 +9426,7 @@ test byte ptr [edx*4+TOS.exe+6CDAA8],08
                 </CheatEntry>
                 <CheatEntry>
                   <ID>47</ID>
-                  <Description>"fr poc 1"</Description>
+                  <Description>"fr poc 1 (Disables Jump During Freerun)"</Description>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
 alloc(newmem6,2048)
@@ -7332,6 +9436,8 @@ label(exit6)
 
 alloc(freerun_mem,128)
 registersymbol(freerun_mem)
+label(chr_freerun)
+registersymbol(chr_freerun)
 
 newmem6: //this is allocated memory, you have read,write,execute access
 //place your code here
@@ -7340,7 +9446,8 @@ originalcode6:
 
 push ebx
 mov ebx,[chr_freerun]
-cmp ebx,0
+//cmp ebx,0
+cmp byte [P1_LT],(int)0
 pop ebx
 
 jg here_do
@@ -7497,7 +9604,9 @@ originalcode:
 push ebx
 push esi
 
-xor ebx,ebx
+//xor ebx,ebx
+//test ebx,ebx
+mov ebx,[TMP_LT]
 mov [chr_freerun],ebx
 
 mov ebx,eax
@@ -7582,8 +9691,8 @@ nop 2
 returnhere:
 
 
- 
- 
+
+
 [DISABLE]
 //code from here till the end of the code will be used to disable the cheat
 dealloc(newmem6)
@@ -7620,6 +9729,7 @@ db 7A 2C
 */
 
 dealloc(freerun_mem)
+unregistersymbol(chr_freerun)
 unregistersymbol(freerun_mem)
 
 dealloc(newmem)
@@ -7654,7 +9764,8 @@ push esi
 
 
 movzx eax,byte ptr [ebx+00001322]
-cmp eax,0
+cmp byte [P1_LT],(int)0
+//cmp eax,0
 je non_ghost
 
 movzx eax,byte ptr [ebx+00001321]
@@ -7685,10 +9796,10 @@ movq xmm5,edx
 cvtdq2ps,xmm3,xmm3
 cvtdq2ps,xmm5,xmm5
 
-mulss xmm3,[mval+4]
-mulss xmm5,[mval+4]
+mulss xmm3,[mval+4] //mval+4
+mulss xmm5,[mval+4] //mval+4
 
-mulss xmm3,[mval+1c]
+mulss xmm3,[mval+1c] //mval+1c
 //divss xmm3,[mval+18]
 //divss xmm5,[mval+18]
 
@@ -7728,8 +9839,8 @@ pop edx
 movss xmm6,[fcalc+4]
 movss xmm7,[fcalc]
 
-mulss xmm7,[mval+1c]
-mulss xmm6,[mval+1c]
+mulss xmm7,[mval+1c] //mval+1c
+mulss xmm6,[mval+1c] //mval+1c
 
 movss [esi+8],xmm6
 movss [esi],xmm7
@@ -7769,8 +9880,8 @@ dd (float)-1
 gtest:
 dq (double)32
 dq (double)16
-dd (int)32
-dd (int)32
+dd (int)2
+dd (int)2
 ftest:
 dd (float)32
 dd (float)16
@@ -7810,6 +9921,17 @@ add ecx,00013958
                   <GroupHeader>1</GroupHeader>
                   <CheatEntries>
                     <CheatEntry>
+                      <ID>1490</ID>
+                      <Description>"Text Pointer"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>String</VariableType>
+                      <Length>16</Length>
+                      <Unicode>0</Unicode>
+                      <CodePage>0</CodePage>
+                      <ZeroTerminate>1</ZeroTerminate>
+                      <Address>TextPointer</Address>
+                    </CheatEntry>
+                    <CheatEntry>
                       <ID>4</ID>
                       <Description>"[Battle] Tech &lt;--&gt; Artes"</Description>
                       <DropDownList ReadOnly="1" DisplayValueAsItem="1">*:
@@ -7820,7 +9942,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint-10</Address>
+                      <Address>TextPointer-10</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>11</ID>
@@ -7833,7 +9955,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint+E540</Address>
+                      <Address>TextPointer+E540</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>12</ID>
@@ -7846,7 +9968,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint+51350</Address>
+                      <Address>TextPointer+51350</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>13</ID>
@@ -7859,7 +9981,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint+CBF0</Address>
+                      <Address>TextPointer+CBF0</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>19</ID>
@@ -7872,7 +9994,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint+6C9C0</Address>
+                      <Address>TextPointer+6C9C0</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>18</ID>
@@ -7885,7 +10007,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint+6C9F0</Address>
+                      <Address>TextPointer+6C9F0</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>856</ID>
@@ -7896,7 +10018,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint-3F0</Address>
+                      <Address>TextPointer-3F0</Address>
                     </CheatEntry>
                     <CheatEntry>
                       <ID>854</ID>
@@ -7907,7 +10029,7 @@ add ecx,00013958
                       <Unicode>0</Unicode>
                       <CodePage>0</CodePage>
                       <ZeroTerminate>1</ZeroTerminate>
-                      <Address>TextPoint+6C2F0</Address>
+                      <Address>TextPointer+6C2F0</Address>
                     </CheatEntry>
                   </CheatEntries>
                 </CheatEntry>
@@ -7992,6 +10114,122 @@ unregistersymbol(TextPointer)
       </CheatEntries>
     </CheatEntry>
   </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of je TOS.exe+20CDF2</Description>
+      <AddressString>TOS.exe+20CDAB</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>85</Byte>
+        <Byte>56</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>74</Byte>
+        <Byte>45</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>39</Byte>
+        <Byte>8B</Byte>
+        <Byte>41</Byte>
+        <Byte>04</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov edi,[esi+10]</Description>
+      <AddressString>TOS.exe+20CC50</AddressString>
+      <Before>
+        <Byte>8B</Byte>
+        <Byte>48</Byte>
+        <Byte>04</Byte>
+        <Byte>53</Byte>
+        <Byte>57</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>7E</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>10</Byte>
+        <Byte>8B</Byte>
+        <Byte>D1</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+10],ecx</Description>
+      <AddressString>TOS.exe+20CC53</AddressString>
+      <Before>
+        <Byte>53</Byte>
+        <Byte>57</Byte>
+        <Byte>8B</Byte>
+        <Byte>7E</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>D1</Byte>
+        <Byte>33</Byte>
+        <Byte>D7</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov ecx,[eax+10]</Description>
+      <AddressString>TOS.exe+1A02AE</AddressString>
+      <Before>
+        <Byte>05</Byte>
+        <Byte>10</Byte>
+        <Byte>49</Byte>
+        <Byte>DE</Byte>
+        <Byte>01</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>48</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>04</Byte>
+        <Byte>8B</Byte>
+        <Byte>50</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov eax,[edi-04]</Description>
+      <AddressString>TOS.exe+17D928</AddressString>
+      <Before>
+        <Byte>87</Byte>
+        <Byte>00</Byte>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>FC</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>EC</Byte>
+        <Byte>08</Byte>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
   <UserdefinedSymbols>
     <SymbolEntry>
       <Name>newmem</Name>
