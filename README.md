@@ -7,3 +7,4 @@ This currently features:
 - Costume Changing
 - Equipment Modifiers (Currently only Weapons)
 - Item List (All Items)
+- Arte Sphere Hold [LB] in Artes Menu to Swap Arte Sphere Artes (Doesn't Save on Reboot!)
