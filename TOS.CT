@@ -224,7 +224,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
             </CheatEntry>
             <CheatEntry>
               <ID>1398</ID>
-              <Description>"[Titles]"</Description>
+              <Description>"[Titles &amp; Costumes]"</Description>
               <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
               <Color>FF80FF</Color>
               <GroupHeader>1</GroupHeader>
@@ -756,7 +756,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
                       <DropDownList DisplayValueAsItem="1">0:Default
 1:Formal Attire
 2:Chef Suit
-3:Soulless
+3:Chef Suit?
 4:Swimsuit
 5:President
 6:Malik
@@ -8143,7 +8143,7 @@ unregistersymbol(ExpMult)
         <CheatEntry>
           <ID>16</ID>
           <Description>"[Fixes]"</Description>
-          <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
           <Color>8000FF</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
@@ -8156,7 +8156,7 @@ unregistersymbol(ExpMult)
               <CheatEntries>
                 <CheatEntry>
                   <ID>3</ID>
-                  <Description>"Tech --&gt; Artes"</Description>
+                  <Description>"Tech --&gt; Artes (Menus Only) [EN]"</Description>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
@@ -8192,7 +8192,7 @@ db 54 65 63 68 00 00 00 00 00 00 00 00 00 00 00 00
                 </CheatEntry>
                 <CheatEntry>
                   <ID>855</ID>
-                  <Description>"Falcon's Crest --&gt; Chaos Blade"</Description>
+                  <Description>"Falcon's Crest --&gt; Chaos Blade [EN]"</Description>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
@@ -8221,7 +8221,7 @@ db 46 61 6C 63 6F 6E 27 73 20 43 72 65 73 74 00 00
                 </CheatEntry>
                 <CheatEntry>
                   <ID>1489</ID>
-                  <Description>"Divine Judgment"</Description>
+                  <Description>"Divine Judgment [EN]"</Description>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
@@ -8240,7 +8240,7 @@ db 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
                 </CheatEntry>
                 <CheatEntry>
                   <ID>1492</ID>
-                  <Description>"Equipment"</Description>
+                  <Description>"Equipment (Leg Guards -&gt; Greaves [COMPLETE] | Ax -&gt; Axe [WIP]) [EN]"</Description>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
@@ -8294,7 +8294,7 @@ db 52 69 6E 67 00 00 00 00 00 00 00 00 00 00 00 00
                 </CheatEntry>
                 <CheatEntry>
                   <ID>1491</ID>
-                  <Description>"Titles"</Description>
+                  <Description>"Titles (Capitalization inconsistencies | Ax -&gt; Axe) [EN]"</Description>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
@@ -8345,7 +8345,7 @@ db 42 65 61 63 68 20 43 6F 6D 62 65 72 00 00 00 00
                 </CheatEntry>
                 <CheatEntry>
                   <ID>7</ID>
-                  <Description>"Indignation Judgment"</Description>
+                  <Description>"Indignation Judgment [EN]"</Description>
                   <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
@@ -8409,7 +8409,7 @@ db 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
                 </CheatEntry>
                 <CheatEntry>
                   <ID>8</ID>
-                  <Description>"Shining Bind"</Description>
+                  <Description>"Shining Bind [EN]"</Description>
                   <Color>C080FF</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>[ENABLE]
@@ -8447,7 +8447,8 @@ db 48 6F 6C 79 20 42 69 6E 64 73 00 00 00 00 00 00
             </CheatEntry>
             <CheatEntry>
               <ID>1523</ID>
-              <Description>"TestingArteSwapping"</Description>
+              <Description>"[Artes Sphere] (v1.1)"</Description>
+              <Color>FF80FF</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game   : TOS.exe
   Version: 
@@ -8635,10 +8636,21 @@ registersymbol(KratosArtesAlt)
 newmem: //Read Controller Input
 cmp byte [rsp+44],(int)4
 je Player1
+
+cmp byte [PartyPointer+1],(int)0
+je SkipPlayer2
 cmp byte [rsp+44],(int)3
 je Player2
+
+SkipPlayer2:
+cmp byte [PartyPointer+2],(int)0
+je SkipPlayer3
 cmp byte [rsp+44],(int)2
 je Player3
+
+SkipPlayer3:
+cmp byte [PartyPointer+3],(int)0
+je code
 cmp byte [rsp+44],(int)1
 je Player4
 
@@ -10802,20 +10814,6 @@ unregistersymbol(TextPointer)
           </CheatEntries>
         </CheatEntry>
       </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>1596</ID>
-      <Description>"No description"</Description>
-      <ShowAsSigned>0</ShowAsSigned>
-      <VariableType>Byte</VariableType>
-      <Address>P1_LB</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>1597</ID>
-      <Description>"No description"</Description>
-      <ShowAsSigned>0</ShowAsSigned>
-      <VariableType>Byte</VariableType>
-      <Address>LloydArtesState</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
