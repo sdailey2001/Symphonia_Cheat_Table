@@ -9,4 +9,5 @@ This currently features:
 - Equipment Modifiers (Currently only Weapons)
 - Item List (All Items)
 - Character Artes
-- Arte Sphere Hold [LB] in Artes Menu to Swap Arte Sphere Artes (Doesn't Save on Reboot!) (Artes Sphere Crash When Not Having a Full Party Should be Fixed)
+- Arte Sphere Hold [LB] in Artes Menu to Swap Arte Sphere Artes (Doesn't Save on Reboot!)
+(Artes Sphere Crash When Not Having a Full Party Should be Fixed)
