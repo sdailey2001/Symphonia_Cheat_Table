@@ -8447,7 +8447,7 @@ db 48 6F 6C 79 20 42 69 6E 64 73 00 00 00 00 00 00
             </CheatEntry>
             <CheatEntry>
               <ID>1523</ID>
-              <Description>"[Artes Sphere] (v1.1)"</Description>
+              <Description>"[Artes Sphere] (v1.2)"</Description>
               <Color>FF80FF</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game   : TOS.exe
@@ -8638,13 +8638,13 @@ cmp byte [rsp+44],(int)4
 je Player1
 
 cmp byte [PartyPointer+1],(int)0
-je SkipPlayer2
+je code
 cmp byte [rsp+44],(int)3
 je Player2
 
 SkipPlayer2:
 cmp byte [PartyPointer+2],(int)0
-je SkipPlayer3
+je code
 cmp byte [rsp+44],(int)2
 je Player3
 
@@ -9002,6 +9002,7 @@ mov byte [TMP_LB],(int)1
 jmp P4_UpdateInputs
 
 
+
 P1_UpdateInputs:
 mov [Controls],ecx
 
@@ -9033,7 +9034,6 @@ cmp byte [TMP_LB],(int)1
 jl P4_Slot
 sub [Controls+1],(int)1
 jmp P4_Slot
-
 
 
 
@@ -9120,10 +9120,6 @@ je RegalArtes
 cmp byte [PartyPointer+3],(int)9
 je KratosArtes
 jmp SendInput
-
-
-
-
 
 
 
@@ -9828,48 +9824,56 @@ LloydArtesMain: //Copy Artes from Address [Working]
 readmem(LloydPointer+D8,14)
 //db 01 00 06 00 0D 00 14 00 11 00 00 00 01 00
 LloydArtesAlt:
-readmem(LloydPointer+D8,14)
-//db 02 00 07 00 0B 00 16 00 12 00 00 00 01 00
+//readmem(LloydPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 ColetteArtesMain: //Copy Artes from Address [Working]
 readmem(ColettePointer+D8,14)
 ColetteArtesAlt:
-readmem(ColettePointer+D8,14)
+//readmem(ColettePointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 GenisArtesMain: //Copy Artes from Address [Working]
 readmem(GenisPointer+D8,14)
 GenisArtesAlt:
-readmem(GenisPointer+D8,14)
+//readmem(GenisPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 RaineArtesMain: //Copy Artes from Address [Working]
 readmem(RainePointer+D8,14)
 RaineArtesAlt:
-readmem(RainePointer+D8,14)
+//readmem(RainePointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 SheenaArtesMain: //Copy Artes from Address [Working]
 readmem(SheenaPointer+D8,14)
 SheenaArtesAlt:
-readmem(SheenaPointer+D8,14)
+//readmem(SheenaPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 ZelosArtesMain: //Copy Artes from Address [Working]
 readmem(ZelosPointer+D8,14)
 ZelosArtesAlt:
-readmem(ZelosPointer+D8,14)
+//readmem(ZelosPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 PreseaArtesMain: //Copy Artes from Address [Working]
 readmem(PreseaPointer+D8,14)
 PreseaArtesAlt:
-readmem(PreseaPointer+D8,14)
+//readmem(PreseaPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 RegalArtesMain: //Copy Artes from Address [Working]
 readmem(RegalPointer+D8,14)
 RegalArtesAlt:
-readmem(RegalPointer+D8,14)
+//readmem(RegalPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 KratosArtesMain: //Copy Artes from Address [Working]
 readmem(KratosPointer+D8,14)
 KratosArtesAlt:
-readmem(KratosPointer+D8,14)
+//readmem(KratosPointer+D8,14)
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 
 
