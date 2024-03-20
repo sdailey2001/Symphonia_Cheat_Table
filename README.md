@@ -12,7 +12,7 @@ This currently features:
 
 [NOTICE] Artes will NOT save on reboot. You will have to reassign them each boot.
 
-(Made 2nd Artes Page Empty Start Empty and Fixed a Crash That Would Occur if There Was Less Than 4 Party Members)
+(Made 2nd Artes Page Start Empty and Fixed a Crash That Would Occur if There Was Less Than 4 Party Members)
 
 (Unable to Change Strats While Artes Sphere is Active. I still need to find an address for the Artes Menu.) (. _ . )
 
