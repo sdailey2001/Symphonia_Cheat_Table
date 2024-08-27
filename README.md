@@ -1,20 +1,24 @@
 # Symphonia Cheat Table
 I decided to create a cheat table that would be easy to update and will work for the latest TSFix version.
 
-Requires Cheat Engine v7.5
+Required:
+- Cheat Engine v7.5
+- TSFix
 
 This currently features:
-- Title & Costume Tool
+- Title & Costume Tool (Want to look stylish while have the best title for stats?)
 - Equipment Tool (Currently only Weapons)
 - Item Tool (Consumables/Materials/Equipment/Ingredients/Key Items)
-- Artes Tool
-- Artes Sphere v1.1 (Activate by Holding [LB]. You have to Hold it to Change Artes in the Menu.)
+- Artes Tool (Able to Swap Artes)
+- Artes Sphere Scipt v2.0 (Finally!) (Activate by Holding [LB] in Battle; In Artes Menu Press [Select])
 
-[NOTICE] Artes will NOT save on reboot. You will have to reassign them each boot.
+[NOTICE] Create a Seperate Save if you plan to use the Arte Sphere!
 
-(Made 2nd Artes Page Start Empty and Fixed a Crash That Would Occur if There Was Less Than 4 Party Members)
+(Artes now save per file, but I am unsure if any event flags will be messed up!)
 
-(Unable to Change Strats While Artes Sphere is Active. I still need to find an address for the Artes Menu.) (. _ . )
+(You can change Strategies again, but anything that causes pauses (Like Spells) will allow you to swap the Strategy mid-gameplay.)
+
+(Unison still requires each person to hold [LB] to use their Alt Artes. That's some true teamwork!)
 
 - Free Running (By: u4ick)
 - Name Fixes [EN] (e.g. Indignation Judg., Tech --> Artes, Holy Binds --> Shining Bind, Ax --> Axe, ect.)
