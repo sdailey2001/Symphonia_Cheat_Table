@@ -126,7 +126,7 @@ db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00
         <CheatEntry>
           <ID>25</ID>
           <Description>"[Cheats]"</Description>
-          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
           <Color>8000FF</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
@@ -8142,15 +8142,15 @@ unregistersymbol(ExpMult)
         </CheatEntry>
         <CheatEntry>
           <ID>16</ID>
-          <Description>"[Fixes]"</Description>
-          <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+          <Description>"[Scripts]"</Description>
+          <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
           <Color>8000FF</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
               <ID>9</ID>
               <Description>"[Names]"</Description>
-              <Options moHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <Options moAlwaysHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
               <Color>FF80FF</Color>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
@@ -8446,13 +8446,14 @@ db 48 6F 6C 79 20 42 69 6E 64 73 00 00 00 00 00 00
               </CheatEntries>
             </CheatEntry>
             <CheatEntry>
-              <ID>1523</ID>
-              <Description>"[Artes Sphere] (v1.2)"</Description>
+              <ID>1596</ID>
+              <Description>"[Artes Sphere] (v2.0)"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
               <Color>FF80FF</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game   : TOS.exe
-  Version: 
-  Date   : 2024-03-06
+  Version:
+  Date   : 2024-08-21
   Author : sdail
 
   This script does blah blah blah
@@ -8460,1632 +8461,2686 @@ db 48 6F 6C 79 20 42 69 6E 64 73 00 00 00 00 00 00
 
 [ENABLE]
 
-aobscanmodule(ARTESWAP,TOS.exe,89 4E 10 8B D1) // should be unique
-alloc(newmem,$4000,ARTESWAP)
+
+aobscanmodule(ARTESPAGEOPENED,TOS.exe,66 C7 05 C4 DD B0 00 00 00) // should be unique
+alloc(ArtesPageOpened,128)
+alloc(ArtesPageState,1)
+alloc(PageAllowsSwap,1)
+
+label(code)
+label(return)
+
+registersymbol(ArtesPageState)
+registersymbol(PageAllowsSwap)
+
+ArtesPageOpened:
+mov byte [ArtesPageState],1
+mov byte [PageAllowsSwap],1
+
+code:
+mov word ptr [TOS.exe+70DDC4],0000
+jmp return
+
+ARTESPAGEOPENED:
+jmp ArtesPageOpened
+nop 4
+return:
+registersymbol(ARTESPAGEOPENED)
+
+[DISABLE]
+
+ARTESPAGEOPENED:
+db 66 C7 05 C4 DD B0 00 00 00
+
+unregistersymbol(PageAllowsSwap)
+unregistersymbol(ArtesPageState)
+unregistersymbol(ARTESPAGEOPENED)
+
+dealloc(PageAllowsSwap)
+dealloc(ArtesPageState)
+dealloc(ArtesPageOpened)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1240A8
+
+TOS.exe+124092: 33 C0                       - xor eax,eax
+TOS.exe+124094: 5B                          - pop ebx
+TOS.exe+124095: 8B E5                       - mov esp,ebp
+TOS.exe+124097: 5D                          - pop ebp
+TOS.exe+124098: C3                          - ret
+TOS.exe+124099: 8A 15 C4 DD B0 00           - mov dl,[TOS.exe+70DDC4]
+TOS.exe+12409F: 84 D2                       - test dl,dl
+TOS.exe+1240A1: 74 0E                       - je TOS.exe+1240B1
+TOS.exe+1240A3: 80 FA 28                    - cmp dl,28
+TOS.exe+1240A6: 77 2A                       - ja TOS.exe+1240D2
+// ---------- INJECTING HERE ----------
+TOS.exe+1240A8: 66 C7 05 C4 DD B0 00 00 00  - mov word ptr [TOS.exe+70DDC4],0000
+// ---------- DONE INJECTING  ----------
+TOS.exe+1240B1: 66 83 3D BA DD B0 00 00     - cmp word ptr [TOS.exe+70DDBA],00
+TOS.exe+1240B9: 0F 85 40 1C 00 00           - jne TOS.exe+125CFF
+TOS.exe+1240BF: 0F BF D0                    - movsx edx,ax
+TOS.exe+1240C2: 83 FA 0F                    - cmp edx,0F
+TOS.exe+1240C5: 0F 87 54 1B 00 00           - ja TOS.exe+125C1F
+TOS.exe+1240CB: FF 24 95 40 5D 52 00        - jmp dword ptr [edx*4+TOS.exe+125D40]
+TOS.exe+1240D2: 5F                          - pop edi
+TOS.exe+1240D3: 80 C2 D8                    - add dl,-28
+TOS.exe+1240D6: 5E                          - pop esi
+TOS.exe+1240D7: 88 15 C4 DD B0 00           - mov [TOS.exe+70DDC4],dl
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>22</ID>
+                  <Description>"Detect Artes Page Close"</Description>
+                  <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : TOS.exe
+  Version:
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ARTESPAGECLOSED,TOS.exe,C6 05 C5 DD B0 00 04 66 89 15 * * * * E9 42) // should be unique
+alloc(ArtesPageClosed,128)
+
+label(code)
+label(return)
+
+ArtesPageClosed:
+mov byte [ArtesPageState],0
+mov byte [PageAllowsSwap],0
+
+code:
+mov byte ptr [TOS.exe+70DDC5],04
+jmp return
+
+ARTESPAGECLOSED:
+jmp ArtesPageClosed
+nop 2
+return:
+registersymbol(ARTESPAGECLOSED)
+
+[DISABLE]
+
+ARTESPAGECLOSED:
+db C6 05 C5 DD B0 00 04
+
+unregistersymbol(ARTESPAGECLOSED)
+dealloc(ArtesPageClosed)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1241C3
+
+TOS.exe+1241A2: 8D BC 38 55 0F 00 00  - lea edi,[eax+edi+00000F55]
+TOS.exe+1241A9: 8A 07                 - mov al,[edi]
+TOS.exe+1241AB: 3C 02                 - cmp al,02
+TOS.exe+1241AD: 7D 09                 - jnl TOS.exe+1241B8
+TOS.exe+1241AF: FE C0                 - inc al
+TOS.exe+1241B1: 88 07                 - mov [edi],al
+TOS.exe+1241B3: E9 FD 19 00 00        - jmp TOS.exe+125BB5
+TOS.exe+1241B8: C6 07 00              - mov byte ptr [edi],00
+TOS.exe+1241BB: E9 F5 19 00 00        - jmp TOS.exe+125BB5
+TOS.exe+1241C0: 83 CA FF              - or edx,-01
+// ---------- INJECTING HERE ----------
+TOS.exe+1241C3: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+1241CA: 66 89 15 C6 DD B0 00  - mov [TOS.exe+70DDC6],dx
+TOS.exe+1241D1: E9 42 1A 00 00        - jmp TOS.exe+125C18
+TOS.exe+1241D6: 8B 5D F4              - mov ebx,[ebp-0C]
+TOS.exe+1241D9: F7 C3 00 00 00 08     - test ebx,08000000
+TOS.exe+1241DF: 75 DF                 - jne TOS.exe+1241C0
+TOS.exe+1241E1: 8B D3                 - mov edx,ebx
+TOS.exe+1241E3: 81 E2 00 00 00 FC     - and edx,FC000000
+TOS.exe+1241E9: 75 08                 - jne TOS.exe+1241F3
+TOS.exe+1241EB: F7 C3 00 20 00 08     - test ebx,08002000
+TOS.exe+1241F1: 75 CD                 - jne TOS.exe+1241C0
+}
+</AssemblerScript>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1597</ID>
+                      <Description>"Detect Artes Page Close BTL CPU"</Description>
+                      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                      <VariableType>Auto Assembler Script</VariableType>
+                      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ARTESPAGECLOSED_BTL_CPU,TOS.exe,C6 05 C5 DD B0 00 04 66 89 15) // should be unique
+alloc(ArtesPageClosed_BTL_CPU,128)
+
+label(code)
+label(return)
+
+ArtesPageClosed_BTL_CPU:
+mov byte [ArtesPageState],0
+
+
+code:
+mov byte ptr [TOS.exe+70DDC5],04
+jmp return
+
+ARTESPAGECLOSED_BTL_CPU:
+jmp ArtesPageClosed_BTL_CPU
+nop 2
+return:
+registersymbol(ARTESPAGECLOSED_BTL_CPU)
+
+[DISABLE]
+
+ARTESPAGECLOSED_BTL_CPU:
+db C6 05 C5 DD B0 00 04
+
+unregistersymbol(ARTESPAGECLOSED_BTL_CPU)
+dealloc(ArtesPageClosed_BTL_CPU)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1258BD
+
+TOS.exe+12588A: E9 AA 03 00 00        - jmp TOS.exe+125C39
+TOS.exe+12588F: C7 45 F8 1A 00 00 00  - mov [ebp-08],0000001A
+TOS.exe+125896: 66 83 F8 0F           - cmp ax,0F
+TOS.exe+12589A: 75 11                 - jne TOS.exe+1258AD
+TOS.exe+12589C: B9 0D 00 00 00        - mov ecx,0000000D
+TOS.exe+1258A1: 66 89 0D B0 DD B0 00  - mov [TOS.exe+70DDB0],cx
+TOS.exe+1258A8: E9 8C 03 00 00        - jmp TOS.exe+125C39
+TOS.exe+1258AD: 80 3D BD DD B0 00 01  - cmp byte ptr [TOS.exe+70DDBD],01
+TOS.exe+1258B4: 0F 85 AD E8 FF FF     - jne TOS.exe+124167
+TOS.exe+1258BA: 83 CA FF              - or edx,-01
+// ---------- INJECTING HERE ----------
+TOS.exe+1258BD: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+1258C4: 66 89 15 C6 DD B0 00  - mov [TOS.exe+70DDC6],dx
+TOS.exe+1258CB: E9 4F 03 00 00        - jmp TOS.exe+125C1F
+TOS.exe+1258D0: 8B 45 F4              - mov eax,[ebp-0C]
+TOS.exe+1258D3: A9 00 00 00 08        - test eax,08000000
+TOS.exe+1258D8: 0F 85 33 03 00 00     - jne TOS.exe+125C11
+TOS.exe+1258DE: 8B D0                 - mov edx,eax
+TOS.exe+1258E0: 81 E2 00 00 00 FC     - and edx,FC000000
+TOS.exe+1258E6: 75 0B                 - jne TOS.exe+1258F3
+TOS.exe+1258E8: A9 00 20 00 08        - test eax,08002000
+TOS.exe+1258ED: 0F 85 1E 03 00 00     - jne TOS.exe+125C11
+}
+</AssemblerScript>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>56</ID>
+                          <Description>"Detect Artes Page Close BTL HMN"</Description>
+                          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                          <VariableType>Auto Assembler Script</VariableType>
+                          <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ARTESPAGECLOSED_BTL_HMN,TOS.exe,C6 05 C5 DD B0 00 04 66 89 0D) // should be unique
+alloc(ArtesPageClosed_BTL_HMN,128)
+
+label(code)
+label(return)
+
+ArtesPageClosed_BTL_HMN:
+mov byte [ArtesPageState],0
+
+code:
+mov byte ptr [TOS.exe+70DDC5],04
+jmp return
+
+ARTESPAGECLOSED_BTL_HMN:
+jmp ArtesPageClosed_BTL_HMN
+nop 2
+return:
+registersymbol(ARTESPAGECLOSED_BTL_HMN)
+
+[DISABLE]
+
+ARTESPAGECLOSED_BTL_HMN:
+db C6 05 C5 DD B0 00 04
+
+unregistersymbol(ARTESPAGECLOSED_BTL_HMN)
+dealloc(ArtesPageClosed_BTL_HMN)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+124927
+
+TOS.exe+1248F6: C6 05 C9 DD B0 00 05  - mov byte ptr [TOS.exe+70DDC9],05
+TOS.exe+1248FD: E9 37 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+124902: C7 45 F8 1A 00 00 00  - mov [ebp-08],0000001A
+TOS.exe+124909: 66 83 F8 05           - cmp ax,05
+TOS.exe+12490D: 75 0C                 - jne TOS.exe+12491B
+TOS.exe+12490F: C6 05 C9 DD B0 00 06  - mov byte ptr [TOS.exe+70DDC9],06
+TOS.exe+124916: E9 1E 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+12491B: 80 3D BD DD B0 00 01  - cmp byte ptr [TOS.exe+70DDBD],01
+TOS.exe+124922: 75 16                 - jne TOS.exe+12493A
+TOS.exe+124924: 83 C9 FF              - or ecx,-01
+// ---------- INJECTING HERE ----------
+TOS.exe+124927: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+12492E: 66 89 0D C6 DD B0 00  - mov [TOS.exe+70DDC6],cx
+TOS.exe+124935: E9 E5 12 00 00        - jmp TOS.exe+125C1F
+TOS.exe+12493A: BA 01 00 00 00        - mov edx,00000001
+TOS.exe+12493F: 66 89 15 B0 DD B0 00  - mov [TOS.exe+70DDB0],dx
+TOS.exe+124946: E9 EE 12 00 00        - jmp TOS.exe+125C39
+TOS.exe+12494B: 8B 4D F4              - mov ecx,[ebp-0C]
+TOS.exe+12494E: F7 C1 00 00 00 08     - test ecx,08000000
+TOS.exe+124954: 0F 85 A1 05 00 00     - jne TOS.exe+124EFB
+TOS.exe+12495A: 8B D1                 - mov edx,ecx
+TOS.exe+12495C: 81 E2 00 00 00 FC     - and edx,FC000000
+}
+</AssemblerScript>
+                          <CheatEntries>
+                            <CheatEntry>
+                              <ID>1598</ID>
+                              <Description>"Detect Shortcut Open"</Description>
+                              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                              <VariableType>Auto Assembler Script</VariableType>
+                              <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(SHORTCUTOPENED,TOS.exe,C6 05 C9 DD B0 00 05 E9 37) // should be unique
+alloc(ShortcutOpened,128)
+alloc(ShortcutState,1)
+
+label(code)
+label(return)
+
+registersymbol(ShortcutState)
+
+ShortcutOpened:
+mov byte [ShortcutState],1
+mov byte [PageAllowsSwap],0
+
+code:
+mov byte ptr [TOS.exe+70DDC9],05
+jmp return
+
+SHORTCUTOPENED:
+jmp ShortcutOpened
+nop 2
+return:
+registersymbol(SHORTCUTOPENED)
+
+[DISABLE]
+
+SHORTCUTOPENED:
+db C6 05 C9 DD B0 00 05
+
+unregistersymbol(ShortcutState)
+unregistersymbol(SHORTCUTOPENED)
+
+dealloc(ShortcutState)
+dealloc(ShortcutOpened)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1248F6
+
+TOS.exe+1248C5: A1 B4 DD B0 00        - mov eax,[TOS.exe+70DDB4]
+TOS.exe+1248CA: 83 C0 FA              - add eax,-06
+TOS.exe+1248CD: 66 A3 B8 DD B0 00     - mov [TOS.exe+70DDB8],ax
+TOS.exe+1248D3: E9 61 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+1248D8: 80 F9 04              - cmp cl,04
+TOS.exe+1248DB: 0F 83 3E 13 00 00     - jae TOS.exe+125C1F
+TOS.exe+1248E1: 0F B6 C1              - movzx eax,cl
+TOS.exe+1248E4: BA 0D 00 00 00        - mov edx,0000000D
+TOS.exe+1248E9: 66 89 15 B0 DD B0 00  - mov [TOS.exe+70DDB0],dx
+TOS.exe+1248F0: 66 A3 B6 DD B0 00     - mov [TOS.exe+70DDB6],ax
+// ---------- INJECTING HERE ----------
+TOS.exe+1248F6: C6 05 C9 DD B0 00 05  - mov byte ptr [TOS.exe+70DDC9],05
+// ---------- DONE INJECTING  ----------
+TOS.exe+1248FD: E9 37 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+124902: C7 45 F8 1A 00 00 00  - mov [ebp-08],0000001A
+TOS.exe+124909: 66 83 F8 05           - cmp ax,05
+TOS.exe+12490D: 75 0C                 - jne TOS.exe+12491B
+TOS.exe+12490F: C6 05 C9 DD B0 00 06  - mov byte ptr [TOS.exe+70DDC9],06
+TOS.exe+124916: E9 1E 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+12491B: 80 3D BD DD B0 00 01  - cmp byte ptr [TOS.exe+70DDBD],01
+TOS.exe+124922: 75 16                 - jne TOS.exe+12493A
+TOS.exe+124924: 83 C9 FF              - or ecx,-01
+TOS.exe+124927: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+}
+</AssemblerScript>
+                              <CheatEntries>
+                                <CheatEntry>
+                                  <ID>1599</ID>
+                                  <Description>"Detect Shortcut Close"</Description>
+                                  <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(SHORTCUTCLOSED,TOS.exe,66 89 15 C8 DD B0 00) // should be unique
+alloc(ShortcutClosed,128)
+
+label(code)
+label(return)
+
+ShortcutClosed:
+mov byte [ShortcutState],0
+mov byte [PageAllowsSwap],1
+
+code:
+mov [TOS.exe+70DDC8],dx
+jmp return
+
+SHORTCUTCLOSED:
+jmp ShortcutClosed
+nop 2
+return:
+registersymbol(SHORTCUTCLOSED)
+
+[DISABLE]
+
+SHORTCUTCLOSED:
+db 66 89 15 C8 DD B0 00
+
+unregistersymbol(SHORTCUTCLOSED)
+dealloc(ShortcutClosed)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+123F12
+
+TOS.exe+123EDB: 66 A3 CE DD B0 00     - mov [TOS.exe+70DDCE],ax
+TOS.exe+123EE1: 66 8B 35 B4 DD B0 00  - mov si,[TOS.exe+70DDB4]
+TOS.exe+123EE8: 66 A1 B0 DD B0 00     - mov ax,[TOS.exe+70DDB0]
+TOS.exe+123EEE: 0F B6 15 C9 DD B0 00  - movzx edx,byte ptr [TOS.exe+70DDC9]
+TOS.exe+123EF5: 83 EA 05              - sub edx,05
+TOS.exe+123EF8: 0F 84 40 01 00 00     - je TOS.exe+12403E
+TOS.exe+123EFE: 4A                    - dec edx
+TOS.exe+123EFF: 0F 85 4F 01 00 00     - jne TOS.exe+124054
+TOS.exe+123F05: 80 3D C8 DD B0 00 33  - cmp byte ptr [TOS.exe+70DDC8],33
+TOS.exe+123F0C: 0F 87 1C 01 00 00     - ja TOS.exe+12402E
+// ---------- INJECTING HERE ----------
+TOS.exe+123F12: 66 89 15 C8 DD B0 00  - mov [TOS.exe+70DDC8],dx
+// ---------- DONE INJECTING  ----------
+TOS.exe+123F19: 66 83 F8 0D           - cmp ax,0D
+TOS.exe+123F1D: 0F 84 FE 00 00 00     - je TOS.exe+124021
+TOS.exe+123F23: 66 83 F8 0F           - cmp ax,0F
+TOS.exe+123F27: 0F 84 F4 00 00 00     - je TOS.exe+124021
+TOS.exe+123F2D: 66 83 F8 0E           - cmp ax,0E
+TOS.exe+123F31: 0F 84 EA 00 00 00     - je TOS.exe+124021
+TOS.exe+123F37: 66 83 F8 05           - cmp ax,05
+TOS.exe+123F3B: 0F 85 CC 00 00 00     - jne TOS.exe+12400D
+TOS.exe+123F41: B8 01 00 00 00        - mov eax,00000001
+TOS.exe+123F46: 66 A3 B0 DD B0 00     - mov [TOS.exe+70DDB0],ax
+}
+</AssemblerScript>
+                                  <CheatEntries>
+                                    <CheatEntry>
+                                      <ID>1600</ID>
+                                      <Description>"Detect Unison Page Open"</Description>
+                                      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                      <VariableType>Auto Assembler Script</VariableType>
+                                      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UNISONPAGEOPENED,TOS.exe,66 C7 05 00 BC C2 01 00 00) // should be unique
+alloc(UnisonPageOpened,128)
+alloc(UnisonPageState,1)
+
+label(code)
+label(return)
+
+registersymbol(UnisonPageState)
+
+UnisonPageOpened:
+mov byte [UnisonPageState],1
+mov byte [PageAllowsSwap],1
+
+code:
+mov word ptr [TOS.exe+182BC00],0000
+jmp return
+
+UNISONPAGEOPENED:
+jmp UnisonPageOpened
+nop 4
+return:
+registersymbol(UNISONPAGEOPENED)
+
+[DISABLE]
+
+UNISONPAGEOPENED:
+db 66 C7 05 00 BC C2 01 00 00
+
+unregistersymbol(UnisonPageState)
+unregistersymbol(UNISONPAGEOPENED)
+
+dealloc(UnisonPageState)
+dealloc(UnisonPageOpened)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+126E4A
+
+TOS.exe+126E30: 33 C0                       - xor eax,eax
+TOS.exe+126E32: 5B                          - pop ebx
+TOS.exe+126E33: 8B E5                       - mov esp,ebp
+TOS.exe+126E35: 5D                          - pop ebp
+TOS.exe+126E36: C3                          - ret 
+TOS.exe+126E37: 8A 0D 00 BC C2 01           - mov cl,[TOS.exe+182BC00]
+TOS.exe+126E3D: 84 C9                       - test cl,cl
+TOS.exe+126E3F: 74 12                       - je TOS.exe+126E53
+TOS.exe+126E41: 80 F9 28                    - cmp cl,28
+TOS.exe+126E44: 0F 87 EC 00 00 00           - ja TOS.exe+126F36
+// ---------- INJECTING HERE ----------
+TOS.exe+126E4A: 66 C7 05 00 BC C2 01 00 00  - mov word ptr [TOS.exe+182BC00],0000
+// ---------- DONE INJECTING  ----------
+TOS.exe+126E53: 66 83 3D F8 BB C2 01 00     - cmp word ptr [TOS.exe+182BBF8],00
+TOS.exe+126E5B: 0F 85 89 05 00 00           - jne TOS.exe+1273EA
+TOS.exe+126E61: 0F BF 0D F0 BB C2 01        - movsx ecx,word ptr [TOS.exe+182BBF0]
+TOS.exe+126E68: 83 E9 00                    - sub ecx,00
+TOS.exe+126E6B: 0F 84 8B 02 00 00           - je TOS.exe+1270FC
+TOS.exe+126E71: 49                          - dec ecx
+TOS.exe+126E72: 0F 85 72 05 00 00           - jne TOS.exe+1273EA
+TOS.exe+126E78: 8B 75 FC                    - mov esi,[ebp-04]
+TOS.exe+126E7B: F7 C6 00 00 00 08           - test esi,08000000
+TOS.exe+126E81: 0F 85 5B 02 00 00           - jne TOS.exe+1270E2
+}
+</AssemblerScript>
+                                      <CheatEntries>
+                                        <CheatEntry>
+                                          <ID>1601</ID>
+                                          <Description>"Detect Unison Page Close"</Description>
+                                          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                          <VariableType>Auto Assembler Script</VariableType>
+                                          <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UNISONPAGECLOSED,TOS.exe,C6 05 01 BC C2 01 04) // should be unique
+alloc(UnisonPageClosed,128)
+
+label(code)
+label(return)
+
+
+UnisonPageClosed:
+mov byte [UnisonPageState],0
+mov byte [PageAllowsSwap],0
+
+code:
+mov byte ptr [TOS.exe+182BC01],04
+jmp return
+
+UNISONPAGECLOSED:
+jmp UnisonPageClosed
+nop 2
+return:
+registersymbol(UNISONPAGECLOSED)
+
+[DISABLE]
+
+UNISONPAGECLOSED:
+db C6 05 01 BC C2 01 04
+
+unregistersymbol(UNISONPAGECLOSED)
+
+dealloc(UnisonPageClosed)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1273CE
+
+TOS.exe+1273B4: 66 89 15 F2 BB C2 01  - mov [TOS.exe+182BBF2],dx
+TOS.exe+1273BB: E8 50 61 05 00        - call TOS.exe+17D510
+TOS.exe+1273C0: 5F                    - pop edi
+TOS.exe+1273C1: 5E                    - pop esi
+TOS.exe+1273C2: 33 C0                 - xor eax,eax
+TOS.exe+1273C4: 5B                    - pop ebx
+TOS.exe+1273C5: 8B E5                 - mov esp,ebp
+TOS.exe+1273C7: 5D                    - pop ebp
+TOS.exe+1273C8: C3                    - ret 
+TOS.exe+1273C9: B9 1A 00 00 00        - mov ecx,0000001A
+// ---------- INJECTING HERE ----------
+TOS.exe+1273CE: C6 05 01 BC C2 01 04  - mov byte ptr [TOS.exe+182BC01],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+1273D5: E8 36 61 05 00        - call TOS.exe+17D510
+TOS.exe+1273DA: 5F                    - pop edi
+TOS.exe+1273DB: 5E                    - pop esi
+TOS.exe+1273DC: 33 C0                 - xor eax,eax
+TOS.exe+1273DE: 5B                    - pop ebx
+TOS.exe+1273DF: 8B E5                 - mov esp,ebp
+TOS.exe+1273E1: 5D                    - pop ebp
+TOS.exe+1273E2: C3                    - ret 
+TOS.exe+1273E3: 80 05 02 BC C2 01 33  - add byte ptr [TOS.exe+182BC02],33
+TOS.exe+1273EA: 5F                    - pop edi
+}
+</AssemblerScript>
+                                          <CheatEntries>
+                                            <CheatEntry>
+                                              <ID>1602</ID>
+                                              <Description>"Detect Unison Select Open"</Description>
+                                              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                              <VariableType>Auto Assembler Script</VariableType>
+                                              <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UNISONSELECTOPENED,TOS.exe,C6 05 03 BC C2 01 05 E8 49) // should be unique
+alloc(UnisonSelectOpened,128)
+alloc(UnisonSelectState,1)
+
+label(code)
+label(return)
+
+registersymbol(UnisonSelectState)
+
+UnisonSelectOpened:
+mov byte [UnisonSelectState],1
+
+code:
+mov byte ptr [TOS.exe+182BC03],05
+jmp return
+
+UNISONSELECTOPENED:
+jmp UnisonSelectOpened
+nop 2
+return:
+registersymbol(UNISONSELECTOPENED)
+
+[DISABLE]
+
+UNISONSELECTOPENED:
+db C6 05 03 BC C2 01 05
+
+unregistersymbol(UnisonSelectState)
+unregistersymbol(UNISONSELECTOPENED)
+
+dealloc(UnisonSelectState)
+dealloc(UnisonSelectOpened)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1272BB
+
+TOS.exe+1272A0: 33 C0                 - xor eax,eax
+TOS.exe+1272A2: 5B                    - pop ebx
+TOS.exe+1272A3: 8B E5                 - mov esp,ebp
+TOS.exe+1272A5: 5D                    - pop ebp
+TOS.exe+1272A6: C3                    - ret 
+TOS.exe+1272A7: 66 83 F8 08           - cmp ax,08
+TOS.exe+1272AB: 7C 0E                 - jl TOS.exe+1272BB
+TOS.exe+1272AD: A1 F4 BB C2 01        - mov eax,[TOS.exe+182BBF4]
+TOS.exe+1272B2: 83 C0 F9              - add eax,-07
+TOS.exe+1272B5: 66 A3 F6 BB C2 01     - mov [TOS.exe+182BBF6],ax
+// ---------- INJECTING HERE ----------
+TOS.exe+1272BB: C6 05 03 BC C2 01 05  - mov byte ptr [TOS.exe+182BC03],05
+// ---------- DONE INJECTING  ----------
+TOS.exe+1272C2: E8 49 62 05 00        - call TOS.exe+17D510
+TOS.exe+1272C7: 5F                    - pop edi
+TOS.exe+1272C8: 5E                    - pop esi
+TOS.exe+1272C9: 33 C0                 - xor eax,eax
+TOS.exe+1272CB: 5B                    - pop ebx
+TOS.exe+1272CC: 8B E5                 - mov esp,ebp
+TOS.exe+1272CE: 5D                    - pop ebp
+TOS.exe+1272CF: C3                    - ret 
+TOS.exe+1272D0: 0F B6 0D FA BB C2 01  - movzx ecx,byte ptr [TOS.exe+182BBFA]
+TOS.exe+1272D7: 83 E9 02              - sub ecx,02
+}
+</AssemblerScript>
+                                              <CheatEntries>
+                                                <CheatEntry>
+                                                  <ID>1603</ID>
+                                                  <Description>"Detect Unison Select Close"</Description>
+                                                  <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                                  <VariableType>Auto Assembler Script</VariableType>
+                                                  <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UNISONSELECTCLOSED,TOS.exe,66 89 0D 02 BC C2 01) // should be unique
+alloc(UnisonSelectClosed,128)
+
+label(code)
+label(return)
+
+UnisonSelectClosed:
+mov byte [UnisonSelectState],0
+
+code:
+mov [TOS.exe+182BC02],cx
+jmp return
+
+UNISONSELECTCLOSED:
+jmp UnisonSelectClosed
+nop 2
+return:
+registersymbol(UNISONSELECTCLOSED)
+
+[DISABLE]
+
+UNISONSELECTCLOSED:
+db 66 89 0D 02 BC C2 01
+
+unregistersymbol(UNISONSELECTCLOSED)
+dealloc(UnisonSelectClosed)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+126DBA
+
+TOS.exe+126D92: 33 C9                 - xor ecx,ecx
+TOS.exe+126D94: 66 89 0D 04 BC C2 01  - mov [TOS.exe+182BC04],cx
+TOS.exe+126D9B: 66 89 0D 06 BC C2 01  - mov [TOS.exe+182BC06],cx
+TOS.exe+126DA2: 0F B6 0D 03 BC C2 01  - movzx ecx,byte ptr [TOS.exe+182BC03]
+TOS.exe+126DA9: 83 E9 05              - sub ecx,05
+TOS.exe+126DAC: 74 2C                 - je TOS.exe+126DDA
+TOS.exe+126DAE: 49                    - dec ecx
+TOS.exe+126DAF: 75 3F                 - jne TOS.exe+126DF0
+TOS.exe+126DB1: 80 3D 02 BC C2 01 33  - cmp byte ptr [TOS.exe+182BC02],33
+TOS.exe+126DB8: 77 10                 - ja TOS.exe+126DCA
+// ---------- INJECTING HERE ----------
+TOS.exe+126DBA: 66 89 0D 02 BC C2 01  - mov [TOS.exe+182BC02],cx
+// ---------- DONE INJECTING  ----------
+TOS.exe+126DC1: 66 89 0D F0 BB C2 01  - mov [TOS.exe+182BBF0],cx
+TOS.exe+126DC8: EB 26                 - jmp TOS.exe+126DF0
+TOS.exe+126DCA: 80 05 02 BC C2 01 CD  - add byte ptr [TOS.exe+182BC02],-33
+TOS.exe+126DD1: 5F                    - pop edi
+TOS.exe+126DD2: 5E                    - pop esi
+TOS.exe+126DD3: 33 C0                 - xor eax,eax
+TOS.exe+126DD5: 5B                    - pop ebx
+TOS.exe+126DD6: 8B E5                 - mov esp,ebp
+TOS.exe+126DD8: 5D                    - pop ebp
+TOS.exe+126DD9: C3                    - ret 
+}
+</AssemblerScript>
+                                                  <CheatEntries>
+                                                    <CheatEntry>
+                                                      <ID>40</ID>
+                                                      <Description>"Detect Battle Paused"</Description>
+                                                      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                                      <VariableType>Auto Assembler Script</VariableType>
+                                                      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-22
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BATTLEPAUSED,TOS.exe,C6 81 90 31 00 00 01 5F 5D C3 56) // should be unique
+alloc(BattlePaused,128)
+alloc(BattleState,1)
+
+label(code)
+label(return)
+
+registersymbol(BattleState)
+
+BattlePaused:
+mov byte [BattleState],1
+
+code:
+mov byte ptr [ecx+00003190],01
+jmp return
+
+BATTLEPAUSED:
+jmp BattlePaused
+nop 2
+return:
+registersymbol(BATTLEPAUSED)
+
+[DISABLE]
+
+BATTLEPAUSED:
+db C6 81 90 31 00 00 01
+
+unregistersymbol(BattleState)
+unregistersymbol(BATTLEPAUSED)
+
+dealloc(BattleState)
+dealloc(BattlePaused)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+17B336
+
+TOS.exe+17B31E: 1B C0                 - sbb eax,eax
+TOS.exe+17B320: 23 C2                 - and eax,edx
+TOS.exe+17B322: 74 10                 - je TOS.exe+17B334
+TOS.exe+17B324: D9 58 04              - fstp dword ptr [eax+04]
+TOS.exe+17B327: 09 78 14              - or [eax+14],edi
+TOS.exe+17B32A: C6 81 90 31 00 00 01  - mov byte ptr [ecx+00003190],01
+TOS.exe+17B331: 5F                    - pop edi
+TOS.exe+17B332: 5D                    - pop ebp
+TOS.exe+17B333: C3                    - ret 
+TOS.exe+17B334: DD D8                 - fstp st(0)
+// ---------- INJECTING HERE ----------
+TOS.exe+17B336: C6 81 90 31 00 00 01  - mov byte ptr [ecx+00003190],01
+// ---------- DONE INJECTING  ----------
+TOS.exe+17B33D: 5F                    - pop edi
+TOS.exe+17B33E: 5D                    - pop ebp
+TOS.exe+17B33F: C3                    - ret 
+TOS.exe+17B340: 56                    - push esi
+TOS.exe+17B341: 8B B1 6C 32 00 00     - mov esi,[ecx+0000326C]
+TOS.exe+17B347: 85 F6                 - test esi,esi
+TOS.exe+17B349: 74 22                 - je TOS.exe+17B36D
+TOS.exe+17B34B: 8B 91 60 32 00 00     - mov edx,[ecx+00003260]
+TOS.exe+17B351: 81 C2 D0 00 00 00     - add edx,000000D0
+TOS.exe+17B357: 74 14                 - je TOS.exe+17B36D
+}
+</AssemblerScript>
+                                                      <CheatEntries>
+                                                        <CheatEntry>
+                                                          <ID>41</ID>
+                                                          <Description>"Detect Battle Unpaused"</Description>
+                                                          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                                          <VariableType>Auto Assembler Script</VariableType>
+                                                          <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-08-22
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BATTLEUNPAUSED,TOS.exe,C6 81 90 31 00 00 00 5F) // should be unique
+alloc(BattleUnpaused,128)
+
+label(code)
+label(return)
+
+BattleUnpaused:
+mov byte [BattleState],0
+
+code:
+mov byte ptr [ecx+00003190],00
+jmp return
+
+BATTLEUNPAUSED:
+jmp BattleUnpaused
+nop 2
+return:
+registersymbol(BATTLEUNPAUSED)
+
+[DISABLE]
+
+BATTLEUNPAUSED:
+db C6 81 90 31 00 00 00
+
+unregistersymbol(BATTLEUNPAUSED)
+
+dealloc(BattleUnpaused)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+17B3F2
+
+TOS.exe+17B3DB: 74 14                 - je TOS.exe+17B3F1
+TOS.exe+17B3DD: 8B 42 24              - mov eax,[edx+24]
+TOS.exe+17B3E0: F7 D8                 - neg eax
+TOS.exe+17B3E2: 1B C0                 - sbb eax,eax
+TOS.exe+17B3E4: 23 C2                 - and eax,edx
+TOS.exe+17B3E6: 74 09                 - je TOS.exe+17B3F1
+TOS.exe+17B3E8: D9 46 18              - fld dword ptr [esi+18]
+TOS.exe+17B3EB: D9 58 04              - fstp dword ptr [eax+04]
+TOS.exe+17B3EE: 09 78 14              - or [eax+14],edi
+TOS.exe+17B3F1: 5E                    - pop esi
+// ---------- INJECTING HERE ----------
+TOS.exe+17B3F2: C6 81 90 31 00 00 00  - mov byte ptr [ecx+00003190],00
+// ---------- DONE INJECTING  ----------
+TOS.exe+17B3F9: 5F                    - pop edi
+TOS.exe+17B3FA: 5D                    - pop ebp
+TOS.exe+17B3FB: C3                    - ret 
+TOS.exe+17B3FC: CC                    - int 3 
+TOS.exe+17B3FD: CC                    - int 3 
+TOS.exe+17B3FE: CC                    - int 3 
+TOS.exe+17B3FF: CC                    - int 3 
+TOS.exe+17B400: 55                    - push ebp
+TOS.exe+17B401: 8B EC                 - mov ebp,esp
+TOS.exe+17B403: 83 EC 08              - sub esp,08
+}
+</AssemblerScript>
+                                                          <CheatEntries>
+                                                            <CheatEntry>
+                                                              <ID>0</ID>
+                                                              <Description>"Menu Script"</Description>
+                                                              <VariableType>Auto Assembler Script</VariableType>
+                                                              <AssemblerScript>[ENABLE]
+
+aobscanmodule(ARTESPHERE,TOS.exe,89 4E 10 8B D1) // should be unique
+alloc(ArteSphereMem,$2000,ARTESPHERE)
 
 alloc(Controls,48)
 
-alloc(TMP_A,1)
-alloc(TMP_B,1)
-alloc(TMP_X,1)
-alloc(TMP_Y,1)
-alloc(TMP_LB,1)
-alloc(TMP_RB,1)
-alloc(TMP_LT,1)
-alloc(TMP_RT,1)
+alloc(TMP_Char,1)
+alloc(TMP_Controls,16)
+alloc(P1_Controls,16)
+alloc(P2_Controls,16)
+alloc(P3_Controls,16)
+alloc(P4_Controls,16)
 
-alloc(P1_A,1)
-alloc(P1_B,1)
-alloc(P1_X,1)
-alloc(P1_Y,1)
-alloc(P1_LB,1)
-alloc(P1_RB,1)
-alloc(P1_LT,1)
-alloc(P1_RT,1)
-
-alloc(P2_A,1)
-alloc(P2_B,1)
-alloc(P2_X,1)
-alloc(P2_Y,1)
-alloc(P2_LB,1)
-alloc(P2_RB,1)
-alloc(P2_LT,1)
-alloc(P2_RT,1)
-
-alloc(P3_A,1)
-alloc(P3_B,1)
-alloc(P3_X,1)
-alloc(P3_Y,1)
-alloc(P3_LB,1)
-alloc(P3_RB,1)
-alloc(P3_LT,1)
-alloc(P3_RT,1)
-
-alloc(P4_A,1)
-alloc(P4_B,1)
-alloc(P4_X,1)
-alloc(P4_Y,1)
-alloc(P4_LB,1)
-alloc(P4_RB,1)
-alloc(P4_LT,1)
-alloc(P4_RT,1)
-
-alloc(LloydArtesState,1)
-alloc(LloydArtesMain,14)
-alloc(LloydArtesAlt,14)
-
-alloc(ColetteArtesState,1)
-alloc(ColetteArtesMain,14)
-alloc(ColetteArtesAlt,14)
-
-alloc(GenisArtesState,1)
-alloc(GenisArtesMain,14)
-alloc(GenisArtesAlt,14)
-
-alloc(RaineArtesState,1)
-alloc(RaineArtesMain,14)
-alloc(RaineArtesAlt,14)
-
-alloc(SheenaArtesState,1)
-alloc(SheenaArtesMain,14)
-alloc(SheenaArtesAlt,14)
-
-alloc(ZelosArtesState,1)
-alloc(ZelosArtesMain,14)
-alloc(ZelosArtesAlt,14)
-
-alloc(PreseaArtesState,1)
-alloc(PreseaArtesMain,14)
-alloc(PreseaArtesAlt,14)
-
-alloc(RegalArtesState,1)
-alloc(RegalArtesMain,14)
-alloc(RegalArtesAlt,14)
-
-alloc(KratosArtesState,1)
-alloc(KratosArtesMain,14)
-alloc(KratosArtesAlt,14)
+alloc(ArteCache,14)
 
 label(code)
 label(return)
 
 registersymbol(Controls)
 
-registersymbol(TMP_A)
-registersymbol(TMP_B)
-registersymbol(TMP_X)
-registersymbol(TMP_Y)
-registersymbol(TMP_LB)
-registersymbol(TMP_RB)
-registersymbol(TMP_LT)
-registersymbol(TMP_RT)
+registersymbol(TMP_Controls)
+registersymbol(P1_Controls)
+registersymbol(P2_Controls)
+registersymbol(P3_Controls)
+registersymbol(P4_Controls)
 
-registersymbol(P1_A)
-registersymbol(P1_B)
-registersymbol(P1_X)
-registersymbol(P1_Y)
-registersymbol(P1_LB)
-registersymbol(P1_RB)
-registersymbol(P1_LT)
-registersymbol(P1_RT)
+registersymbol(ArteCache)
 
-registersymbol(P2_A)
-registersymbol(P2_B)
-registersymbol(P2_X)
-registersymbol(P2_Y)
-registersymbol(P2_LB)
-registersymbol(P2_RB)
-registersymbol(P2_LT)
-registersymbol(P2_RT)
+define(LloydArtes,LloydPointer+D8)
+registersymbol(LloydArtes)
+define(ColetteArtes,ColettePointer+D8)
+registersymbol(ColetteArtes)
+define(GenisArtes,GenisPointer+D8)
+registersymbol(GenisArtes)
+define(RaineArtes,RainePointer+D8)
+registersymbol(RaineArtes)
+define(SheenaArtes,SheenaPointer+D8)
+registersymbol(SheenaArtes)
+define(ZelosArtes,ZelosPointer+D8)
+registersymbol(ZelosArtes)
+define(PreseaArtes,PreseaPointer+D8)
+registersymbol(PreseaArtes)
+define(RegalArtes,RegalPointer+D8)
+registersymbol(RegalArtes)
+define(KratosArtes,KratosPointer+D8)
+registersymbol(KratosArtes)
 
-registersymbol(P3_A)
-registersymbol(P3_B)
-registersymbol(P3_X)
-registersymbol(P3_Y)
-registersymbol(P3_LB)
-registersymbol(P3_RB)
-registersymbol(P3_LT)
-registersymbol(P3_RT)
-
-registersymbol(P4_A)
-registersymbol(P4_B)
-registersymbol(P4_X)
-registersymbol(P4_Y)
-registersymbol(P4_LB)
-registersymbol(P4_RB)
-registersymbol(P4_LT)
-registersymbol(P4_RT)
-
-registersymbol(LloydArtesState)
-registersymbol(LloydArtesMain)
+define(LloydArtesAlt,LloydPointer-258)
 registersymbol(LloydArtesAlt)
-
-registersymbol(ColetteArtesState)
-registersymbol(ColetteArtesMain)
+define(ColetteArtesAlt,LloydArtesAlt+E)
 registersymbol(ColetteArtesAlt)
-
-registersymbol(GenisArtesState)
-registersymbol(GenisArtesMain)
+define(GenisArtesAlt,ColetteArtesAlt+E)
 registersymbol(GenisArtesAlt)
-
-registersymbol(RaineArtesState)
-registersymbol(RaineArtesMain)
+define(RaineArtesAlt,GenisArtesAlt+E)
 registersymbol(RaineArtesAlt)
-
-registersymbol(SheenaArtesState)
-registersymbol(SheenaArtesMain)
+define(SheenaArtesAlt,RaineArtesAlt+E)
 registersymbol(SheenaArtesAlt)
-
-registersymbol(ZelosArtesState)
-registersymbol(ZelosArtesMain)
+define(ZelosArtesAlt,SheenaArtesAlt+E)
 registersymbol(ZelosArtesAlt)
-
-registersymbol(PreseaArtesState)
-registersymbol(PreseaArtesMain)
+define(PreseaArtesAlt,ZelosArtesAlt+E)
 registersymbol(PreseaArtesAlt)
-
-registersymbol(RegalArtesState)
-registersymbol(RegalArtesMain)
+define(RegalArtesAlt,PreseaArtesAlt+E)
 registersymbol(RegalArtesAlt)
-
-registersymbol(KratosArtesState)
-registersymbol(KratosArtesMain)
+define(KratosArtesAlt,RegalArtesAlt+E)
 registersymbol(KratosArtesAlt)
 
+define(ArtePage,KratosArtesAlt+E)
+registersymbol(ArtePage)
 
-newmem: //Read Controller Input
-cmp byte [rsp+44],(int)4
-je Player1
+//define(LloydArtes,GaldPointer+368+D8)
+//registersymbol(LloydArtes)
 
-cmp byte [PartyPointer+1],(int)0
-je code
-cmp byte [rsp+44],(int)3
-je Player2
 
-SkipPlayer2:
-cmp byte [PartyPointer+2],(int)0
-je code
-cmp byte [rsp+44],(int)2
-je Player3
+ArteSphereMem: //Read Controller Input
 
-SkipPlayer3:
-cmp byte [PartyPointer+3],(int)0
-je code
-cmp byte [rsp+44],(int)1
-je Player4
+CheckController: //Check if Read is from Player Controller
+cmp byte [rsp+44],4
+je P1_Input1
+cmp byte [rsp+44],3
+je P2_Input1
+cmp byte [rsp+44],2
+je P3_Input1
+cmp byte [rsp+44],1
+je P4_Input1
 
 jmp code
-//cmp [TOS.exe+712CEC],(byte)1
-//jne endingA
 
-Player1:
-//cmp byte [rsp+44],(int)4
-//jne Player2
+
+P1_Input1:
+cmp byte [PartyPointer],0
+je P1_NoChar
 mov [Controls],ecx
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
 
-GetP1_Y:
-mov byte [P1_Y],(int)0
-mov byte [TMP_Y],(int)0
-cmp [Controls+1],(int)128
-jl GetP1_X
+P1_GetRSB:
+cmp byte [Controls],(int)128
+jb P1_ReleasedRSB
+sub byte [Controls],(int)128
+cmp byte [P1_Controls],1
+ja P1_GetLSB
+add byte [P1_Controls],1
+jmp P1_GetLSB
+
+P1_ReleasedRSB:
+mov byte [P1_Controls],0
+mov byte [TMP_Controls],0
+
+P1_GetLSB:
+cmp byte [Controls],(int)64
+jb P1_ReleasedLSB
+sub byte [Controls],(int)64
+cmp byte [P1_Controls+1],1
+ja P1_GetSelect
+add byte [P1_Controls+1],1
+cmp byte [P1_Controls+1],2
+jb P1_GetSelect
+mov byte [TMP_Controls+1],1
+jmp P1_GetSelect
+
+P1_ReleasedLSB:
+mov byte [P1_Controls+1],0
+mov byte [TMP_Controls+1],0
+
+P1_GetSelect:
+cmp byte [Controls],(int)32
+jb P1_ReleasedSelect
+sub byte [Controls],(int)32
+cmp byte [P1_Controls+2],1
+ja P1_GetStart
+add byte [P1_Controls+2],1
+cmp byte [P1_Controls+2],2
+jb P1_GetStart
+mov byte [TMP_Controls+2],1
+jmp P1_GetStart
+
+P1_ReleasedSelect:
+mov byte [P1_Controls+2],0
+mov byte [TMP_Controls+2],0
+
+P1_GetStart:
+cmp byte [Controls],(int)16
+jb P1_ReleasedStart
+sub byte [Controls],(int)16
+cmp byte [P1_Controls+3],1
+ja P1_Input2
+add byte [P1_Controls+3],1
+jmp P1_Input2
+
+P1_ReleasedStart:
+mov byte [P1_Controls+3],0
+mov byte [TMP_Controls+3],0
+
+
+P1_Input2:
+
+P1_GetY:
+cmp byte [Controls+1],(int)128
+jb P1_GetX
 sub byte [Controls+1],(int)128
-mov byte [P1_Y],(int)1
-mov byte [TMP_Y],(int)1
 
-GetP1_X:
-mov byte [P1_X],(int)0
-mov byte [TMP_X],(int)0
-cmp [Controls+1],(int)64
-jl GetP1_B
+P1_GetX:
+cmp byte [Controls+1],(int)64
+jb P1_GetB
 sub byte [Controls+1],(int)64
-mov byte [P1_X],(int)1
-mov byte [TMP_X],(int)1
 
-GetP1_B:
-mov byte [P1_B],(int)0
-mov byte [TMP_B],(int)0
-cmp [Controls+1],(int)32
-jl GetP1_A
+P1_GetB:
+cmp byte [Controls+1],(int)32
+jb P1_GetA
 sub byte [Controls+1],(int)32
-mov byte [P1_B],(int)1
-mov byte [TMP_B],(int)1
 
-GetP1_A:
-mov byte [P1_A],(int)0
-mov byte [TMP_A],(int)0
-cmp [Controls+1],(int)16
-jl GetP1_RT
+P1_GetA:
+cmp byte [Controls+1],(int)16
+jb P1_GetRT
 sub byte [Controls+1],(int)16
-mov byte [P1_A],(int)1
-mov byte [TMP_A],(int)1
 
-GetP1_RT:
-mov byte [P1_RT],(int)0
-mov byte [TMP_RT],(int)0
-cmp [Controls+1],(int)8
-jl GetP1_LT
+P1_GetRT:
+cmp byte [Controls+1],(int)8
+jb P1_GetLT
 sub byte [Controls+1],(int)8
-mov byte [P1_RT],(int)1
-mov byte [TMP_RT],(int)1
 
-GetP1_LT:
-mov byte [P1_LT],(int)0
-mov byte [TMP_LT],(int)0
-cmp [Controls+1],(int)4
-jl GetP1_RB
+P1_GetLT:
+cmp byte [Controls+1],(int)4
+jb P1_GetRB
 sub byte [Controls+1],(int)4
-mov byte [P1_LT],(int)1
-mov byte [TMP_LT],(int)1
 
-GetP1_RB:
-mov byte [P1_RB],(int)0
-mov byte [TMP_RB],(int)0
-cmp [Controls+1],(int)2
-jl GetP1_LB
+P1_GetRB:
+cmp byte [Controls+1],(int)2
+jb P1_GetLB
 sub byte [Controls+1],(int)2
-mov byte [P1_RB],(int)1
-mov byte [TMP_RB],(int)1
 
-GetP1_LB:
-mov byte [P1_LB],(int)0
-mov byte [TMP_LB],(int)0
-cmp [Controls+1],(int)1
-jl P1_UpdateInputs
-sub byte [Controls+1],(int)1
-mov byte [P1_LB],(int)1
-//cmp byte [TOS.exe+712CEC],(int)1 //In Battle?
-//jne P1_UpdateInputs
-//cmp byte [TOS.exe+18366FC],(int)0
-//je P1_ArtesMenu
-//P1_ArtesMenu:
-//cmp byte [TOS.exe+70DDC4],(int)0
-//jne P1_UpdateInputs
-mov byte [TMP_LB],(int)1
-jmp P1_UpdateInputs
+P1_GetLB:
+cmp byte [Controls+1],(int)1
+jb P1_ReleasedLB
+mov byte [TMP_Controls+F],1
+cmp byte [P1_Controls+F],1
+ja P1_SetChar
+add byte [P1_Controls+F],1
+jmp P1_SetChar
+
+P1_ReleasedLB:
+mov byte [P1_Controls+F],0
+mov byte [TMP_Controls+F],0
+jmp P1_SetChar
 
 
-Player2:
-//cmp byte [rsp+44],(int)3
-//jne Player3
+P1_NoChar: //If there is No Char in Controller Slot (Due to being P1 the game will crash regardless)
+mov dword [P1_Controls],0
+mov dword [P1_Controls+4],0
+mov dword [P1_Controls+8],0
+mov dword [P1_Controls+C],0
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
+jmp InputEnd
+
+P1_SetChar:
+//P1_Lloyd
+cmp byte [PartyPointer],1
+jne P1_Colette
+mov byte [TMP_Char],1
+
+P1_Colette:
+cmp byte [PartyPointer],2
+jne P1_Genis
+mov byte [TMP_Char],2
+
+P1_Genis:
+cmp byte [PartyPointer],3
+jne P1_Raine
+mov byte [TMP_Char],3
+
+P1_Raine:
+cmp byte [PartyPointer],4
+jne P1_Sheena
+mov byte [TMP_Char],4
+
+P1_Sheena:
+cmp byte [PartyPointer],5
+jne P1_Zelos
+mov byte [TMP_Char],5
+
+P1_Zelos:
+cmp byte [PartyPointer],6
+jne P1_Presea
+mov byte [TMP_Char],6
+
+P1_Presea:
+cmp byte [PartyPointer],7
+jne P1_Regal
+mov byte [TMP_Char],7
+
+P1_Regal:
+cmp byte [PartyPointer],8
+jne P1_Kratos
+mov byte [TMP_Char],8
+
+P1_Kratos:
+cmp byte [PartyPointer],9
+jne InputEnd
+mov byte [TMP_Char],9
+jmp InputEnd
+
+
+P2_Input1:
+cmp byte [PartyPointer+1],0
+je P2_NoChar
 mov [Controls],ecx
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
 
-GetP2_Y:
-mov byte [P2_Y],(int)0
-mov byte [TMP_Y],(int)0
-cmp [Controls+1],(int)128
-jl GetP2_X
+P2_GetRSB:
+cmp byte [Controls],(int)128
+jb P2_ReleasedRSB
+sub byte [Controls],(int)128
+cmp byte [P2_Controls],1
+ja P2_GetLSB
+add byte [P2_Controls],1
+jmp P2_GetLSB
+
+P2_ReleasedRSB:
+mov byte [P2_Controls],0
+
+P2_GetLSB:
+cmp byte [Controls],(int)64
+jb P2_ReleasedLSB
+sub byte [Controls],(int)64
+cmp byte [P2_Controls+1],1
+ja P2_GetSelect
+add byte [P2_Controls+1],1
+cmp byte [P2_Controls+1],2
+jb P2_GetSelect
+mov byte [TMP_Controls+1],1
+jmp P2_GetSelect
+
+P2_ReleasedLSB:
+mov byte [P2_Controls+1],0
+mov byte [TMP_Controls+1],0
+
+P2_GetSelect:
+cmp byte [Controls],(int)32
+jb P2_ReleasedSelect
+sub byte [Controls],(int)32
+cmp byte [P2_Controls+2],1
+ja P2_GetStart
+add byte [P2_Controls+2],1
+cmp byte [P2_Controls+2],2
+jb P2_GetStart
+mov byte [TMP_Controls+2],1
+jmp P2_GetStart
+
+P2_ReleasedSelect:
+mov byte [P2_Controls+2],0
+mov byte [TMP_Controls+2],0
+
+P2_GetStart:
+cmp byte [Controls],(int)16
+jb P2_ReleasedStart
+sub byte [Controls],(int)16
+cmp byte [P2_Controls+3],1
+ja P2_Input2
+add byte [P2_Controls+3],1
+jmp P2_Input2
+
+P2_ReleasedStart:
+mov byte [P2_Controls+3],0
+mov byte [TMP_Controls+3],0
+
+
+P2_Input2:
+
+P2_GetY:
+cmp byte [Controls+1],(int)128
+jb P2_GetX
 sub byte [Controls+1],(int)128
-mov byte [P2_Y],(int)1
-mov byte [TMP_Y],(int)1
 
-GetP2_X:
-mov byte [P2_X],(int)0
-mov byte [TMP_X],(int)0
-cmp [Controls+1],(int)64
-jl GetP2_B
+P2_GetX:
+cmp byte [Controls+1],(int)64
+jb P2_GetB
 sub byte [Controls+1],(int)64
-mov byte [P2_X],(int)1
-mov byte [TMP_X],(int)1
 
-GetP2_B:
-mov byte [P2_B],(int)0
-mov byte [TMP_B],(int)0
-cmp [Controls+1],(int)32
-jl GetP2_A
+P2_GetB:
+cmp byte [Controls+1],(int)32
+jb P2_GetA
 sub byte [Controls+1],(int)32
-mov byte [P2_B],(int)1
-mov byte [TMP_B],(int)1
 
-GetP2_A:
-mov byte [P2_A],(int)0
-mov byte [TMP_A],(int)0
-cmp [Controls+1],(int)16
-jl GetP2_RT
+P2_GetA:
+cmp byte [Controls+1],(int)16
+jb P2_GetRT
 sub byte [Controls+1],(int)16
-mov byte [P2_A],(int)1
-mov byte [TMP_A],(int)1
 
-GetP2_RT:
-mov byte [P2_RT],(int)0
-mov byte [TMP_RT],(int)0
-cmp [Controls+1],(int)8
-jl GetP2_LT
+P2_GetRT:
+cmp byte [Controls+1],(int)8
+jb P2_GetLT
 sub byte [Controls+1],(int)8
-mov byte [P2_RT],(int)1
-mov byte [TMP_RT],(int)1
 
-GetP2_LT:
-mov byte [P2_LT],(int)0
-mov byte [TMP_LT],(int)0
-cmp [Controls+1],(int)4
-jl GetP2_RB
+P2_GetLT:
+cmp byte [Controls+1],(int)4
+jb P2_GetRB
 sub byte [Controls+1],(int)4
-mov byte [P2_LT],(int)1
-mov byte [TMP_LT],(int)1
 
-GetP2_RB:
-mov byte [P2_RB],(int)0
-mov byte [TMP_RB],(int)0
-cmp [Controls+1],(int)2
-jl GetP2_LB
+P2_GetRB:
+cmp byte [Controls+1],(int)2
+jb P2_GetLB
 sub byte [Controls+1],(int)2
-mov byte [P2_RB],(int)1
-mov byte [TMP_RB],(int)1
 
-GetP2_LB:
-mov byte [P2_LB],(int)0
-mov byte [TMP_LB],(int)0
-cmp [Controls+1],(int)1
-jl P2_UpdateInputs
-sub byte [Controls+1],(int)1
-mov byte [P2_LB],(int)1
-//cmp byte [TOS.exe+712CEC],(int)1
-//jne P2_UpdateInputs
-//cmp byte [TOS.exe+18366FC],(int)0
-//je P2_ArtesMenu
-//P2_ArtesMenu:
-//cmp byte [TOS.exe+70DDC4],(int)0
-//jne P2_UpdateInputs
-mov byte [TMP_LB],(int)1
-jmp P2_UpdateInputs
+P2_GetLB:
+cmp byte [Controls+1],(int)1
+jb P2_ReleasedLB
+mov byte [TMP_Controls+F],1
+cmp byte [P2_Controls+F],1
+ja P2_SetChar
+add byte [P2_Controls+F],1
+jmp P2_SetChar
+
+P2_ReleasedLB:
+mov byte [P2_Controls+F],0
+mov byte [TMP_Controls+F],0
+jmp P2_SetChar
 
 
-Player3:
-//cmp byte [rsp+44],(int)2
-//jne Player4
+P2_NoChar: //If there is No Char in Controller Slot (Due to being P2 the game will crash regardless)
+mov dword [P2_Controls],0
+mov dword [P2_Controls+4],0
+mov dword [P2_Controls+8],0
+mov dword [P2_Controls+C],0
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
+jmp InputEnd
+
+P2_SetChar:
+//P2_Lloyd
+cmp byte [PartyPointer+1],1
+jne P2_Colette
+mov byte [TMP_Char],1
+
+P2_Colette:
+cmp byte [PartyPointer+1],2
+jne P2_Genis
+mov byte [TMP_Char],2
+
+P2_Genis:
+cmp byte [PartyPointer+1],3
+jne P2_Raine
+mov byte [TMP_Char],3
+
+P2_Raine:
+cmp byte [PartyPointer+1],4
+jne P2_Sheena
+mov byte [TMP_Char],4
+
+P2_Sheena:
+cmp byte [PartyPointer+1],5
+jne P2_Zelos
+mov byte [TMP_Char],5
+
+P2_Zelos:
+cmp byte [PartyPointer+1],6
+jne P2_Presea
+mov byte [TMP_Char],6
+
+P2_Presea:
+cmp byte [PartyPointer+1],7
+jne P2_Regal
+mov byte [TMP_Char],7
+
+P2_Regal:
+cmp byte [PartyPointer+1],8
+jne P2_Kratos
+mov byte [TMP_Char],8
+
+P2_Kratos:
+cmp byte [PartyPointer+1],9
+jne InputEnd
+mov byte [TMP_Char],9
+jmp InputEnd
+
+
+P3_Input1:
+cmp byte [PartyPointer+2],0
+je P3_NoChar
 mov [Controls],ecx
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
 
-GetP3_Y:
-mov byte [P3_Y],(int)0
-mov byte [TMP_Y],(int)0
-cmp [Controls+1],(int)128
-jl GetP3_X
+P3_GetRSB:
+cmp byte [Controls],(int)128
+jb P3_ReleasedRSB
+sub byte [Controls],(int)128
+cmp byte [P3_Controls],1
+ja P3_GetLSB
+add byte [P3_Controls],1
+jmp P3_GetLSB
+
+P3_ReleasedRSB:
+mov byte [P3_Controls],0
+
+P3_GetLSB:
+cmp byte [Controls],(int)64
+jb P3_ReleasedLSB
+sub byte [Controls],(int)64
+cmp byte [P3_Controls+1],1
+ja P3_GetSelect
+add byte [P3_Controls+1],1
+cmp byte [P3_Controls+1],2
+jb P3_GetSelect
+mov byte [TMP_Controls+1],1
+jmp P3_GetSelect
+
+P3_ReleasedLSB:
+mov byte [P3_Controls+1],0
+mov byte [TMP_Controls+1],0
+
+P3_GetSelect:
+cmp byte [Controls],(int)32
+jb P3_ReleasedSelect
+sub byte [Controls],(int)32
+cmp byte [P3_Controls+2],1
+ja P3_GetStart
+add byte [P3_Controls+2],1
+cmp byte [P3_Controls+2],2
+jb P3_GetStart
+mov byte [TMP_Controls+2],1
+jmp P3_GetStart
+
+P3_ReleasedSelect:
+mov byte [P3_Controls+2],0
+mov byte [TMP_Controls+2],0
+
+P3_GetStart:
+cmp byte [Controls],(int)16
+jb P3_ReleasedStart
+sub byte [Controls],(int)16
+cmp byte [P3_Controls+3],1
+ja P3_Input2
+add byte [P3_Controls+3],1
+jmp P3_Input2
+
+P3_ReleasedStart:
+mov byte [P3_Controls+3],0
+mov byte [TMP_Controls+3],0
+
+
+P3_Input2:
+
+P3_GetY:
+cmp byte [Controls+1],(int)128
+jb P3_GetX
 sub byte [Controls+1],(int)128
-mov byte [P3_Y],(int)1
-mov byte [TMP_Y],(int)1
 
-GetP3_X:
-mov byte [P3_X],(int)0
-mov byte [TMP_X],(int)0
-cmp [Controls+1],(int)64
-jl GetP3_B
+P3_GetX:
+cmp byte [Controls+1],(int)64
+jb P3_GetB
 sub byte [Controls+1],(int)64
-mov byte [P3_X],(int)1
-mov byte [TMP_X],(int)1
 
-GetP3_B:
-mov byte [P3_B],(int)0
-mov byte [TMP_B],(int)0
-cmp [Controls+1],(int)32
-jl GetP3_A
+P3_GetB:
+cmp byte [Controls+1],(int)32
+jb P3_GetA
 sub byte [Controls+1],(int)32
-mov byte [P3_B],(int)1
-mov byte [TMP_B],(int)1
 
-GetP3_A:
-mov byte [P3_A],(int)0
-mov byte [TMP_A],(int)0
-cmp [Controls+1],(int)16
-jl GetP3_RT
+P3_GetA:
+cmp byte [Controls+1],(int)16
+jb P3_GetRT
 sub byte [Controls+1],(int)16
-mov byte [P3_A],(int)1
-mov byte [TMP_A],(int)1
 
-GetP3_RT:
-mov byte [P3_RT],(int)0
-mov byte [TMP_RT],(int)0
-cmp [Controls+1],(int)8
-jl GetP3_LT
+P3_GetRT:
+cmp byte [Controls+1],(int)8
+jb P3_GetLT
 sub byte [Controls+1],(int)8
-mov byte [P3_RT],(int)1
-mov byte [TMP_RT],(int)1
 
-GetP3_LT:
-mov byte [P3_LT],(int)0
-mov byte [TMP_LT],(int)0
-cmp [Controls+1],(int)4
-jl GetP3_RB
+P3_GetLT:
+cmp byte [Controls+1],(int)4
+jb P3_GetRB
 sub byte [Controls+1],(int)4
-mov byte [P3_LT],(int)1
-mov byte [TMP_LT],(int)1
 
-GetP3_RB:
-mov byte [P3_RB],(int)0
-mov byte [TMP_RB],(int)0
-cmp [Controls+1],(int)2
-jl GetP3_LB
+P3_GetRB:
+cmp byte [Controls+1],(int)2
+jb P3_GetLB
 sub byte [Controls+1],(int)2
-mov byte [P3_RB],(int)1
-mov byte [TMP_RB],(int)1
 
-GetP3_LB:
-mov byte [P3_LB],(int)0
-mov byte [TMP_LB],(int)0
-cmp [Controls+1],(int)1
-jl P3_UpdateInputs
-sub byte [Controls+1],(int)1
-mov byte [P3_LB],(int)1
-//cmp byte [TOS.exe+712CEC],(int)1
-//jne P3_UpdateInputs
-//cmp byte [TOS.exe+18366FC],(int)0
-//je P3_ArtesMenu
-//P3_ArtesMenu:
-//cmp byte [TOS.exe+70DDC4],(int)0
-//jne P3_UpdateInputs
-mov byte [TMP_LB],(int)1
-jmp P3_UpdateInputs
+P3_GetLB:
+cmp byte [Controls+1],(int)1
+jb P3_ReleasedLB
+mov byte [TMP_Controls+F],1
+cmp byte [P3_Controls+F],1
+ja P3_SetChar
+add byte [P3_Controls+F],1
+jmp P3_SetChar
+
+P3_ReleasedLB:
+mov byte [P3_Controls+F],0
+mov byte [TMP_Controls+F],0
+jmp P3_SetChar
 
 
-Player4:
-//cmp byte [rsp+44],(int)3
-//jne code
+P3_NoChar: //If there is No Char in Controller Slot (Due to being P3 the game will crash regardless)
+mov dword [P3_Controls],0
+mov dword [P3_Controls+4],0
+mov dword [P3_Controls+8],0
+mov dword [P3_Controls+C],0
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
+jmp InputEnd
+
+P3_SetChar:
+//P3_Lloyd
+cmp byte [PartyPointer+2],1
+jne P3_Colette
+mov byte [TMP_Char],1
+
+P3_Colette:
+cmp byte [PartyPointer+2],2
+jne P3_Genis
+mov byte [TMP_Char],2
+
+P3_Genis:
+cmp byte [PartyPointer+2],3
+jne P3_Raine
+mov byte [TMP_Char],3
+
+P3_Raine:
+cmp byte [PartyPointer+2],4
+jne P3_Sheena
+mov byte [TMP_Char],4
+
+P3_Sheena:
+cmp byte [PartyPointer+2],5
+jne P3_Zelos
+mov byte [TMP_Char],5
+
+P3_Zelos:
+cmp byte [PartyPointer+2],6
+jne P3_Presea
+mov byte [TMP_Char],6
+
+P3_Presea:
+cmp byte [PartyPointer+2],7
+jne P3_Regal
+mov byte [TMP_Char],7
+
+P3_Regal:
+cmp byte [PartyPointer+2],8
+jne P3_Kratos
+mov byte [TMP_Char],8
+
+P3_Kratos:
+cmp byte [PartyPointer+2],9
+jne InputEnd
+mov byte [TMP_Char],9
+jmp InputEnd
+
+
+P4_Input1:
+cmp byte [PartyPointer+3],0
+je P4_NoChar
 mov [Controls],ecx
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
 
-GetP4_Y:
-mov byte [P4_Y],(int)0
-mov byte [TMP_Y],(int)0
-cmp [Controls+1],(int)128
-jl GetP4_X
+P4_GetRSB:
+cmp byte [Controls],(int)128
+jb P4_ReleasedRSB
+sub byte [Controls],(int)128
+cmp byte [P4_Controls],1
+ja P4_GetLSB
+add byte [P4_Controls],1
+jmp P4_GetLSB
+
+P4_ReleasedRSB:
+mov byte [P4_Controls],0
+
+P4_GetLSB:
+cmp byte [Controls],(int)64
+jb P4_ReleasedLSB
+sub byte [Controls],(int)64
+cmp byte [P4_Controls+1],1
+ja P4_GetSelect
+add byte [P4_Controls+1],1
+cmp byte [P4_Controls+1],2
+jb P4_GetSelect
+mov byte [TMP_Controls+1],1
+jmp P4_GetSelect
+
+P4_ReleasedLSB:
+mov byte [P4_Controls+1],0
+mov byte [TMP_Controls+1],0
+
+P4_GetSelect:
+cmp byte [Controls],(int)32
+jb P4_ReleasedSelect
+sub byte [Controls],(int)32
+cmp byte [P4_Controls+2],1
+ja P4_GetStart
+add byte [P4_Controls+2],1
+cmp byte [P4_Controls+2],2
+jb P4_GetStart
+mov byte [TMP_Controls+2],1
+jmp P4_GetStart
+
+P4_ReleasedSelect:
+mov byte [P4_Controls+2],0
+mov byte [TMP_Controls+2],0
+
+P4_GetStart:
+cmp byte [Controls],(int)16
+jb P4_ReleasedStart
+sub byte [Controls],(int)16
+cmp byte [P4_Controls+3],1
+ja P4_Input2
+add byte [P4_Controls+3],1
+jmp P4_Input2
+
+P4_ReleasedStart:
+mov byte [P4_Controls+3],0
+mov byte [TMP_Controls+3],0
+
+
+P4_Input2:
+
+P4_GetY:
+cmp byte [Controls+1],(int)128
+jb P4_GetX
 sub byte [Controls+1],(int)128
-mov byte [P4_Y],(int)1
-mov byte [TMP_Y],(int)1
 
-GetP4_X:
-mov byte [P4_X],(int)0
-mov byte [TMP_X],(int)0
-cmp [Controls+1],(int)64
-jl GetP4_B
+P4_GetX:
+cmp byte [Controls+1],(int)64
+jb P4_GetB
 sub byte [Controls+1],(int)64
-mov byte [P4_X],(int)1
-mov byte [TMP_X],(int)1
 
-GetP4_B:
-mov byte [P4_B],(int)0
-mov byte [TMP_B],(int)0
-cmp [Controls+1],(int)32
-jl GetP4_A
+P4_GetB:
+cmp byte [Controls+1],(int)32
+jb P4_GetA
 sub byte [Controls+1],(int)32
-mov byte [P4_B],(int)1
-mov byte [TMP_B],(int)1
 
-GetP4_A:
-mov byte [P4_A],(int)0
-mov byte [TMP_A],(int)0
-cmp [Controls+1],(int)16
-jl GetP4_RT
+P4_GetA:
+cmp byte [Controls+1],(int)16
+jb P4_GetRT
 sub byte [Controls+1],(int)16
-mov byte [P4_A],(int)1
-mov byte [TMP_A],(int)1
 
-GetP4_RT:
-mov byte [P4_RT],(int)0
-mov byte [TMP_RT],(int)0
-cmp [Controls+1],(int)8
-jl GetP4_LT
+P4_GetRT:
+cmp byte [Controls+1],(int)8
+jb P4_GetLT
 sub byte [Controls+1],(int)8
-mov byte [P4_RT],(int)1
-mov byte [TMP_RT],(int)1
 
-GetP4_LT:
-mov byte [P4_LT],(int)0
-mov byte [TMP_LT],(int)0
-cmp [Controls+1],(int)4
-jl GetP4_RB
+P4_GetLT:
+cmp byte [Controls+1],(int)4
+jb P4_GetRB
 sub byte [Controls+1],(int)4
-mov byte [P4_LT],(int)1
-mov byte [TMP_LT],(int)1
 
-GetP4_RB:
-mov byte [P4_RB],(int)0
-mov byte [TMP_RB],(int)0
-cmp [Controls+1],(int)2
-jl GetP4_LB
+P4_GetRB:
+cmp byte [Controls+1],(int)2
+jb P4_GetLB
 sub byte [Controls+1],(int)2
-mov byte [P4_RB],(int)1
-mov byte [TMP_RB],(int)1
 
-GetP4_LB:
-mov byte [P4_LB],(int)0
-mov byte [TMP_LB],(int)0
-cmp [Controls+1],(int)1
-jl P4_UpdateInputs
-sub byte [Controls+1],(int)1
-mov byte [P4_LB],(int)1
-//cmp byte [TOS.exe+712CEC],(int)1
-//jne P4_UpdateInputs
-//cmp byte [TOS.exe+18366FC],(int)0
-//je P4_ArtesMenu
-//P4_ArtesMenu:
-//cmp byte [TOS.exe+70DDC4],(int)0
-//jne P4_UpdateInputs
-mov byte [TMP_LB],(int)1
-jmp P4_UpdateInputs
+P4_GetLB:
+cmp byte [Controls+1],(int)1
+jb P4_ReleasedLB
+mov byte [TMP_Controls+F],1
+cmp byte [P4_Controls+F],1
+ja P4_SetChar
+add byte [P4_Controls+F],1
+jmp P4_SetChar
+
+P4_ReleasedLB:
+mov byte [P4_Controls+F],0
+mov byte [TMP_Controls+F],0
+jmp P4_SetChar
 
 
+P4_NoChar: //If there is No Char in Controller Slot (Due to being P4 the game will crash regardless)
+mov dword [P4_Controls],0
+mov dword [P4_Controls+4],0
+mov dword [P4_Controls+8],0
+mov dword [P4_Controls+C],0
+mov dword [TMP_Controls],0
+mov dword [TMP_Controls+4],0
+mov dword [TMP_Controls+8],0
+mov dword [TMP_Controls+C],0
+jmp InputEnd
 
-P1_UpdateInputs:
-mov [Controls],ecx
+P4_SetChar:
+//P4_Lloyd
+cmp byte [PartyPointer+3],1
+jne P4_Colette
+mov byte [TMP_Char],1
 
-cmp byte [TMP_LB],(int)1
-jl P1_Slot
-sub [Controls+1],(int)1
-jmp P1_Slot
+P4_Colette:
+cmp byte [PartyPointer+3],2
+jne P4_Genis
+mov byte [TMP_Char],2
 
-P2_UpdateInputs:
-mov [Controls],ecx
+P4_Genis:
+cmp byte [PartyPointer+3],3
+jne P4_Raine
+mov byte [TMP_Char],3
 
-cmp byte [TMP_LB],(int)1
-jl P2_Slot
-sub [Controls+1],(int)1
-jmp P2_Slot
+P4_Raine:
+cmp byte [PartyPointer+3],4
+jne P4_Sheena
+mov byte [TMP_Char],4
 
-P3_UpdateInputs:
-mov [Controls],ecx
+P4_Sheena:
+cmp byte [PartyPointer+3],5
+jne P4_Zelos
+mov byte [TMP_Char],5
 
-cmp byte [TMP_LB],(int)1
-jl P3_Slot
-sub [Controls+1],(int)1
-jmp P3_Slot
+P4_Zelos:
+cmp byte [PartyPointer+3],6
+jne P4_Presea
+mov byte [TMP_Char],6
 
-P4_UpdateInputs:
-mov [Controls],ecx
+P4_Presea:
+cmp byte [PartyPointer+3],7
+jne P4_Regal
+mov byte [TMP_Char],7
 
-cmp byte [TMP_LB],(int)1
-jl P4_Slot
-sub [Controls+1],(int)1
-jmp P4_Slot
+P4_Regal:
+cmp byte [PartyPointer+3],8
+jne P4_Kratos
+mov byte [TMP_Char],8
 
-
-
-P1_Slot:
-cmp byte [PartyPointer],(int)1
-je LloydArtes
-cmp byte [PartyPointer],(int)2
-je ColetteArtes
-cmp byte [PartyPointer],(int)3
-je GenisArtes
-cmp byte [PartyPointer],(int)4
-je RaineArtes
-cmp byte [PartyPointer],(int)5
-je SheenaArtes
-cmp byte [PartyPointer],(int)6
-je ZelosArtes
-cmp byte [PartyPointer],(int)7
-je PreseaArtes
-cmp byte [PartyPointer],(int)8
-je RegalArtes
-cmp byte [PartyPointer],(int)9
-je KratosArtes
-jmp SendInput
-
-P2_Slot:
-cmp byte [PartyPointer+1],(int)1
-je LloydArtes
-cmp byte [PartyPointer+1],(int)2
-je ColetteArtes
-cmp byte [PartyPointer+1],(int)3
-je GenisArtes
-cmp byte [PartyPointer+1],(int)4
-je RaineArtes
-cmp byte [PartyPointer+1],(int)5
-je SheenaArtes
-cmp byte [PartyPointer+1],(int)6
-je ZelosArtes
-cmp byte [PartyPointer+1],(int)7
-je PreseaArtes
-cmp byte [PartyPointer+1],(int)8
-je RegalArtes
-cmp byte [PartyPointer+1],(int)9
-je KratosArtes
-jmp SendInput
-
-P3_Slot:
-cmp byte [PartyPointer+2],(int)1
-je LloydArtes
-cmp byte [PartyPointer+2],(int)2
-je ColetteArtes
-cmp byte [PartyPointer+2],(int)3
-je GenisArtes
-cmp byte [PartyPointer+2],(int)4
-je RaineArtes
-cmp byte [PartyPointer+2],(int)5
-je SheenaArtes
-cmp byte [PartyPointer+2],(int)6
-je ZelosArtes
-cmp byte [PartyPointer+2],(int)7
-je PreseaArtes
-cmp byte [PartyPointer+2],(int)8
-je RegalArtes
-cmp byte [PartyPointer+2],(int)9
-je KratosArtes
-jmp SendInput
-
-P4_Slot:
-cmp byte [PartyPointer+3],(int)1
-je LloydArtes
-cmp byte [PartyPointer+3],(int)2
-je ColetteArtes
-cmp byte [PartyPointer+3],(int)3
-je GenisArtes
-cmp byte [PartyPointer+3],(int)4
-je RaineArtes
-cmp byte [PartyPointer+3],(int)5
-je SheenaArtes
-cmp byte [PartyPointer+3],(int)6
-je ZelosArtes
-cmp byte [PartyPointer+3],(int)7
-je PreseaArtes
-cmp byte [PartyPointer+3],(int)8
-je RegalArtes
-cmp byte [PartyPointer+3],(int)9
-je KratosArtes
-jmp SendInput
+P4_Kratos:
+cmp byte [PartyPointer+3],9
+jne InputEnd
+mov byte [TMP_Char],9
+jmp InputEnd
 
 
-
-LloydArtes:
-
-LloydMain:
-cmp byte [LloydArtesState],(int)0
-jne LloydAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [LloydArtesState],(int)1
-jmp LloydSaveMain
-
-LloydAlt:
-cmp byte [LloydArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [LloydArtesState],(int)0
-jmp LloydSaveAlt
+InputEnd:
+cmp byte [TOS.exe+712952],0 //Check if out of Battle
+je MenuChecking
+cmp byte [BattleState],1 //Check if Paused
+je MenuChecking
+jmp BattleChecking
 
 
-LloydSaveMain:
+MenuChecking:
+cmp byte [ArtesPageState],1 //Check if Artes Page is Open
+je ArtesPageChain
+cmp byte [UnisonPageState],1 //Check if Unison Page is Open
+je UnisonPageChain
+jmp ResetAll
+
+
+BattleChecking:
+cmp byte [TMP_Char],1
+je LloydBattle
+cmp byte [TMP_Char],2
+je ColetteBattle
+cmp byte [TMP_Char],3
+je GenisBattle
+cmp byte [TMP_Char],4
+je RaineBattle
+cmp byte [TMP_Char],5
+je SheenaBattle
+cmp byte [TMP_Char],6
+je ZelosBattle
+cmp byte [TMP_Char],7
+je PreseaBattle
+cmp byte [TMP_Char],8
+je RegalBattle
+cmp byte [TMP_Char],9
+je KratosBattle
+jmp code
+
+
+ArtesPageChain:
+cmp byte [ShortcutState],1 //Check if selecting Shortcut
+je code
+cmp byte [TOS.exe+70DDB0],(int)3 //Check if Cursor is Selecting Artes
+je code
+
+cmp byte [ArtePage],1
+je Check1
+cmp byte [ArtePage+1],1
+je Check2
+cmp byte [ArtePage+2],1
+je Check3
+cmp byte [ArtePage+3],1
+je Check4
+cmp byte [ArtePage+4],1
+je Check5
+cmp byte [ArtePage+5],1
+je Check6
+cmp byte [ArtePage+6],1
+je Check7
+cmp byte [ArtePage+7],1
+je Check8
+cmp byte [ArtePage+8],1
+je Check9
+
+ChecksEnd:
+cmp byte [TOS.exe+70DDB0],(int)2 //Check if Cursor is on Artes
+je GetCharPage_Artes
+
+jmp ResetAll
+
+UnisonPageChain:
+jmp code //TMP
+
+
+Check1:
+cmp byte [TOS.exe+70DDCE],0
+je ChecksEnd
+jmp ResetAll
+
+Check2:
+cmp byte [TOS.exe+70DDCE],1
+je ChecksEnd
+jmp ResetAll
+
+Check3:
+cmp byte [TOS.exe+70DDCE],2
+je ChecksEnd
+jmp ResetAll
+
+Check4:
+cmp byte [TOS.exe+70DDCE],3
+je ChecksEnd
+jmp ResetAll
+
+Check5:
+cmp byte [TOS.exe+70DDCE],4
+je ChecksEnd
+jmp ResetAll
+
+Check6:
+cmp byte [TOS.exe+70DDCE],5
+je ChecksEnd
+jmp ResetAll
+
+Check7:
+cmp byte [TOS.exe+70DDCE],6
+je ChecksEnd
+jmp ResetAll
+
+Check8:
+cmp byte [TOS.exe+70DDCE],7
+je ChecksEnd
+jmp ResetAll
+
+Check9:
+cmp byte [TOS.exe+70DDCE],8
+je ChecksEnd
+jmp ResetAll
+
+
+/*
+CheckIF:
+//cmp word [TOS.exe+70DDC4],0 //Check if Arte Page is Active
+cmp byte [ArtesPageState],1
+je CanToggleArtes
+//cmp word [TOS.exe+182BC00],0 //Check if Unison Page is Active
+cmp byte [UnisonPageState],1
+je CanToggleUnison
+
+jmp ResetPage
+
+
+CanToggleArtes:
+//cmp word [TOS.exe+70DDC8],0 //Check if Shortcut Selection is Active
+cmp byte [ShortcutState],0
+jne code
+cmp byte [TOS.exe+70DDB0],(int)2 //Check if Cursor is on Artes
+je PageToggle
+cmp byte [TOS.exe+70DDB0],(int)3 //Check if Cursor is Selecting Artes
+je code
+
+jmp ResetPage
+
+
+CanToggleUnison:
+//cmp word [TOS.exe+182BC02],0 //Check if Unison Select is Active
+cmp byte [UnisonSelectState],0
+jne code
+//jmp PageToggle
+*/
+
+
+
+GetCharPage_Artes:
+
+MainLloydCheck:
+cmp byte [TOS.exe+70DDCE],0 //Check if Char
+jne MainColetteCheck
+jmp LloydPageCheck
+
+MainColetteCheck:
+cmp byte [TOS.exe+70DDCE],1 //Check if Char
+jne MainGenisCheck
+jmp ColettePageCheck
+
+MainGenisCheck:
+cmp byte [TOS.exe+70DDCE],2 //Check if Char
+jne MainRaineCheck
+jmp GenisPageCheck
+
+MainRaineCheck:
+cmp byte [TOS.exe+70DDCE],3 //Check if Char
+jne MainSheenaCheck
+jmp RainePageCheck
+
+MainSheenaCheck:
+cmp byte [TOS.exe+70DDCE],4 //Check if Char
+jne MainZelosCheck
+jmp SheenaPageCheck
+
+MainZelosCheck:
+cmp byte [TOS.exe+70DDCE],5 //Check if Char
+jne MainPreseaCheck
+jmp ZelosPageCheck
+
+MainPreseaCheck:
+cmp byte [TOS.exe+70DDCE],6 //Check if Char
+jne MainRegalCheck
+jmp PreseaPageCheck
+
+MainRegalCheck:
+cmp byte [TOS.exe+70DDCE],7 //Check if Char
+jne MainKratosCheck
+jmp RegalPageCheck
+
+MainKratosCheck:
+cmp byte [TOS.exe+70DDCE],8 //Check if Char
+jne code
+jmp KratosPageCheck
+
+
+
+
+
+ResetAll:
+
+call ResetLloydPage
+call ResetColettePage
+call ResetGenisPage
+call ResetRainePage
+call ResetSheenaPage
+call ResetZelosPage
+call ResetPreseaPage
+call ResetRegalPage
+call ResetKratosPage
+
+jmp code
+
+//Lloyd
+LloydPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage],0
+je LloydPageTrue
+call ResetLloydPage
+jmp code
+LloydPageTrue:
+call SetLloydPage
+jmp code
+
+LloydBattle:
+cmp byte [TMP_Controls+F],1
+je LloydBattleTrue
+call ResetLloydPage
+jmp code
+LloydBattleTrue:
+call SetLloydPage
+jmp UpdateControls
+
+SetLloydPage:
+cmp byte [ArtePage],1
+je CodeRet
+mov byte [ArtePage],1
+call LloydToggle
+jmp CodeRet
+
+ResetLloydPage:
+cmp byte [ArtePage],0
+je CodeRet
+mov byte [ArtePage],0
+call LloydToggle
+jmp CodeRet
+
+//Colette
+ColettePageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+1],0
+je ColettePageTrue
+call ResetColettePage
+jmp code
+ColettePageTrue:
+call SetColettePage
+jmp code
+
+ColetteBattle:
+cmp byte [TMP_Controls+F],1
+je ColetteBattleTrue
+call ResetColettePage
+jmp code
+ColetteBattleTrue:
+call SetColettePage
+jmp UpdateControls
+
+SetColettePage:
+cmp byte [ArtePage+1],1
+je CodeRet
+mov byte [ArtePage+1],1
+call ColetteToggle
+jmp CodeRet
+
+ResetColettePage:
+cmp byte [ArtePage+1],0
+je CodeRet
+mov byte [ArtePage+1],0
+call ColetteToggle
+jmp CodeRet
+
+//Genis
+GenisPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+2],0
+je GenisPageTrue
+call ResetGenisPage
+jmp code
+GenisPageTrue:
+call SetGenisPage
+jmp code
+
+GenisBattle:
+cmp byte [TMP_Controls+F],1
+je GenisBattleTrue
+call ResetGenisPage
+jmp code
+GenisBattleTrue:
+call SetGenisPage
+jmp UpdateControls
+
+SetGenisPage:
+cmp byte [ArtePage+2],1
+je CodeRet
+mov byte [ArtePage+2],1
+call GenisToggle
+jmp CodeRet
+
+ResetGenisPage:
+cmp byte [ArtePage+2],0
+je CodeRet
+mov byte [ArtePage+2],0
+call GenisToggle
+jmp CodeRet
+
+//Raine
+RainePageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+3],0
+je RainePageTrue
+call ResetRainePage
+jmp code
+RainePageTrue:
+call SetRainePage
+jmp code
+
+RaineBattle:
+cmp byte [TMP_Controls+F],1
+je RaineBattleTrue
+call ResetRainePage
+jmp code
+RaineBattleTrue:
+call SetRainePage
+jmp UpdateControls
+
+SetRainePage:
+cmp byte [ArtePage+3],1
+je CodeRet
+mov byte [ArtePage+3],1
+call RaineToggle
+jmp CodeRet
+
+ResetRainePage:
+cmp byte [ArtePage+3],0
+je CodeRet
+mov byte [ArtePage+3],0
+call RaineToggle
+jmp CodeRet
+
+
+SheenaPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+4],0
+je SheenaPageTrue
+call ResetSheenaPage
+jmp code
+SheenaPageTrue:
+call SetSheenaPage
+jmp code
+
+SheenaBattle:
+cmp byte [TMP_Controls+F],1
+je SheenaBattleTrue
+call ResetSheenaPage
+jmp code
+SheenaBattleTrue:
+call SetSheenaPage
+jmp UpdateControls
+
+SetSheenaPage:
+cmp byte [ArtePage+4],1
+je CodeRet
+mov byte [ArtePage+4],1
+call SheenaToggle
+jmp CodeRet
+
+ResetSheenaPage:
+cmp byte [ArtePage+4],0
+je CodeRet
+mov byte [ArtePage+4],0
+call SheenaToggle
+jmp CodeRet
+
+
+ZelosPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+5],0
+je ZelosPageTrue
+call ResetZelosPage
+jmp code
+ZelosPageTrue:
+call SetZelosPage
+jmp code
+
+ZelosBattle:
+cmp byte [TMP_Controls+F],1
+je ZelosBattleTrue
+call ResetZelosPage
+jmp code
+ZelosBattleTrue:
+call SetZelosPage
+jmp UpdateControls
+
+SetZelosPage:
+cmp byte [ArtePage+5],1
+je CodeRet
+mov byte [ArtePage+5],1
+call ZelosToggle
+jmp CodeRet
+
+ResetZelosPage:
+cmp byte [ArtePage+5],0
+je CodeRet
+mov byte [ArtePage+5],0
+call ZelosToggle
+jmp CodeRet
+
+
+PreseaPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+6],0
+je PreseaPageTrue
+call ResetPreseaPage
+jmp code
+PreseaPageTrue:
+call SetPreseaPage
+jmp code
+
+PreseaBattle:
+cmp byte [TMP_Controls+F],1
+je PreseaBattleTrue
+call ResetPreseaPage
+jmp code
+PreseaBattleTrue:
+call SetPreseaPage
+jmp UpdateControls
+
+SetPreseaPage:
+cmp byte [ArtePage+6],1
+je CodeRet
+mov byte [ArtePage+6],1
+call PreseaToggle
+jmp CodeRet
+
+ResetPreseaPage:
+cmp byte [ArtePage+6],0
+je CodeRet
+mov byte [ArtePage+6],0
+call PreseaToggle
+jmp CodeRet
+
+
+RegalPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+7],0
+je RegalPageTrue
+call ResetRegalPage
+jmp code
+RegalPageTrue:
+call SetRegalPage
+jmp code
+
+RegalBattle:
+cmp byte [TMP_Controls+F],1
+je RegalBattleTrue
+call ResetRegalPage
+jmp code
+RegalBattleTrue:
+call SetRegalPage
+jmp UpdateControls
+
+SetRegalPage:
+cmp byte [ArtePage+7],1
+je CodeRet
+mov byte [ArtePage+7],1
+call RegalToggle
+jmp CodeRet
+
+ResetRegalPage:
+cmp byte [ArtePage+7],0
+je CodeRet
+mov byte [ArtePage+7],0
+call RegalToggle
+jmp CodeRet
+
+
+KratosPageCheck:
+cmp byte [TMP_Controls+2],1
+jne code
+cmp byte [ArtePage+8],0
+je KratosPageTrue
+call ResetKratosPage
+jmp code
+KratosPageTrue:
+call SetKratosPage
+jmp code
+
+KratosBattle:
+cmp byte [TMP_Controls+F],1
+je KratosBattleTrue
+call ResetKratosPage
+jmp code
+KratosBattleTrue:
+call SetKratosPage
+jmp UpdateControls
+
+SetKratosPage:
+cmp byte [ArtePage+8],1
+je CodeRet
+mov byte [ArtePage+8],1
+call KratosToggle
+jmp CodeRet
+
+ResetKratosPage:
+cmp byte [ArtePage+8],0
+je CodeRet
+mov byte [ArtePage+8],0
+call KratosToggle
+jmp CodeRet
+
+
+LloydToggle:
 push eax
-mov eax,[LloydPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [LloydArtesMain],eax //Sets 4 Bytes
-mov eax,[LloydPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [LloydArtesMain+4],eax //Sets 4 Bytes
-mov eax,[LloydPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [LloydArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [LloydPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [LloydArtesMain+C],ax //Sets 2 Bytes
+mov eax,[LloydArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[LloydArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[LloydArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [LloydArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp LloydSendAlt
 
-LloydSaveAlt:
-push eax
-mov eax,[LloydPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [LloydArtesAlt],eax //Sets 4 Bytes
-mov eax,[LloydPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [LloydArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[LloydPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [LloydArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [LloydPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [LloydArtesAlt+C],ax //Sets 2 Bytes
-pop eax
-jmp LloydSendMain
-
-
-LloydSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[LloydArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [LloydPointer+D8],eax //Sets 4 Bytes
-mov eax,[LloydArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [LloydPointer+DC],eax //Sets 4 Bytes
-mov eax,[LloydArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [LloydPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [LloydArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [LloydPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-LloydSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[LloydArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [LloydPointer+D8],eax //Sets 4 Bytes
+mov [LloydArtes],eax //Sets 4 Bytes
 mov eax,[LloydArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [LloydPointer+DC],eax //Sets 4 Bytes
+mov [LloydArtes+4],eax //Sets 4 Bytes
 mov eax,[LloydArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [LloydPointer+E0],eax //Sets 4 Bytes
+mov [LloydArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [LloydArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [LloydPointer+E4],ax //Sets 2 Bytes
+mov [LloydArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-ColetteArtes:
-
-ColetteMain:
-cmp byte [ColetteArtesState],(int)0
-jne ColetteAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [ColetteArtesState],(int)1
-jmp ColetteSaveMain
-
-ColetteAlt:
-cmp byte [ColetteArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [ColetteArtesState],(int)0
-jmp ColetteSaveAlt
-
-
-ColetteSaveMain:
 push eax
-mov eax,[ColettePointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [ColetteArtesMain],eax //Sets 4 Bytes
-mov eax,[ColettePointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [ColetteArtesMain+4],eax //Sets 4 Bytes
-mov eax,[ColettePointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [ColetteArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [ColettePointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [ColetteArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [LloydArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [LloydArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [LloydArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [LloydArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp ColetteSendAlt
 
-ColetteSaveAlt:
+jmp CodeRet
+
+ColetteToggle:
 push eax
-mov eax,[ColettePointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [ColetteArtesAlt],eax //Sets 4 Bytes
-mov eax,[ColettePointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [ColetteArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[ColettePointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [ColetteArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [ColettePointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [ColetteArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[ColetteArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[ColetteArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[ColetteArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ColetteArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp ColetteSendMain
 
-
-ColetteSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[ColetteArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [ColettePointer+D8],eax //Sets 4 Bytes
-mov eax,[ColetteArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [ColettePointer+DC],eax //Sets 4 Bytes
-mov eax,[ColetteArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [ColettePointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [ColetteArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [ColettePointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-ColetteSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[ColetteArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [ColettePointer+D8],eax //Sets 4 Bytes
+mov [ColetteArtes],eax //Sets 4 Bytes
 mov eax,[ColetteArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [ColettePointer+DC],eax //Sets 4 Bytes
+mov [ColetteArtes+4],eax //Sets 4 Bytes
 mov eax,[ColetteArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [ColettePointer+E0],eax //Sets 4 Bytes
+mov [ColetteArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [ColetteArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [ColettePointer+E4],ax //Sets 2 Bytes
+mov [ColetteArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-GenisArtes:
-
-GenisMain:
-cmp byte [GenisArtesState],(int)0
-jne GenisAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [GenisArtesState],(int)1
-jmp GenisSaveMain
-
-GenisAlt:
-cmp byte [GenisArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [GenisArtesState],(int)0
-jmp GenisSaveAlt
-
-
-GenisSaveMain:
 push eax
-mov eax,[GenisPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [GenisArtesMain],eax //Sets 4 Bytes
-mov eax,[GenisPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [GenisArtesMain+4],eax //Sets 4 Bytes
-mov eax,[GenisPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [GenisArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [GenisPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [GenisArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [ColetteArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [ColetteArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp GenisSendAlt
 
-GenisSaveAlt:
+jmp CodeRet
+
+GenisToggle:
 push eax
-mov eax,[GenisPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [GenisArtesAlt],eax //Sets 4 Bytes
-mov eax,[GenisPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [GenisArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[GenisPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [GenisArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [GenisPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [GenisArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[GenisArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[GenisArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[GenisArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [GenisArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp GenisSendMain
 
-
-GenisSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[GenisArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [GenisPointer+D8],eax //Sets 4 Bytes
-mov eax,[GenisArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [GenisPointer+DC],eax //Sets 4 Bytes
-mov eax,[GenisArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [GenisPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [GenisArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [GenisPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-GenisSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[GenisArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [GenisPointer+D8],eax //Sets 4 Bytes
+mov [GenisArtes],eax //Sets 4 Bytes
 mov eax,[GenisArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [GenisPointer+DC],eax //Sets 4 Bytes
+mov [GenisArtes+4],eax //Sets 4 Bytes
 mov eax,[GenisArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [GenisPointer+E0],eax //Sets 4 Bytes
+mov [GenisArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [GenisArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [GenisPointer+E4],ax //Sets 2 Bytes
+mov [GenisArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-RaineArtes:
-
-RaineMain:
-cmp byte [RaineArtesState],(int)0
-jne RaineAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [RaineArtesState],(int)1
-jmp RaineSaveMain
-
-RaineAlt:
-cmp byte [RaineArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [RaineArtesState],(int)0
-jmp RaineSaveAlt
-
-
-RaineSaveMain:
 push eax
-mov eax,[RainePointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [RaineArtesMain],eax //Sets 4 Bytes
-mov eax,[RainePointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [RaineArtesMain+4],eax //Sets 4 Bytes
-mov eax,[RainePointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [RaineArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [RainePointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [RaineArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [GenisArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [GenisArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [GenisArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [GenisArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp RaineSendAlt
 
-RaineSaveAlt:
+jmp CodeRet
+
+RaineToggle:
 push eax
-mov eax,[RainePointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [RaineArtesAlt],eax //Sets 4 Bytes
-mov eax,[RainePointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [RaineArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[RainePointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [RaineArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [RainePointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [RaineArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[RaineArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[RaineArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[RaineArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [RaineArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp RaineSendMain
 
-
-RaineSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[RaineArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [RainePointer+D8],eax //Sets 4 Bytes
-mov eax,[RaineArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [RainePointer+DC],eax //Sets 4 Bytes
-mov eax,[RaineArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [RainePointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [RaineArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [RainePointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-RaineSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[RaineArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [RainePointer+D8],eax //Sets 4 Bytes
+mov [RaineArtes],eax //Sets 4 Bytes
 mov eax,[RaineArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [RainePointer+DC],eax //Sets 4 Bytes
+mov [RaineArtes+4],eax //Sets 4 Bytes
 mov eax,[RaineArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [RainePointer+E0],eax //Sets 4 Bytes
+mov [RaineArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [RaineArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [RainePointer+E4],ax //Sets 2 Bytes
+mov [RaineArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-SheenaArtes:
-
-SheenaMain:
-cmp byte [SheenaArtesState],(int)0
-jne SheenaAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [SheenaArtesState],(int)1
-jmp SheenaSaveMain
-
-SheenaAlt:
-cmp byte [SheenaArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [SheenaArtesState],(int)0
-jmp SheenaSaveAlt
-
-
-SheenaSaveMain:
 push eax
-mov eax,[SheenaPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [SheenaArtesMain],eax //Sets 4 Bytes
-mov eax,[SheenaPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [SheenaArtesMain+4],eax //Sets 4 Bytes
-mov eax,[SheenaPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [SheenaArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [SheenaPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [SheenaArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [RaineArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [RaineArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [RaineArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [RaineArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp SheenaSendAlt
 
-SheenaSaveAlt:
+jmp CodeRet
+
+SheenaToggle:
 push eax
-mov eax,[SheenaPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [SheenaArtesAlt],eax //Sets 4 Bytes
-mov eax,[SheenaPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [SheenaArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[SheenaPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [SheenaArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [SheenaPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [SheenaArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[SheenaArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[SheenaArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[SheenaArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [SheenaArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp SheenaSendMain
 
-
-SheenaSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[SheenaArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [SheenaPointer+D8],eax //Sets 4 Bytes
-mov eax,[SheenaArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [SheenaPointer+DC],eax //Sets 4 Bytes
-mov eax,[SheenaArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [SheenaPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [SheenaArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [SheenaPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-SheenaSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[SheenaArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [SheenaPointer+D8],eax //Sets 4 Bytes
+mov [SheenaArtes],eax //Sets 4 Bytes
 mov eax,[SheenaArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [SheenaPointer+DC],eax //Sets 4 Bytes
+mov [SheenaArtes+4],eax //Sets 4 Bytes
 mov eax,[SheenaArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [SheenaPointer+E0],eax //Sets 4 Bytes
+mov [SheenaArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [SheenaArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [SheenaPointer+E4],ax //Sets 2 Bytes
+mov [SheenaArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-ZelosArtes:
-
-ZelosMain:
-cmp byte [ZelosArtesState],(int)0
-jne ZelosAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [ZelosArtesState],(int)1
-jmp ZelosSaveMain
-
-ZelosAlt:
-cmp byte [ZelosArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [ZelosArtesState],(int)0
-jmp ZelosSaveAlt
-
-
-ZelosSaveMain:
 push eax
-mov eax,[ZelosPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [ZelosArtesMain],eax //Sets 4 Bytes
-mov eax,[ZelosPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [ZelosArtesMain+4],eax //Sets 4 Bytes
-mov eax,[ZelosPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [ZelosArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [ZelosPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [ZelosArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [SheenaArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [SheenaArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp ZelosSendAlt
 
-ZelosSaveAlt:
+jmp CodeRet
+
+ZelosToggle:
 push eax
-mov eax,[ZelosPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [ZelosArtesAlt],eax //Sets 4 Bytes
-mov eax,[ZelosPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [ZelosArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[ZelosPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [ZelosArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [ZelosPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [ZelosArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[ZelosArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[ZelosArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[ZelosArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ZelosArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp ZelosSendMain
 
-
-ZelosSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[ZelosArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [ZelosPointer+D8],eax //Sets 4 Bytes
-mov eax,[ZelosArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [ZelosPointer+DC],eax //Sets 4 Bytes
-mov eax,[ZelosArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [ZelosPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [ZelosArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [ZelosPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-ZelosSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[ZelosArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [ZelosPointer+D8],eax //Sets 4 Bytes
+mov [ZelosArtes],eax //Sets 4 Bytes
 mov eax,[ZelosArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [ZelosPointer+DC],eax //Sets 4 Bytes
+mov [ZelosArtes+4],eax //Sets 4 Bytes
 mov eax,[ZelosArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [ZelosPointer+E0],eax //Sets 4 Bytes
+mov [ZelosArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [ZelosArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [ZelosPointer+E4],ax //Sets 2 Bytes
+mov [ZelosArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-PreseaArtes:
-
-PreseaMain:
-cmp byte [PreseaArtesState],(int)0
-jne PreseaAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [PreseaArtesState],(int)1
-jmp PreseaSaveMain
-
-PreseaAlt:
-cmp byte [PreseaArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [PreseaArtesState],(int)0
-jmp PreseaSaveAlt
-
-
-PreseaSaveMain:
 push eax
-mov eax,[PreseaPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [PreseaArtesMain],eax //Sets 4 Bytes
-mov eax,[PreseaPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [PreseaArtesMain+4],eax //Sets 4 Bytes
-mov eax,[PreseaPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [PreseaArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [PreseaPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [PreseaArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [ZelosArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [ZelosArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp PreseaSendAlt
 
-PreseaSaveAlt:
+jmp CodeRet
+
+PreseaToggle:
 push eax
-mov eax,[PreseaPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [PreseaArtesAlt],eax //Sets 4 Bytes
-mov eax,[PreseaPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [PreseaArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[PreseaPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [PreseaArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [PreseaPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [PreseaArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[PreseaArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[PreseaArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[PreseaArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [PreseaArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp PreseaSendMain
 
-
-PreseaSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[PreseaArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [PreseaPointer+D8],eax //Sets 4 Bytes
-mov eax,[PreseaArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [PreseaPointer+DC],eax //Sets 4 Bytes
-mov eax,[PreseaArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [PreseaPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [PreseaArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [PreseaPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-PreseaSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[PreseaArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [PreseaPointer+D8],eax //Sets 4 Bytes
+mov [PreseaArtes],eax //Sets 4 Bytes
 mov eax,[PreseaArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [PreseaPointer+DC],eax //Sets 4 Bytes
+mov [PreseaArtes+4],eax //Sets 4 Bytes
 mov eax,[PreseaArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [PreseaPointer+E0],eax //Sets 4 Bytes
+mov [PreseaArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [PreseaArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [PreseaPointer+E4],ax //Sets 2 Bytes
+mov [PreseaArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-RegalArtes:
-
-RegalMain:
-cmp byte [RegalArtesState],(int)0
-jne RegalAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [RegalArtesState],(int)1
-jmp RegalSaveMain
-
-RegalAlt:
-cmp byte [RegalArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [RegalArtesState],(int)0
-jmp RegalSaveAlt
-
-
-RegalSaveMain:
 push eax
-mov eax,[RegalPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [RegalArtesMain],eax //Sets 4 Bytes
-mov eax,[RegalPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [RegalArtesMain+4],eax //Sets 4 Bytes
-mov eax,[RegalPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [RegalArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [RegalPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [RegalArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [PreseaArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [PreseaArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp RegalSendAlt
 
-RegalSaveAlt:
+jmp CodeRet
+
+RegalToggle:
 push eax
-mov eax,[RegalPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [RegalArtesAlt],eax //Sets 4 Bytes
-mov eax,[RegalPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [RegalArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[RegalPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [RegalArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [RegalPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [RegalArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[RegalArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[RegalArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[RegalArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [RegalArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp RegalSendMain
 
-
-RegalSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[RegalArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [RegalPointer+D8],eax //Sets 4 Bytes
-mov eax,[RegalArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [RegalPointer+DC],eax //Sets 4 Bytes
-mov eax,[RegalArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [RegalPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [RegalArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [RegalPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-RegalSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[RegalArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [RegalPointer+D8],eax //Sets 4 Bytes
+mov [RegalArtes],eax //Sets 4 Bytes
 mov eax,[RegalArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [RegalPointer+DC],eax //Sets 4 Bytes
+mov [RegalArtes+4],eax //Sets 4 Bytes
 mov eax,[RegalArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [RegalPointer+E0],eax //Sets 4 Bytes
+mov [RegalArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [RegalArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [RegalPointer+E4],ax //Sets 2 Bytes
+mov [RegalArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
 
-
-KratosArtes:
-
-KratosMain:
-cmp byte [KratosArtesState],(int)0
-jne KratosAlt
-cmp byte [TMP_LB],(int)0
-je SendInputs
-mov byte [KratosArtesState],(int)1
-jmp KratosSaveMain
-
-KratosAlt:
-cmp byte [KratosArtesState],(int)1
-jne SendInputs
-cmp byte [TMP_LB],(int)1
-je SendInputs
-mov byte [KratosArtesState],(int)0
-jmp KratosSaveAlt
-
-
-KratosSaveMain:
 push eax
-mov eax,[KratosPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [KratosArtesMain],eax //Sets 4 Bytes
-mov eax,[KratosPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [KratosArtesMain+4],eax //Sets 4 Bytes
-mov eax,[KratosPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [KratosArtesMain+8],eax //Sets 4 Bytes
-movzx eax,word ptr [KratosPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [KratosArtesMain+C],ax //Sets 2 Bytes
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [RegalArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [RegalArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [RegalArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [RegalArtesAlt+C],ax //Sets 2 Bytes
 pop eax
-jmp KratosSendAlt
 
-KratosSaveAlt:
+jmp CodeRet
+
+KratosToggle:
 push eax
-mov eax,[KratosPointer+D8] //Reads 4 Bytes and Writes to RAX
-mov [KratosArtesAlt],eax //Sets 4 Bytes
-mov eax,[KratosPointer+DC] // Reads 4 Bytes and Writes to EAX
-mov [KratosArtesAlt+4],eax //Sets 4 Bytes
-mov eax,[KratosPointer+E0] // Reads 4 Bytes and Writes to EAX
-mov [KratosArtesAlt+8],eax //Sets 4 Bytes
-movzx eax,word ptr [KratosPointer+E4] //Reads 2 Byte Data and Writes to EAX
-mov [KratosArtesAlt+C],ax //Sets 2 Bytes
+mov eax,[KratosArtes] //Reads 4 Bytes and Writes to EAX
+mov [ArteCache],eax //Sets 4 Bytes
+mov eax,[KratosArtes+4] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+4],eax //Sets 4 Bytes
+mov eax,[KratosArtes+8] // Reads 4 Bytes and Writes to EAX
+mov [ArteCache+8],eax //Sets 4 Bytes
+movzx eax,word ptr [KratosArtes+C] //Reads 2 Byte Data and Writes to EAX
+mov [ArteCache+C],ax //Sets 2 Bytes
 pop eax
-jmp KratosSendMain
 
-
-KratosSendMain:
-//Reset Artes with Main [Working]
-push eax
-mov eax,[KratosArtesMain] //Reads 4 Bytes and Writes to RAX
-mov [KratosPointer+D8],eax //Sets 4 Bytes
-mov eax,[KratosArtesMain+4] // Reads 4 Bytes and Writes to EAX
-mov [KratosPointer+DC],eax //Sets 4 Bytes
-mov eax,[KratosArtesMain+8] // Reads 4 Bytes and Writes to EAX
-mov [KratosPointer+E0],eax //Sets 4 Bytes
-movzx eax,word ptr [KratosArtesMain+C] //Reads 2 Byte Data and Writes to EAX
-mov [KratosPointer+E4],ax //Sets 2 Bytes
-pop eax
-jmp SendInputs
-
-KratosSendAlt:
-//Swap Artes with Alt [Working]
 push eax
 mov eax,[KratosArtesAlt] //Reads 4 Bytes and Writes to EAX
-mov [KratosPointer+D8],eax //Sets 4 Bytes
+mov [KratosArtes],eax //Sets 4 Bytes
 mov eax,[KratosArtesAlt+4] // Reads 4 Bytes and Writes to EAX
-mov [KratosPointer+DC],eax //Sets 4 Bytes
+mov [KratosArtes+4],eax //Sets 4 Bytes
 mov eax,[KratosArtesAlt+8] // Reads 4 Bytes and Writes to EAX
-mov [KratosPointer+E0],eax //Sets 4 Bytes
+mov [KratosArtes+8],eax //Sets 4 Bytes
 movzx eax,word ptr [KratosArtesAlt+C] //Reads 2 Byte Data and Writes to EAX
-mov [KratosPointer+E4],ax //Sets 2 Bytes
+mov [KratosArtes+C],ax //Sets 2 Bytes
 pop eax
-jmp SendInputs
+
+push eax
+mov eax,[ArteCache] //Reads 4 Bytes and Writes to EAX
+mov [KratosArtesAlt],eax //Sets 4 Bytes
+mov eax,[ArteCache+4] // Reads 4 Bytes and Writes to EAX
+mov [KratosArtesAlt+4],eax //Sets 4 Bytes
+mov eax,[ArteCache+8] // Reads 4 Bytes and Writes to EAX
+mov [KratosArtesAlt+8],eax //Sets 4 Bytes
+movzx eax,word ptr [ArteCache+C] //Reads 2 Byte Data and Writes to EAX
+mov [KratosArtesAlt+C],ax //Sets 2 Bytes
+pop eax
+
+jmp CodeRet
 
 
+PlaySound: //Need to find code to play sound; very unlikely.
+//call [TOS.exe+17D510] makes sound when EAX is set to (int)28, but crashes
+cmp byte ["TOS.exe"+70DDC4],0
+jne code
+cmp byte ["TOS.exe"+70DDB0],(int)2
+jne code
 
-SendInputs: //Push Inputs onto Variable and Send to Game [Working]
-push ecx
-movzx ecx,word [Controls]
+
+UpdateControls:
+mov byte [TMP_Controls+E],1
+cmp byte [TOS.exe+712952],1 //Check if in Battle
+jne code
+cmp byte [BattleState],1 //Check if Paused/Menu
+je code
+
+cmp byte [TMP_Controls+F],1
+jne code
+mov [Controls],ecx
+sub [Controls+1],(int)1
+movzx ecx, word [Controls]
+
+
+code:
 mov [esi+10],ecx
 mov edx,ecx
-pop ecx
 jmp return
 
+CodeRet:
+ret
 
-//UpdateInputs:
-//cmp byte [P1_LB],(int)1
-//jl SendInputs
-//sub [Controls+1],(int)1
-//jmp SendInputs
-
-code: //just existing for the heck of it [Weee]
-  mov [esi+10],ecx
-  mov edx,ecx
-  jmp return
-
-
+/*
 LloydArtesMain: //Copy Artes from Address [Working]
-readmem(LloydPointer+D8,14)
-//db 01 00 06 00 0D 00 14 00 11 00 00 00 01 00
-LloydArtesAlt:
-//readmem(LloydPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(LloydArtes,14)
 ColetteArtesMain: //Copy Artes from Address [Working]
-readmem(ColettePointer+D8,14)
-ColetteArtesAlt:
-//readmem(ColettePointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(ColetteArtes,14)
 GenisArtesMain: //Copy Artes from Address [Working]
-readmem(GenisPointer+D8,14)
-GenisArtesAlt:
-//readmem(GenisPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(GenisArtes,14)
 RaineArtesMain: //Copy Artes from Address [Working]
-readmem(RainePointer+D8,14)
-RaineArtesAlt:
-//readmem(RainePointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(RaineArtes,14)
 SheenaArtesMain: //Copy Artes from Address [Working]
-readmem(SheenaPointer+D8,14)
-SheenaArtesAlt:
-//readmem(SheenaPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(SheenaArtes,14)
 ZelosArtesMain: //Copy Artes from Address [Working]
-readmem(ZelosPointer+D8,14)
-ZelosArtesAlt:
-//readmem(ZelosPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(ZelosArtes,14)
 PreseaArtesMain: //Copy Artes from Address [Working]
-readmem(PreseaPointer+D8,14)
-PreseaArtesAlt:
-//readmem(PreseaPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(PreseaArtes,14)
 RegalArtesMain: //Copy Artes from Address [Working]
-readmem(RegalPointer+D8,14)
-RegalArtesAlt:
-//readmem(RegalPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
+readmem(RegalArtes,14)
 KratosArtesMain: //Copy Artes from Address [Working]
-readmem(KratosPointer+D8,14)
-KratosArtesAlt:
-//readmem(KratosPointer+D8,14)
-db 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+readmem(KratosArtes,14)
+*/
 
-
-
-ARTESWAP:
-  jmp newmem
+ARTESPHERE:
+jmp ArteSphereMem
 return:
-registersymbol(ARTESWAP)
+registersymbol(ARTESPHERE)
 
 [DISABLE]
 
-ARTESWAP:
-  db 89 4E 10 8B D1
+ARTESPHERE:
+db 89 4E 10 8B D1
 
+
+//unregistersymbol(LloydArtes)
+
+unregistersymbol(ArtePage)
 
 unregistersymbol(KratosArtesAlt)
-unregistersymbol(KratosArtesMain)
-unregistersymbol(KratosArtesState)
-
 unregistersymbol(RegalArtesAlt)
-unregistersymbol(RegalArtesMain)
-unregistersymbol(RegalArtesState)
-
 unregistersymbol(PreseaArtesAlt)
-unregistersymbol(PreseaArtesMain)
-unregistersymbol(PreseaArtesState)
-
 unregistersymbol(ZelosArtesAlt)
-unregistersymbol(ZelosArtesMain)
-unregistersymbol(ZelosArtesState)
-
 unregistersymbol(SheenaArtesAlt)
-unregistersymbol(SheenaArtesMain)
-unregistersymbol(SheenaArtesState)
-
 unregistersymbol(RaineArtesAlt)
-unregistersymbol(RaineArtesMain)
-unregistersymbol(RaineArtesState)
-
 unregistersymbol(GenisArtesAlt)
-unregistersymbol(GenisArtesMain)
-unregistersymbol(GenisArtesState)
-
 unregistersymbol(ColetteArtesAlt)
-unregistersymbol(ColetteArtesMain)
-unregistersymbol(ColetteArtesState)
-
 unregistersymbol(LloydArtesAlt)
-unregistersymbol(LloydArtesMain)
-unregistersymbol(LloydArtesState)
 
-unregistersymbol(P4_RT)
-unregistersymbol(P4_LT)
-unregistersymbol(P4_RB)
-unregistersymbol(P4_LB)
-unregistersymbol(P4_Y)
-unregistersymbol(P4_X)
-unregistersymbol(P4_B)
-unregistersymbol(P4_A)
+unregistersymbol(KratosArtes)
+unregistersymbol(RegalArtes)
+unregistersymbol(PreseaArtes)
+unregistersymbol(ZelosArtes)
+unregistersymbol(SheenaArtes)
+unregistersymbol(RaineArtes)
+unregistersymbol(GenisArtes)
+unregistersymbol(ColetteArtes)
+unregistersymbol(LloydArtes)
 
-unregistersymbol(P3_RT)
-unregistersymbol(P3_LT)
-unregistersymbol(P3_RB)
-unregistersymbol(P3_LB)
-unregistersymbol(P3_Y)
-unregistersymbol(P3_X)
-unregistersymbol(P3_B)
-unregistersymbol(P3_A)
+unregistersymbol(ArteCache)
 
-unregistersymbol(P2_RT)
-unregistersymbol(P2_LT)
-unregistersymbol(P2_RB)
-unregistersymbol(P2_LB)
-unregistersymbol(P2_Y)
-unregistersymbol(P2_X)
-unregistersymbol(P2_B)
-unregistersymbol(P2_A)
-
-unregistersymbol(P1_RT)
-unregistersymbol(P1_LT)
-unregistersymbol(P1_RB)
-unregistersymbol(P1_LB)
-unregistersymbol(P1_Y)
-unregistersymbol(P1_X)
-unregistersymbol(P1_B)
-unregistersymbol(P1_A)
-
-unregistersymbol(TMP_RT)
-unregistersymbol(TMP_LT)
-unregistersymbol(TMP_RB)
-unregistersymbol(TMP_LB)
-unregistersymbol(TMP_Y)
-unregistersymbol(TMP_X)
-unregistersymbol(TMP_B)
-unregistersymbol(TMP_A)
+unregistersymbol(P4_Controls)
+unregistersymbol(P3_Controls)
+unregistersymbol(P2_Controls)
+unregistersymbol(P1_Controls)
+unregistersymbol(TMP_Controls)
 
 unregistersymbol(Controls)
 
-unregistersymbol(ARTESWAP)
+unregistersymbol(ARTESPHERE)
 
-dealloc(KratosArtesAlt)
-dealloc(KratosArtesMain)
-dealloc(KratosArtesState)
+dealloc(ArteCache)
 
-dealloc(RegalArtesAlt)
-dealloc(RegalArtesMain)
-dealloc(RegalArtesState)
-
-dealloc(PreseaArtesAlt)
-dealloc(PreseaArtesMain)
-dealloc(PreseaArtesState)
-
-dealloc(ZelosArtesAlt)
-dealloc(ZelosArtesMain)
-dealloc(ZelosArtesState)
-
-dealloc(SheenaArtesAlt)
-dealloc(SheenaArtesMain)
-dealloc(SheenaArtesState)
-
-dealloc(RaineArtesAlt)
-dealloc(RaineArtesMain)
-dealloc(RaineArtesState)
-
-dealloc(GenisArtesAlt)
-dealloc(GenisArtesMain)
-dealloc(GenisArtesState)
-
-dealloc(ColetteArtesAlt)
-dealloc(ColetteArtesMain)
-dealloc(ColetteArtesState)
-
-dealloc(LloydArtesAlt)
-dealloc(LloydArtesMain)
-dealloc(LloydArtesState)
-
-dealloc(P4_RT)
-dealloc(P4_LT)
-dealloc(P4_RB)
-dealloc(P4_LB)
-dealloc(P4_Y)
-dealloc(P4_X)
-dealloc(P4_B)
-dealloc(P4_A)
-
-dealloc(P3_RT)
-dealloc(P3_LT)
-dealloc(P3_RB)
-dealloc(P3_LB)
-dealloc(P3_Y)
-dealloc(P3_X)
-dealloc(P3_B)
-dealloc(P3_A)
-
-dealloc(P2_RT)
-dealloc(P2_LT)
-dealloc(P2_RB)
-dealloc(P2_LB)
-dealloc(P2_Y)
-dealloc(P2_X)
-dealloc(P2_B)
-dealloc(P2_A)
-
-dealloc(P1_RT)
-dealloc(P1_LT)
-dealloc(P1_RB)
-dealloc(P1_LB)
-dealloc(P1_Y)
-dealloc(P1_X)
-dealloc(P1_B)
-dealloc(P1_A)
-
-dealloc(TMP_RT)
-dealloc(TMP_LT)
-dealloc(TMP_RB)
-dealloc(TMP_LB)
-dealloc(TMP_Y)
-dealloc(TMP_X)
-dealloc(TMP_B)
-dealloc(TMP_A)
+dealloc(P4_Controls)
+dealloc(P3_Controls)
+dealloc(P2_Controls)
+dealloc(P1_Controls)
+dealloc(TMP_Controls)
 
 dealloc(Controls)
 
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: TOS.exe+20CC53
-
-TOS.exe+20CC3F: CC        - int 3 
-TOS.exe+20CC40: 55        - push ebp
-TOS.exe+20CC41: 8B EC     - mov ebp,esp
-TOS.exe+20CC43: 83 EC 20  - sub esp,20
-TOS.exe+20CC46: 8B 08     - mov ecx,[eax]
-TOS.exe+20CC48: 89 4E 0C  - mov [esi+0C],ecx
-TOS.exe+20CC4B: 8B 48 04  - mov ecx,[eax+04]
-TOS.exe+20CC4E: 53        - push ebx
-TOS.exe+20CC4F: 57        - push edi
-TOS.exe+20CC50: 8B 7E 10  - mov edi,[esi+10]
-// ---------- INJECTING HERE ----------
-TOS.exe+20CC53: 89 4E 10  - mov [esi+10],ecx
-// ---------- DONE INJECTING  ----------
-TOS.exe+20CC56: 8B D1     - mov edx,ecx
-TOS.exe+20CC58: 33 D7     - xor edx,edi
-TOS.exe+20CC5A: 8B FA     - mov edi,edx
-TOS.exe+20CC5C: 23 F9     - and edi,ecx
-TOS.exe+20CC5E: 89 7E 14  - mov [esi+14],edi
-TOS.exe+20CC61: F7 D1     - not ecx
-TOS.exe+20CC63: 23 CA     - and ecx,edx
-TOS.exe+20CC65: 8B 50 08  - mov edx,[eax+08]
-TOS.exe+20CC68: 89 4E 18  - mov [esi+18],ecx
-TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
-}
+dealloc(ArteSphereMem)
 </AssemblerScript>
+                                                            </CheatEntry>
+                                                          </CheatEntries>
+                                                        </CheatEntry>
+                                                      </CheatEntries>
+                                                    </CheatEntry>
+                                                  </CheatEntries>
+                                                </CheatEntry>
+                                              </CheatEntries>
+                                            </CheatEntry>
+                                          </CheatEntries>
+                                        </CheatEntry>
+                                      </CheatEntries>
+                                    </CheatEntry>
+                                  </CheatEntries>
+                                </CheatEntry>
+                              </CheatEntries>
+                            </CheatEntry>
+                          </CheatEntries>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
             </CheatEntry>
             <CheatEntry>
               <ID>100</ID>
@@ -10739,6 +11794,30 @@ add ecx,00013958
                     </CheatEntry>
                   </CheatEntries>
                 </CheatEntry>
+                <CheatEntry>
+                  <ID>1604</ID>
+                  <Description>"Controls"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>8 Bytes</VariableType>
+                  <Address>Controls</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1606</ID>
+                  <Description>"P1 Controls 1"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>8 Bytes</VariableType>
+                  <Address>P1_Controls</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1605</ID>
+                  <Description>"P1 Controls 2"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>8 Bytes</VariableType>
+                  <Address>P1_Controls+8</Address>
+                </CheatEntry>
               </CheatEntries>
             </CheatEntry>
           </CheatEntries>
@@ -10820,122 +11899,6 @@ unregistersymbol(TextPointer)
       </CheatEntries>
     </CheatEntry>
   </CheatEntries>
-  <CheatCodes>
-    <CodeEntry>
-      <Description>Change of je TOS.exe+20CDF2</Description>
-      <AddressString>TOS.exe+20CDAB</AddressString>
-      <Before>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-        <Byte>85</Byte>
-        <Byte>56</Byte>
-        <Byte>10</Byte>
-      </Before>
-      <Actual>
-        <Byte>74</Byte>
-        <Byte>45</Byte>
-      </Actual>
-      <After>
-        <Byte>8B</Byte>
-        <Byte>39</Byte>
-        <Byte>8B</Byte>
-        <Byte>41</Byte>
-        <Byte>04</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of mov edi,[esi+10]</Description>
-      <AddressString>TOS.exe+20CC50</AddressString>
-      <Before>
-        <Byte>8B</Byte>
-        <Byte>48</Byte>
-        <Byte>04</Byte>
-        <Byte>53</Byte>
-        <Byte>57</Byte>
-      </Before>
-      <Actual>
-        <Byte>8B</Byte>
-        <Byte>7E</Byte>
-        <Byte>10</Byte>
-      </Actual>
-      <After>
-        <Byte>89</Byte>
-        <Byte>4E</Byte>
-        <Byte>10</Byte>
-        <Byte>8B</Byte>
-        <Byte>D1</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of mov [esi+10],ecx</Description>
-      <AddressString>TOS.exe+20CC53</AddressString>
-      <Before>
-        <Byte>53</Byte>
-        <Byte>57</Byte>
-        <Byte>8B</Byte>
-        <Byte>7E</Byte>
-        <Byte>10</Byte>
-      </Before>
-      <Actual>
-        <Byte>89</Byte>
-        <Byte>4E</Byte>
-        <Byte>10</Byte>
-      </Actual>
-      <After>
-        <Byte>8B</Byte>
-        <Byte>D1</Byte>
-        <Byte>33</Byte>
-        <Byte>D7</Byte>
-        <Byte>8B</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of mov ecx,[eax+10]</Description>
-      <AddressString>TOS.exe+1A02AE</AddressString>
-      <Before>
-        <Byte>05</Byte>
-        <Byte>10</Byte>
-        <Byte>49</Byte>
-        <Byte>DE</Byte>
-        <Byte>01</Byte>
-      </Before>
-      <Actual>
-        <Byte>8B</Byte>
-        <Byte>48</Byte>
-        <Byte>10</Byte>
-      </Actual>
-      <After>
-        <Byte>89</Byte>
-        <Byte>4E</Byte>
-        <Byte>04</Byte>
-        <Byte>8B</Byte>
-        <Byte>50</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of mov eax,[edi-04]</Description>
-      <AddressString>TOS.exe+17D928</AddressString>
-      <Before>
-        <Byte>87</Byte>
-        <Byte>00</Byte>
-        <Byte>89</Byte>
-        <Byte>46</Byte>
-        <Byte>08</Byte>
-      </Before>
-      <Actual>
-        <Byte>8B</Byte>
-        <Byte>47</Byte>
-        <Byte>FC</Byte>
-      </Actual>
-      <After>
-        <Byte>83</Byte>
-        <Byte>EC</Byte>
-        <Byte>08</Byte>
-        <Byte>89</Byte>
-        <Byte>46</Byte>
-      </After>
-    </CodeEntry>
-  </CheatCodes>
   <UserdefinedSymbols>
     <SymbolEntry>
       <Name>newmem</Name>
