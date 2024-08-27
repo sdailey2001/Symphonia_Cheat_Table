@@ -16,7 +16,7 @@ This currently features:
 
 (Artes now save per file, but I am unsure if any event flags will be messed up!)
 
-(You can change Strategies again, but anything that causes pauses (Like Spells) will allow you to swap the Strategy mid-gameplay.)
+(You can change Strategies again through the Battle Menu, but anything that causes pauses (Like Spells) will allow you to swap the Strategy mid-gameplay.)
 
 (Unison still requires each person to hold [LB] to use their Alt Artes. That's some true teamwork!)
 
