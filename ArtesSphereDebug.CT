@@ -1,0 +1,4012 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"Detect Battle Start"</Description>
+      <Options moDeactivateChildrenAsWell="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BattleStart,TOS.exe,C6 05 AC AF C2 01 01) // should be unique
+alloc(BattleStartMem,$40,BattleStart)
+alloc(BattleState,1)
+
+registersymbol(BattleState)
+
+
+BattleStartMem:
+mov byte [BattleState],1
+
+code:
+mov byte ptr [TOS.exe+182AFAC],01
+jmp return
+
+BattleStart:
+jmp BattleStartMem
+nop 2
+return:
+registersymbol(BattleStart)
+
+[DISABLE]
+
+BattleStart:
+db C6 05 AC AF C2 01 01
+
+
+unregistersymbol(BattleStart)
+unregistersymbol(BattleState)
+
+dealloc(BattleState)
+dealloc(BattleStartMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1650CC
+
+TOS.exe+1650AB: D9 1D A8 AF C2 01     - fstp dword ptr [TOS.exe+182AFA8]
+TOS.exe+1650B1: D9 05 9C AF C2 01     - fld dword ptr [TOS.exe+182AF9C]
+TOS.exe+1650B7: 80 66 03 E3           - and byte ptr [esi+03],-1D
+TOS.exe+1650BB: D9 1D A4 AF C2 01     - fstp dword ptr [TOS.exe+182AFA4]
+TOS.exe+1650C1: 5E                    - pop esi
+TOS.exe+1650C2: 8B E5                 - mov esp,ebp
+TOS.exe+1650C4: 5D                    - pop ebp
+TOS.exe+1650C5: C3                    - ret 
+TOS.exe+1650C6: 80 66 03 E3           - and byte ptr [esi+03],-1D
+TOS.exe+1650CA: DD D8                 - fstp st(0)
+// ---------- INJECTING HERE ----------
+TOS.exe+1650CC: C6 05 AC AF C2 01 01  - mov byte ptr [TOS.exe+182AFAC],01
+// ---------- DONE INJECTING  ----------
+TOS.exe+1650D3: 88 15 AD AF C2 01     - mov [TOS.exe+182AFAD],dl
+TOS.exe+1650D9: 5E                    - pop esi
+TOS.exe+1650DA: 8B E5                 - mov esp,ebp
+TOS.exe+1650DC: 5D                    - pop ebp
+TOS.exe+1650DD: C3                    - ret 
+TOS.exe+1650DE: DC 3D 60 D5 87 00     - fdivr qword ptr [TOS.exe+47D560]
+TOS.exe+1650E4: D9 1D 9C AF C2 01     - fstp dword ptr [TOS.exe+182AF9C]
+TOS.exe+1650EA: D9 E8                 - fld1 
+TOS.exe+1650EC: D9 1D A0 AF C2 01     - fstp dword ptr [TOS.exe+182AFA0]
+TOS.exe+1650F2: 80 66 03 E3           - and byte ptr [esi+03],-1D
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"Detect Battle End"</Description>
+          <Options moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BattleEnd,TOS.exe,C6 05 AC AF C2 01 00 E8) // should be unique
+alloc(BattleEndMem,$40,BattleEnd)
+
+
+BattleEndMem:
+mov byte [BattleState],0
+
+code:
+mov byte ptr [TOS.exe+182AFAC],00
+jmp return
+
+BattleEnd:
+jmp BattleEndMem
+nop 2
+return:
+registersymbol(BattleEnd)
+
+[DISABLE]
+
+BattleEnd:
+db C6 05 AC AF C2 01 00
+
+
+unregistersymbol(BattleEnd)
+
+dealloc(BattleEndMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+C42E7
+
+TOS.exe+C42B2: E8 A9 D9 21 00           - call TOS.exe+2E1C60
+TOS.exe+C42B7: 85 C0                    - test eax,eax
+TOS.exe+C42B9: 7F 26                    - jg TOS.exe+C42E1
+TOS.exe+C42BB: D9 05 D8 E6 79 00        - fld dword ptr [TOS.exe+39E6D8]
+TOS.exe+C42C1: C6 05 97 AF C2 01 00     - mov byte ptr [TOS.exe+182AF97],00
+TOS.exe+C42C8: D9 1D A0 AF C2 01        - fstp dword ptr [TOS.exe+182AFA0]
+TOS.exe+C42CE: D9 05 4C EC 87 00        - fld dword ptr [TOS.exe+47EC4C]
+TOS.exe+C42D4: D9 1D 9C AF C2 01        - fstp dword ptr [TOS.exe+182AF9C]
+TOS.exe+C42DA: C6 05 96 AF C2 01 00     - mov byte ptr [TOS.exe+182AF96],00
+TOS.exe+C42E1: 8A 86 3D 02 00 00        - mov al,[esi+0000023D]
+// ---------- INJECTING HERE ----------
+TOS.exe+C42E7: C6 05 AC AF C2 01 00     - mov byte ptr [TOS.exe+182AFAC],00
+// ---------- DONE INJECTING  ----------
+TOS.exe+C42EE: E8 3D BA 0A 00           - call TOS.exe+16FD30
+TOS.exe+C42F3: 66 83 3D 64 E2 AC 00 0C  - cmp word ptr [TOS.exe+6CE264],0C
+TOS.exe+C42FB: 74 29                    - je TOS.exe+C4326
+TOS.exe+C42FD: 33 C0                    - xor eax,eax
+TOS.exe+C42FF: E8 DC B7 0A 00           - call TOS.exe+16FAE0
+TOS.exe+C4304: 83 CA FF                 - or edx,-01
+TOS.exe+C4307: 66 89 15 5C 72 8A 00     - mov [TOS.exe+4A725C],dx
+TOS.exe+C430E: E8 ED 94 0B 00           - call TOS.exe+17D800
+TOS.exe+C4313: A1 68 E2 AC 00           - mov eax,[TOS.exe+6CE268]
+TOS.exe+C4318: 80 B8 E4 1A 00 00 00     - cmp byte ptr [eax+00001AE4],00
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>13</ID>
+              <Description>"Detect Unison Start"</Description>
+              <Options moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UnisonStart,TOS.exe,C6 82 08 91 00 00 03) // should be unique
+alloc(UnisonStartMem,$40,UnisonStart)
+alloc(UnisonState,1)
+
+registersymbol(UnisonState)
+
+
+UnisonStartMem:
+mov byte [UnisonState],1
+
+code:
+mov byte ptr [edx+00009108],03
+jmp return
+
+UnisonStart:
+jmp UnisonStartMem
+nop 2
+return:
+registersymbol(UnisonStart)
+
+[DISABLE]
+
+UnisonStart:
+db C6 82 08 91 00 00 03
+
+unregistersymbol(UnisonStart)
+unregistersymbol(UnisonState)
+
+dealloc(UnisonState)
+dealloc(UnisonStartMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+7135A
+
+TOS.exe+7132E: F6 87 B8 00 00 00 20        - test byte ptr [edi+000000B8],20
+TOS.exe+71335: 75 5B                       - jne TOS.exe+71392
+TOS.exe+71337: E8 C4 E5 FF FF              - call TOS.exe+6F900
+TOS.exe+7133C: 8B 86 78 39 01 00           - mov eax,[esi+00013978]
+TOS.exe+71342: 89 82 04 91 00 00           - mov [edx+00009104],eax
+TOS.exe+71348: 3B C3                       - cmp eax,ebx
+TOS.exe+7134A: 75 0C                       - jne TOS.exe+71358
+TOS.exe+7134C: 8B 86 7C 39 01 00           - mov eax,[esi+0001397C]
+TOS.exe+71352: 89 82 04 91 00 00           - mov [edx+00009104],eax
+TOS.exe+71358: 33 C9                       - xor ecx,ecx
+// ---------- INJECTING HERE ----------
+TOS.exe+7135A: C6 82 08 91 00 00 03        - mov byte ptr [edx+00009108],03
+// ---------- DONE INJECTING  ----------
+TOS.exe+71361: 66 89 8A 0E 91 00 00        - mov [edx+0000910E],cx
+TOS.exe+71368: 66 83 8A F0 90 00 00 20     - or word ptr [edx+000090F0],20
+TOS.exe+71370: 66 C7 82 79 8F 00 00 02 00  - mov word ptr [edx+00008F79],0002
+TOS.exe+71379: 88 9A 7B 8F 00 00           - mov [edx+00008F7B],bl
+TOS.exe+7137F: 5F                          - pop edi
+TOS.exe+71380: 5E                          - pop esi
+TOS.exe+71381: 32 C0                       - xor al,al
+TOS.exe+71383: 5B                          - pop ebx
+TOS.exe+71384: 8B 4D FC                    - mov ecx,[ebp-04]
+TOS.exe+71387: 33 CD                       - xor ecx,ebp
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>14</ID>
+                  <Description>"Detect Unison End"</Description>
+                  <Options moDeactivateChildrenAsWell="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UnisonEnd,TOS.exe,C6 86 08 91 00 00 00) // should be unique
+alloc(UnisonEndMem,$40,UnisonEnd)
+
+
+UnisonEndMem:
+mov byte [UnisonState],0
+
+code:
+mov byte ptr [esi+00009108],00
+jmp return
+
+UnisonEnd:
+jmp UnisonEndMem
+nop 2
+return:
+registersymbol(UnisonEnd)
+
+[DISABLE]
+
+UnisonEnd:
+db C6 86 08 91 00 00 00
+
+
+unregistersymbol(UnisonEnd)
+
+dealloc(UnisonEndMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+71404
+
+TOS.exe+713D5: 74 06                 - je TOS.exe+713DD
+TOS.exe+713D7: FE 86 09 91 00 00     - inc byte ptr [esi+00009109]
+TOS.exe+713DD: 80 BE A0 92 00 00 B4  - cmp byte ptr [esi+000092A0],-4C
+TOS.exe+713E4: 77 09                 - ja TOS.exe+713EF
+TOS.exe+713E6: 80 BE 09 91 00 00 00  - cmp byte ptr [esi+00009109],00
+TOS.exe+713ED: 74 6B                 - je TOS.exe+7145A
+TOS.exe+713EF: B8 DF FF 00 00        - mov eax,0000FFDF
+TOS.exe+713F4: 66 21 86 F0 90 00 00  - and [esi+000090F0],ax
+TOS.exe+713FB: 80 BE 09 91 00 00 00  - cmp byte ptr [esi+00009109],00
+TOS.exe+71402: 75 0F                 - jne TOS.exe+71413
+// ---------- INJECTING HERE ----------
+TOS.exe+71404: C6 86 08 91 00 00 00  - mov byte ptr [esi+00009108],00
+// ---------- DONE INJECTING  ----------
+TOS.exe+7140B: B0 01                 - mov al,01
+TOS.exe+7140D: 5F                    - pop edi
+TOS.exe+7140E: 5E                    - pop esi
+TOS.exe+7140F: 8B E5                 - mov esp,ebp
+TOS.exe+71411: 5D                    - pop ebp
+TOS.exe+71412: C3                    - ret 
+TOS.exe+71413: 8B 4C 24 0C           - mov ecx,[esp+0C]
+TOS.exe+71417: 80 8E 26 9A 00 00 08  - or byte ptr [esi+00009A26],08
+TOS.exe+7141E: BA FF 00 00 00        - mov edx,000000FF
+TOS.exe+71423: 89 8E 14 94 00 00     - mov [esi+00009414],ecx
+}
+</AssemblerScript>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>17</ID>
+                      <Description>"Detect Battle Paused"</Description>
+                      <Options moDeactivateChildrenAsWell="1"/>
+                      <VariableType>Auto Assembler Script</VariableType>
+                      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BattlePause,TOS.exe,C6 86 CE 93 00 00 01) // should be unique
+alloc(BattlePauseMem,$40,BattlePause)
+alloc(PauseState,1)
+
+registersymbol(PauseState)
+
+
+BattlePauseMem:
+mov byte [PauseState],1
+
+code:
+mov byte ptr [esi+000093CE],01
+jmp return
+
+BattlePause:
+jmp BattlePauseMem
+nop 2
+return:
+registersymbol(BattlePause)
+
+[DISABLE]
+
+BattlePause:
+db C6 86 CE 93 00 00 01
+
+
+unregistersymbol(BattlePause)
+unregistersymbol(PauseState)
+
+dealloc(PauseState)
+dealloc(BattlePauseMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+5D8D3
+
+TOS.exe+5D8A7: 74 3B                       - je TOS.exe+5D8E4
+TOS.exe+5D8A9: 80 FB 01                    - cmp bl,01
+TOS.exe+5D8AC: 75 17                       - jne TOS.exe+5D8C5
+TOS.exe+5D8AE: C6 86 78 8F 00 00 08        - mov byte ptr [esi+00008F78],08
+TOS.exe+5D8B5: C6 86 79 8F 00 00 00        - mov byte ptr [esi+00008F79],00
+TOS.exe+5D8BC: 66 C7 86 7A 8F 00 00 00 00  - mov word ptr [esi+00008F7A],0000
+TOS.exe+5D8C5: 8B 45 08                    - mov eax,[ebp+08]
+TOS.exe+5D8C8: 68 60 A6 46 00              - push TOS.exe+6A660
+TOS.exe+5D8CD: 50                          - push eax
+TOS.exe+5D8CE: E8 4D 16 00 00              - call TOS.exe+5EF20
+// ---------- INJECTING HERE ----------
+TOS.exe+5D8D3: C6 86 CE 93 00 00 01        - mov byte ptr [esi+000093CE],01
+// ---------- DONE INJECTING  ----------
+TOS.exe+5D8DA: 83 C4 08                    - add esp,08
+TOS.exe+5D8DD: 5F                          - pop edi
+TOS.exe+5D8DE: 5E                          - pop esi
+TOS.exe+5D8DF: 5B                          - pop ebx
+TOS.exe+5D8E0: 8B E5                       - mov esp,ebp
+TOS.exe+5D8E2: 5D                          - pop ebp
+TOS.exe+5D8E3: C3                          - ret 
+TOS.exe+5D8E4: E8 17 56 00 00              - call TOS.exe+62F00
+TOS.exe+5D8E9: A1 DC D1 AC 00              - mov eax,[TOS.exe+6CD1DC]
+TOS.exe+5D8EE: 80 A0 E9 90 00 00 80        - and byte ptr [eax+000090E9],-80
+}
+</AssemblerScript>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>24</ID>
+                          <Description>"Detect Battle Unpaused"</Description>
+                          <VariableType>Auto Assembler Script</VariableType>
+                          <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BattleUnpause,TOS.exe,C6 86 CE 93 00 00 00) // should be unique
+alloc(BattleUnpauseMem,$40,BattleUnpause)
+
+
+BattleUnpauseMem:
+mov byte [PauseState],0
+
+code:
+mov byte ptr [esi+000093CE],00
+jmp return
+
+BattleUnpause:
+jmp BattleUnpauseMem
+nop 2
+return:
+registersymbol(BattleUnpause)
+
+[DISABLE]
+
+BattleUnpause:
+db C6 86 CE 93 00 00 00
+
+
+unregistersymbol(BattleUnpause)
+
+dealloc(BattleUnpauseMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+5D927
+
+TOS.exe+5D8F8: BA EF FF 00 00              - mov edx,0000FFEF
+TOS.exe+5D8FD: 66 21 90 F0 90 00 00        - and [eax+000090F0],dx
+TOS.exe+5D904: 6A 00                       - push 00
+TOS.exe+5D906: 51                          - push ecx
+TOS.exe+5D907: C6 86 78 8F 00 00 05        - mov byte ptr [esi+00008F78],05
+TOS.exe+5D90E: C6 86 79 8F 00 00 00        - mov byte ptr [esi+00008F79],00
+TOS.exe+5D915: 66 C7 86 7A 8F 00 00 00 00  - mov word ptr [esi+00008F7A],0000
+TOS.exe+5D91E: E8 FD 15 00 00              - call TOS.exe+5EF20
+TOS.exe+5D923: 83 C4 08                    - add esp,08
+TOS.exe+5D926: 5F                          - pop edi
+// ---------- INJECTING HERE ----------
+TOS.exe+5D927: C6 86 CE 93 00 00 00        - mov byte ptr [esi+000093CE],00
+// ---------- DONE INJECTING  ----------
+TOS.exe+5D92E: 5E                          - pop esi
+TOS.exe+5D92F: 5B                          - pop ebx
+TOS.exe+5D930: 8B E5                       - mov esp,ebp
+TOS.exe+5D932: 5D                          - pop ebp
+TOS.exe+5D933: C3                          - ret 
+TOS.exe+5D934: CC                          - int 3 
+TOS.exe+5D935: CC                          - int 3 
+TOS.exe+5D936: CC                          - int 3 
+TOS.exe+5D937: CC                          - int 3 
+TOS.exe+5D938: CC                          - int 3 
+}
+</AssemblerScript>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>83</ID>
+      <Description>"Artes Page Open"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-06
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ArtesPageOpen,TOS.exe,66 C7 05 C4 DD B0 00 00 00) // should be unique
+alloc(Mem_ArtesPageOpen,$1000)
+alloc(ArtesPageState,1)
+
+registersymbol(ArtesPageState)
+
+
+Mem_ArtesPageOpen:
+  //mov byte [ArtesPageState],1
+
+Code_ArtesPageOpen:
+  mov word ptr [TOS.exe+70DDC4],0000
+  jmp Ret_ArtesPageOpen
+
+ArtesPageOpen:
+  jmp Mem_ArtesPageOpen
+  nop 4
+
+Ret_ArtesPageOpen:
+registersymbol(ArtesPageOpen)
+
+[DISABLE]
+
+ArtesPageOpen:
+  db 66 C7 05 C4 DD B0 00 00 00
+
+unregistersymbol(ArtesPageState)
+unregistersymbol(ArtesPageOpen)
+
+dealloc(ArtesPageState)
+dealloc(Mem_ArtesPageOpen)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1240A8
+
+TOS.exe+124092: 33 C0                       - xor eax,eax
+TOS.exe+124094: 5B                          - pop ebx
+TOS.exe+124095: 8B E5                       - mov esp,ebp
+TOS.exe+124097: 5D                          - pop ebp
+TOS.exe+124098: C3                          - ret 
+TOS.exe+124099: 8A 15 C4 DD B0 00           - mov dl,[TOS.exe+70DDC4]
+TOS.exe+12409F: 84 D2                       - test dl,dl
+TOS.exe+1240A1: 74 0E                       - je TOS.exe+1240B1
+TOS.exe+1240A3: 80 FA 28                    - cmp dl,28
+TOS.exe+1240A6: 77 2A                       - ja TOS.exe+1240D2
+// ---------- INJECTING HERE ----------
+TOS.exe+1240A8: 66 C7 05 C4 DD B0 00 00 00  - mov word ptr [TOS.exe+70DDC4],0000
+// ---------- DONE INJECTING  ----------
+TOS.exe+1240B1: 66 83 3D BA DD B0 00 00     - cmp word ptr [TOS.exe+70DDBA],00
+TOS.exe+1240B9: 0F 85 40 1C 00 00           - jne TOS.exe+125CFF
+TOS.exe+1240BF: 0F BF D0                    - movsx edx,ax
+TOS.exe+1240C2: 83 FA 0F                    - cmp edx,0F
+TOS.exe+1240C5: 0F 87 54 1B 00 00           - ja TOS.exe+125C1F
+TOS.exe+1240CB: FF 24 95 40 5D 52 00        - jmp dword ptr [edx*4+TOS.exe+125D40]
+TOS.exe+1240D2: 5F                          - pop edi
+TOS.exe+1240D3: 80 C2 D8                    - add dl,-28
+TOS.exe+1240D6: 5E                          - pop esi
+TOS.exe+1240D7: 88 15 C4 DD B0 00           - mov [TOS.exe+70DDC4],dl
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>80</ID>
+      <Description>"Detect Artes Page Open TEST"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version:
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ArtesPageOpen,TOS.exe,66 C7 05 C4 DD B0 00 00 00) // should be unique
+aobscanmodule(ArtesPageClose,TOS.exe,C6 05 C5 DD B0 00 04 66 89 15 * * * * E9 42) // should be unique
+aobscanmodule(ArtesPageCloseHMN,TOS.exe,C6 05 C5 DD B0 00 04 66 89 0D)
+aobscanmodule(ArtesPageCloseCPU,TOS.exe,C6 05 C5 DD B0 00 04 66 89 15 * * * * E9 4F) // should be unique
+alloc(Mem_ArtesPageOpen,128)
+alloc(Mem_ArtesPageClose,128)
+alloc(Mem_ArtesPageCloseHMN,128)
+alloc(Mem_ArtesPageCloseCPU,128)
+alloc(ArtesPageState,1)
+alloc(Debug1,4)
+
+registersymbol(ArtesPageState)
+registersymbol(Debug1)
+
+
+Mem_ArtesPageOpen:
+  mov byte [ArtesPageState],1
+
+Code_ArtesPageOpen:
+  mov word ptr [TOS.exe+70DDC4],0000
+  jmp Ret_ArtesPageOpen
+
+ArtesPageOpen:
+  jmp Mem_ArtesPageOpen
+  nop 4
+Ret_ArtesPageOpen:
+//============================================================================//
+
+Mem_ArtesPageClose:
+  mov byte [ArtesPageState],0
+
+Code_ArtesPageClose:
+  mov byte ptr [TOS.exe+70DDC5],04
+  jmp Ret_ArtesPageClose
+
+ArtesPageClose:
+  jmp Mem_ArtesPageClose
+  nop 2
+Ret_ArtesPageClose:
+//============================================================================//
+
+Mem_ArtesPageCloseHMN:
+  mov byte [ArtesPageState],0
+
+Code_ArtesPageCloseHMN:
+  mov byte ptr [TOS.exe+70DDC5],04
+  jmp Ret_ArtesPageCloseHMN
+
+ArtesPageCloseHMN:
+  jmp Mem_ArtesPageCloseHMN
+  nop 2
+Ret_ArtesPageCloseHMN:
+//============================================================================//
+
+Mem_ArtesPageCloseCPU:
+  mov byte [ArtesPageState],0
+
+Code_ArtesPageCloseCPU:
+  mov byte ptr [TOS.exe+70DDC5],04
+  jmp Ret_ArtesPageCloseCPU
+
+ArtesPageCloseCPU:
+  jmp Mem_ArtesPageCloseCPU
+  nop 2
+Ret_ArtesPageCloseCPU:
+
+registersymbol(ArtesPageOpen)
+registersymbol(ArtesPageClose)
+registersymbol(ArtesPageCloseHMN)
+registersymbol(ArtesPageCloseCPU)
+
+[DISABLE]
+
+ArtesPageOpen:
+  db 66 C7 05 C4 DD B0 00 00 00
+
+ArtesPageClose:
+  db C6 05 C5 DD B0 00 04
+
+ArtesPageCloseHMN:
+  db C6 05 C5 DD B0 00 04
+
+ArtesPageCloseCPU:
+  db C6 05 C5 DD B0 00 04
+
+
+unregistersymbol(Debug1)
+unregistersymbol(ArtesPageState)
+unregistersymbol(ArtesPageCloseCPU)
+unregistersymbol(ArtesPageCloseHMN)
+unregistersymbol(ArtesPageClose)
+unregistersymbol(ArtesPageOpen)
+
+dealloc(Debug1)
+dealloc(ArtesPageState)
+dealloc(Mem_ArtesPageCloseCPU)
+dealloc(Mem_ArtesPageCloseHMN)
+dealloc(Mem_ArtesPageClose)
+dealloc(Mem_ArtesPageOpen)
+
+{
+// ORIGINAL CODE - [ARTES PAGE OPEN] INJECTION POINT: TOS.exe+1240A8
+
+TOS.exe+124092: 33 C0                       - xor eax,eax
+TOS.exe+124094: 5B                          - pop ebx
+TOS.exe+124095: 8B E5                       - mov esp,ebp
+TOS.exe+124097: 5D                          - pop ebp
+TOS.exe+124098: C3                          - ret
+TOS.exe+124099: 8A 15 C4 DD B0 00           - mov dl,[TOS.exe+70DDC4]
+TOS.exe+12409F: 84 D2                       - test dl,dl
+TOS.exe+1240A1: 74 0E                       - je TOS.exe+1240B1
+TOS.exe+1240A3: 80 FA 28                    - cmp dl,28
+TOS.exe+1240A6: 77 2A                       - ja TOS.exe+1240D2
+// ---------- INJECTING HERE ----------
+TOS.exe+1240A8: 66 C7 05 C4 DD B0 00 00 00  - mov word ptr [TOS.exe+70DDC4],0000
+// ---------- DONE INJECTING  ----------
+TOS.exe+1240B1: 66 83 3D BA DD B0 00 00     - cmp word ptr [TOS.exe+70DDBA],00
+TOS.exe+1240B9: 0F 85 40 1C 00 00           - jne TOS.exe+125CFF
+TOS.exe+1240BF: 0F BF D0                    - movsx edx,ax
+TOS.exe+1240C2: 83 FA 0F                    - cmp edx,0F
+TOS.exe+1240C5: 0F 87 54 1B 00 00           - ja TOS.exe+125C1F
+TOS.exe+1240CB: FF 24 95 40 5D 52 00        - jmp dword ptr [edx*4+TOS.exe+125D40]
+TOS.exe+1240D2: 5F                          - pop edi
+TOS.exe+1240D3: 80 C2 D8                    - add dl,-28
+TOS.exe+1240D6: 5E                          - pop esi
+TOS.exe+1240D7: 88 15 C4 DD B0 00           - mov [TOS.exe+70DDC4],dl
+}
+
+{
+// ORIGINAL CODE - [ARTES PAGE CLOSE] INJECTION POINT: TOS.exe+1241C3
+
+TOS.exe+1241A2: 8D BC 38 55 0F 00 00  - lea edi,[eax+edi+00000F55]
+TOS.exe+1241A9: 8A 07                 - mov al,[edi]
+TOS.exe+1241AB: 3C 02                 - cmp al,02
+TOS.exe+1241AD: 7D 09                 - jnl TOS.exe+1241B8
+TOS.exe+1241AF: FE C0                 - inc al
+TOS.exe+1241B1: 88 07                 - mov [edi],al
+TOS.exe+1241B3: E9 FD 19 00 00        - jmp TOS.exe+125BB5
+TOS.exe+1241B8: C6 07 00              - mov byte ptr [edi],00
+TOS.exe+1241BB: E9 F5 19 00 00        - jmp TOS.exe+125BB5
+TOS.exe+1241C0: 83 CA FF              - or edx,-01
+// ---------- INJECTING HERE ----------
+TOS.exe+1241C3: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+1241CA: 66 89 15 C6 DD B0 00  - mov [TOS.exe+70DDC6],dx
+TOS.exe+1241D1: E9 42 1A 00 00        - jmp TOS.exe+125C18
+TOS.exe+1241D6: 8B 5D F4              - mov ebx,[ebp-0C]
+TOS.exe+1241D9: F7 C3 00 00 00 08     - test ebx,08000000
+TOS.exe+1241DF: 75 DF                 - jne TOS.exe+1241C0
+TOS.exe+1241E1: 8B D3                 - mov edx,ebx
+TOS.exe+1241E3: 81 E2 00 00 00 FC     - and edx,FC000000
+TOS.exe+1241E9: 75 08                 - jne TOS.exe+1241F3
+TOS.exe+1241EB: F7 C3 00 20 00 08     - test ebx,08002000
+TOS.exe+1241F1: 75 CD                 - jne TOS.exe+1241C0
+}
+
+{
+// ORIGINAL CODE - [ARTES PAGE CLOSE HMN] INJECTION POINT: TOS.exe+124927
+
+TOS.exe+1248F6: C6 05 C9 DD B0 00 05  - mov byte ptr [TOS.exe+70DDC9],05
+TOS.exe+1248FD: E9 37 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+124902: C7 45 F8 1A 00 00 00  - mov [ebp-08],0000001A
+TOS.exe+124909: 66 83 F8 05           - cmp ax,05
+TOS.exe+12490D: 75 0C                 - jne TOS.exe+12491B
+TOS.exe+12490F: C6 05 C9 DD B0 00 06  - mov byte ptr [TOS.exe+70DDC9],06
+TOS.exe+124916: E9 1E 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+12491B: 80 3D BD DD B0 00 01  - cmp byte ptr [TOS.exe+70DDBD],01
+TOS.exe+124922: 75 16                 - jne TOS.exe+12493A
+TOS.exe+124924: 83 C9 FF              - or ecx,-01
+// ---------- INJECTING HERE ----------
+TOS.exe+124927: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+12492E: 66 89 0D C6 DD B0 00  - mov [TOS.exe+70DDC6],cx
+TOS.exe+124935: E9 E5 12 00 00        - jmp TOS.exe+125C1F
+TOS.exe+12493A: BA 01 00 00 00        - mov edx,00000001
+TOS.exe+12493F: 66 89 15 B0 DD B0 00  - mov [TOS.exe+70DDB0],dx
+TOS.exe+124946: E9 EE 12 00 00        - jmp TOS.exe+125C39
+TOS.exe+12494B: 8B 4D F4              - mov ecx,[ebp-0C]
+TOS.exe+12494E: F7 C1 00 00 00 08     - test ecx,08000000
+TOS.exe+124954: 0F 85 A1 05 00 00     - jne TOS.exe+124EFB
+TOS.exe+12495A: 8B D1                 - mov edx,ecx
+TOS.exe+12495C: 81 E2 00 00 00 FC     - and edx,FC000000
+}
+
+{
+// ORIGINAL CODE - [ARTES PAGE CLOSE CPU]INJECTION POINT: TOS.exe+1258BD
+
+TOS.exe+12588A: E9 AA 03 00 00        - jmp TOS.exe+125C39
+TOS.exe+12588F: C7 45 F8 1A 00 00 00  - mov [ebp-08],0000001A
+TOS.exe+125896: 66 83 F8 0F           - cmp ax,0F
+TOS.exe+12589A: 75 11                 - jne TOS.exe+1258AD
+TOS.exe+12589C: B9 0D 00 00 00        - mov ecx,0000000D
+TOS.exe+1258A1: 66 89 0D B0 DD B0 00  - mov [TOS.exe+70DDB0],cx
+TOS.exe+1258A8: E9 8C 03 00 00        - jmp TOS.exe+125C39
+TOS.exe+1258AD: 80 3D BD DD B0 00 01  - cmp byte ptr [TOS.exe+70DDBD],01
+TOS.exe+1258B4: 0F 85 AD E8 FF FF     - jne TOS.exe+124167
+TOS.exe+1258BA: 83 CA FF              - or edx,-01
+// ---------- INJECTING HERE ----------
+TOS.exe+1258BD: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+// ---------- DONE INJECTING  ----------
+TOS.exe+1258C4: 66 89 15 C6 DD B0 00  - mov [TOS.exe+70DDC6],dx
+TOS.exe+1258CB: E9 4F 03 00 00        - jmp TOS.exe+125C1F
+TOS.exe+1258D0: 8B 45 F4              - mov eax,[ebp-0C]
+TOS.exe+1258D3: A9 00 00 00 08        - test eax,08000000
+TOS.exe+1258D8: 0F 85 33 03 00 00     - jne TOS.exe+125C11
+TOS.exe+1258DE: 8B D0                 - mov edx,eax
+TOS.exe+1258E0: 81 E2 00 00 00 FC     - and edx,FC000000
+TOS.exe+1258E6: 75 0B                 - jne TOS.exe+1258F3
+TOS.exe+1258E8: A9 00 20 00 08        - test eax,08002000
+TOS.exe+1258ED: 0F 85 1E 03 00 00     - jne TOS.exe+125C11
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"Detect Shortcut Open TEST"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TOS.exe
+  Version:
+  Date   : 2024-08-21
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ShortcutOpen,TOS.exe,C6 05 C9 DD B0 00 05 E9 37) // should be unique
+aobscanmodule(ShortcutClose,TOS.exe,66 89 15 C8 DD B0 00) // should be unique
+alloc(Mem_ShortcutOpen,128)
+alloc(Mem_ShortcutClose,128)
+alloc(ShortcutState,1)
+
+registersymbol(ShortcutState)
+
+
+Mem_ShortcutOpen:
+  mov byte [ShortcutState],1
+
+Code_ShortcutOpen:
+  mov byte ptr [TOS.exe+70DDC9],05
+  jmp Ret_ShortcutOpen
+
+ShortcutOpen:
+  jmp Mem_ShortcutOpen
+  nop 2
+Ret_ShortcutOpen:
+//============================================================================//
+Mem_ShortcutClose:
+  mov byte [ShortcutState],0
+
+Code_ShortcutClose:
+  mov [TOS.exe+70DDC8],dx
+  jmp Ret_ShortcutClose
+
+ShortcutClose:
+  jmp Mem_ShortcutClose
+  nop 2
+Ret_ShortcutClose:
+registersymbol(ShortcutOpen)
+registersymbol(ShortcutClose)
+
+
+[DISABLE]
+
+ShortcutOpen:
+  db C6 05 C9 DD B0 00 05
+
+ShortcutClose:
+  db 66 89 15 C8 DD B0 00
+
+
+unregistersymbol(ShortcutState)
+unregistersymbol(ShortcutClose)
+unregistersymbol(ShortcutOpen)
+
+dealloc(ShortcutState)
+dealloc(Mem_ShortcutClose)
+dealloc(Mem_ShortcutOpen)
+
+{
+// ORIGINAL CODE - [SHORTCUT OPEN] INJECTION POINT: TOS.exe+1248F6
+
+TOS.exe+1248C5: A1 B4 DD B0 00        - mov eax,[TOS.exe+70DDB4]
+TOS.exe+1248CA: 83 C0 FA              - add eax,-06
+TOS.exe+1248CD: 66 A3 B8 DD B0 00     - mov [TOS.exe+70DDB8],ax
+TOS.exe+1248D3: E9 61 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+1248D8: 80 F9 04              - cmp cl,04
+TOS.exe+1248DB: 0F 83 3E 13 00 00     - jae TOS.exe+125C1F
+TOS.exe+1248E1: 0F B6 C1              - movzx eax,cl
+TOS.exe+1248E4: BA 0D 00 00 00        - mov edx,0000000D
+TOS.exe+1248E9: 66 89 15 B0 DD B0 00  - mov [TOS.exe+70DDB0],dx
+TOS.exe+1248F0: 66 A3 B6 DD B0 00     - mov [TOS.exe+70DDB6],ax
+// ---------- INJECTING HERE ----------
+TOS.exe+1248F6: C6 05 C9 DD B0 00 05  - mov byte ptr [TOS.exe+70DDC9],05
+// ---------- DONE INJECTING  ----------
+TOS.exe+1248FD: E9 37 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+124902: C7 45 F8 1A 00 00 00  - mov [ebp-08],0000001A
+TOS.exe+124909: 66 83 F8 05           - cmp ax,05
+TOS.exe+12490D: 75 0C                 - jne TOS.exe+12491B
+TOS.exe+12490F: C6 05 C9 DD B0 00 06  - mov byte ptr [TOS.exe+70DDC9],06
+TOS.exe+124916: E9 1E 13 00 00        - jmp TOS.exe+125C39
+TOS.exe+12491B: 80 3D BD DD B0 00 01  - cmp byte ptr [TOS.exe+70DDBD],01
+TOS.exe+124922: 75 16                 - jne TOS.exe+12493A
+TOS.exe+124924: 83 C9 FF              - or ecx,-01
+TOS.exe+124927: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
+}
+
+{
+// ORIGINAL CODE - [SHORTCUT CLOSE] INJECTION POINT: TOS.exe+123F12
+
+TOS.exe+123EDB: 66 A3 CE DD B0 00     - mov [TOS.exe+70DDCE],ax
+TOS.exe+123EE1: 66 8B 35 B4 DD B0 00  - mov si,[TOS.exe+70DDB4]
+TOS.exe+123EE8: 66 A1 B0 DD B0 00     - mov ax,[TOS.exe+70DDB0]
+TOS.exe+123EEE: 0F B6 15 C9 DD B0 00  - movzx edx,byte ptr [TOS.exe+70DDC9]
+TOS.exe+123EF5: 83 EA 05              - sub edx,05
+TOS.exe+123EF8: 0F 84 40 01 00 00     - je TOS.exe+12403E
+TOS.exe+123EFE: 4A                    - dec edx
+TOS.exe+123EFF: 0F 85 4F 01 00 00     - jne TOS.exe+124054
+TOS.exe+123F05: 80 3D C8 DD B0 00 33  - cmp byte ptr [TOS.exe+70DDC8],33
+TOS.exe+123F0C: 0F 87 1C 01 00 00     - ja TOS.exe+12402E
+// ---------- INJECTING HERE ----------
+TOS.exe+123F12: 66 89 15 C8 DD B0 00  - mov [TOS.exe+70DDC8],dx
+// ---------- DONE INJECTING  ----------
+TOS.exe+123F19: 66 83 F8 0D           - cmp ax,0D
+TOS.exe+123F1D: 0F 84 FE 00 00 00     - je TOS.exe+124021
+TOS.exe+123F23: 66 83 F8 0F           - cmp ax,0F
+TOS.exe+123F27: 0F 84 F4 00 00 00     - je TOS.exe+124021
+TOS.exe+123F2D: 66 83 F8 0E           - cmp ax,0E
+TOS.exe+123F31: 0F 84 EA 00 00 00     - je TOS.exe+124021
+TOS.exe+123F37: 66 83 F8 05           - cmp ax,05
+TOS.exe+123F3B: 0F 85 CC 00 00 00     - jne TOS.exe+12400D
+TOS.exe+123F41: B8 01 00 00 00        - mov eax,00000001
+TOS.exe+123F46: 66 A3 B0 DD B0 00     - mov [TOS.exe+70DDB0],ax
+}
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>59</ID>
+              <Description>"Detect Unison Start TEST"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(UnisonStart,TOS.exe,C6 82 08 91 00 00 03) // should be unique
+aobscanmodule(UnisonEnd,TOS.exe,C6 86 08 91 00 00 00) // should be unique
+alloc(Mem_UnisonStart,$40,UnisonStart)
+alloc(Mem_UnisonEnd,$40,UnisonStart)
+alloc(UnisonState,1)
+
+registersymbol(UnisonState)
+
+
+Mem_UnisonStart:
+  mov byte [UnisonState],1
+
+Code_UnisonStart:
+  mov byte ptr [edx+00009108],03
+  jmp Ret_UnisonStart
+
+UnisonStart:
+  jmp Mem_UnisonStart
+  nop 2
+Ret_UnisonStart:
+//============================================================================//
+Mem_UnisonEnd:
+  mov byte [UnisonState],0
+
+Code_UnisonEnd:
+  mov byte ptr [esi+00009108],00
+  jmp Ret_UnisonEnd
+
+UnisonEnd:
+  jmp Mem_UnisonEnd
+  nop 2
+Ret_UnisonEnd:
+  registersymbol(UnisonStart)
+  registersymbol(UnisonEnd)
+
+
+[DISABLE]
+
+UnisonStart:
+  db C6 82 08 91 00 00 03
+
+UnisonEnd:
+  db C6 86 08 91 00 00 00
+
+unregistersymbol(UnisonState)
+unregistersymbol(UnisonEnd)
+unregistersymbol(UnisonStart)
+
+dealloc(UnisonState)
+dealloc(Mem_UnisonEnd)
+dealloc(Mem_UnisonStart)
+
+
+{
+// ORIGINAL CODE - [UNISON START] INJECTION POINT: TOS.exe+7135A
+
+TOS.exe+7132E: F6 87 B8 00 00 00 20        - test byte ptr [edi+000000B8],20
+TOS.exe+71335: 75 5B                       - jne TOS.exe+71392
+TOS.exe+71337: E8 C4 E5 FF FF              - call TOS.exe+6F900
+TOS.exe+7133C: 8B 86 78 39 01 00           - mov eax,[esi+00013978]
+TOS.exe+71342: 89 82 04 91 00 00           - mov [edx+00009104],eax
+TOS.exe+71348: 3B C3                       - cmp eax,ebx
+TOS.exe+7134A: 75 0C                       - jne TOS.exe+71358
+TOS.exe+7134C: 8B 86 7C 39 01 00           - mov eax,[esi+0001397C]
+TOS.exe+71352: 89 82 04 91 00 00           - mov [edx+00009104],eax
+TOS.exe+71358: 33 C9                       - xor ecx,ecx
+// ---------- INJECTING HERE ----------
+TOS.exe+7135A: C6 82 08 91 00 00 03        - mov byte ptr [edx+00009108],03
+// ---------- DONE INJECTING  ----------
+TOS.exe+71361: 66 89 8A 0E 91 00 00        - mov [edx+0000910E],cx
+TOS.exe+71368: 66 83 8A F0 90 00 00 20     - or word ptr [edx+000090F0],20
+TOS.exe+71370: 66 C7 82 79 8F 00 00 02 00  - mov word ptr [edx+00008F79],0002
+TOS.exe+71379: 88 9A 7B 8F 00 00           - mov [edx+00008F7B],bl
+TOS.exe+7137F: 5F                          - pop edi
+TOS.exe+71380: 5E                          - pop esi
+TOS.exe+71381: 32 C0                       - xor al,al
+TOS.exe+71383: 5B                          - pop ebx
+TOS.exe+71384: 8B 4D FC                    - mov ecx,[ebp-04]
+TOS.exe+71387: 33 CD                       - xor ecx,ebp
+}
+
+
+{
+// ORIGINAL CODE - [UNISON END] INJECTION POINT: TOS.exe+71404
+
+TOS.exe+713D5: 74 06                 - je TOS.exe+713DD
+TOS.exe+713D7: FE 86 09 91 00 00     - inc byte ptr [esi+00009109]
+TOS.exe+713DD: 80 BE A0 92 00 00 B4  - cmp byte ptr [esi+000092A0],-4C
+TOS.exe+713E4: 77 09                 - ja TOS.exe+713EF
+TOS.exe+713E6: 80 BE 09 91 00 00 00  - cmp byte ptr [esi+00009109],00
+TOS.exe+713ED: 74 6B                 - je TOS.exe+7145A
+TOS.exe+713EF: B8 DF FF 00 00        - mov eax,0000FFDF
+TOS.exe+713F4: 66 21 86 F0 90 00 00  - and [esi+000090F0],ax
+TOS.exe+713FB: 80 BE 09 91 00 00 00  - cmp byte ptr [esi+00009109],00
+TOS.exe+71402: 75 0F                 - jne TOS.exe+71413
+// ---------- INJECTING HERE ----------
+TOS.exe+71404: C6 86 08 91 00 00 00  - mov byte ptr [esi+00009108],00
+// ---------- DONE INJECTING  ----------
+TOS.exe+7140B: B0 01                 - mov al,01
+TOS.exe+7140D: 5F                    - pop edi
+TOS.exe+7140E: 5E                    - pop esi
+TOS.exe+7140F: 8B E5                 - mov esp,ebp
+TOS.exe+71411: 5D                    - pop ebp
+TOS.exe+71412: C3                    - ret
+TOS.exe+71413: 8B 4C 24 0C           - mov ecx,[esp+0C]
+TOS.exe+71417: 80 8E 26 9A 00 00 08  - or byte ptr [esi+00009A26],08
+TOS.exe+7141E: BA FF 00 00 00        - mov edx,000000FF
+TOS.exe+71423: 89 8E 14 94 00 00     - mov [esi+00009414],ecx
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>58</ID>
+                  <Description>"Detect Battle Paused TEST"</Description>
+                  <Options moDeactivateChildrenAsWell="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BattlePause,TOS.exe,C6 86 CE 93 00 00 01)   // should be unique
+aobscanmodule(BattleUnpause,TOS.exe,C6 86 CE 93 00 00 00) // should be unique
+alloc(Mem_BattlePause,$40,BattlePause)
+alloc(Mem_BattleUnpause,$40,BattlePause)
+alloc(PauseState,1)
+
+registersymbol(PauseState)
+
+
+Mem_BattlePause:
+  mov byte [PauseState],1
+
+Code_Pause:
+  mov byte ptr [esi+000093CE],01
+  jmp Ret_BattlePause
+
+BattlePause:
+  jmp Mem_BattlePause
+  nop 2
+Ret_BattlePause:
+//============================================================================//
+
+Mem_BattleUnpause:
+  mov byte [PauseState],0
+
+Code_Unpause:
+  mov byte ptr [esi+000093CE],00
+  jmp Ret_BattleUnpause
+
+BattleUnpause:
+  jmp Mem_BattleUnpause
+  nop 2
+Ret_BattleUnpause:
+  registersymbol(BattlePause)
+  registersymbol(BattleUnpause)
+
+
+
+[DISABLE]
+
+BattlePause:
+  db C6 86 CE 93 00 00 01
+
+BattleUnpause:
+  db C6 86 CE 93 00 00 00
+
+unregistersymbol(PauseState)
+unregistersymbol(BattleUnpause)
+unregistersymbol(BattlePause)
+
+dealloc(PauseState)
+dealloc(Mem_BattleUnpause)
+dealloc(Mem_BattlePause)
+
+
+{
+// ORIGINAL CODE - [BATTLE PAUSED] INJECTION POINT: TOS.exe+5D8D3
+
+TOS.exe+5D8A7: 74 3B                       - je TOS.exe+5D8E4
+TOS.exe+5D8A9: 80 FB 01                    - cmp bl,01
+TOS.exe+5D8AC: 75 17                       - jne TOS.exe+5D8C5
+TOS.exe+5D8AE: C6 86 78 8F 00 00 08        - mov byte ptr [esi+00008F78],08
+TOS.exe+5D8B5: C6 86 79 8F 00 00 00        - mov byte ptr [esi+00008F79],00
+TOS.exe+5D8BC: 66 C7 86 7A 8F 00 00 00 00  - mov word ptr [esi+00008F7A],0000
+TOS.exe+5D8C5: 8B 45 08                    - mov eax,[ebp+08]
+TOS.exe+5D8C8: 68 60 A6 46 00              - push TOS.exe+6A660
+TOS.exe+5D8CD: 50                          - push eax
+TOS.exe+5D8CE: E8 4D 16 00 00              - call TOS.exe+5EF20
+// ---------- INJECTING HERE ----------
+TOS.exe+5D8D3: C6 86 CE 93 00 00 01        - mov byte ptr [esi+000093CE],01
+// ---------- DONE INJECTING  ----------
+TOS.exe+5D8DA: 83 C4 08                    - add esp,08
+TOS.exe+5D8DD: 5F                          - pop edi
+TOS.exe+5D8DE: 5E                          - pop esi
+TOS.exe+5D8DF: 5B                          - pop ebx
+TOS.exe+5D8E0: 8B E5                       - mov esp,ebp
+TOS.exe+5D8E2: 5D                          - pop ebp
+TOS.exe+5D8E3: C3                          - ret 
+TOS.exe+5D8E4: E8 17 56 00 00              - call TOS.exe+62F00
+TOS.exe+5D8E9: A1 DC D1 AC 00              - mov eax,[TOS.exe+6CD1DC]
+TOS.exe+5D8EE: 80 A0 E9 90 00 00 80        - and byte ptr [eax+000090E9],-80
+}
+
+
+{
+// ORIGINAL CODE - [BATTLE UNPAUSED] INJECTION POINT: TOS.exe+5D927
+
+TOS.exe+5D8F8: BA EF FF 00 00              - mov edx,0000FFEF
+TOS.exe+5D8FD: 66 21 90 F0 90 00 00        - and [eax+000090F0],dx
+TOS.exe+5D904: 6A 00                       - push 00
+TOS.exe+5D906: 51                          - push ecx
+TOS.exe+5D907: C6 86 78 8F 00 00 05        - mov byte ptr [esi+00008F78],05
+TOS.exe+5D90E: C6 86 79 8F 00 00 00        - mov byte ptr [esi+00008F79],00
+TOS.exe+5D915: 66 C7 86 7A 8F 00 00 00 00  - mov word ptr [esi+00008F7A],0000
+TOS.exe+5D91E: E8 FD 15 00 00              - call TOS.exe+5EF20
+TOS.exe+5D923: 83 C4 08                    - add esp,08
+TOS.exe+5D926: 5F                          - pop edi
+// ---------- INJECTING HERE ----------
+TOS.exe+5D927: C6 86 CE 93 00 00 00        - mov byte ptr [esi+000093CE],00
+// ---------- DONE INJECTING  ----------
+TOS.exe+5D92E: 5E                          - pop esi
+TOS.exe+5D92F: 5B                          - pop ebx
+TOS.exe+5D930: 8B E5                       - mov esp,ebp
+TOS.exe+5D932: 5D                          - pop ebp
+TOS.exe+5D933: C3                          - ret
+TOS.exe+5D934: CC                          - int 3
+TOS.exe+5D935: CC                          - int 3
+TOS.exe+5D936: CC                          - int 3
+TOS.exe+5D937: CC                          - int 3
+TOS.exe+5D938: CC                          - int 3
+}
+</AssemblerScript>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>81</ID>
+      <Description>"Artes Page"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>ArtesPageState</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Battle State"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>BattleState</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"In Battle"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>TOS.exe+712CEC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"Battle Pause State"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>PauseState</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"Unison State"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>UnisonState</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"No description"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>TOS.exe+A27FB1</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"X"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>00E28130</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"Y"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>00E28134</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"No Description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2AB632A4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"No description"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>2AB593EE</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"bt"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>TOS.exe+182AF70</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>036661F0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>03666470</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>0B000A70</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2024-11-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(BattleStart,TOS.exe,C7 40 0C 01 00 00 00 39 46 04 8B 51 08) // should be unique
+alloc(BattleStartMem,$40,BattleStart)
+alloc(BattleState,1)
+
+registersymbol(BattleState)
+
+
+BattleStartMem:
+cmp [eax+E26]+C26,(int)264506113
+jne code
+mov byte [BattleState],1
+
+code:
+mov [eax+0C],00000001
+jmp return
+
+BattleStart:
+jmp BattleStartMem
+nop 2
+return:
+registersymbol(BattleStart)
+
+[DISABLE]
+
+BattleStart:
+db C7 40 0C 01 00 00 00
+
+
+unregistersymbol(BattleStart)
+unregistersymbol(BattleState)
+
+dealloc(BattleState)
+dealloc(BattleStartMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1AD6BE
+
+TOS.exe+1AD6A7: 39 06                 - cmp [esi],eax
+TOS.exe+1AD6A9: 75 04                 - jne TOS.exe+1AD6AF
+TOS.exe+1AD6AB: 89 16                 - mov [esi],edx
+TOS.exe+1AD6AD: EB 03                 - jmp TOS.exe+1AD6B2
+TOS.exe+1AD6AF: 89 51 04              - mov [ecx+04],edx
+TOS.exe+1AD6B2: 8B 0F                 - mov ecx,[edi]
+TOS.exe+1AD6B4: 8B 01                 - mov eax,[ecx]
+TOS.exe+1AD6B6: 89 59 0C              - mov [ecx+0C],ebx
+TOS.exe+1AD6B9: 8B 30                 - mov esi,[eax]
+TOS.exe+1AD6BB: 8B 48 04              - mov ecx,[eax+04]
+// ---------- INJECTING HERE ----------
+TOS.exe+1AD6BE: C7 40 0C 01 00 00 00  - mov [eax+0C],00000001
+// ---------- DONE INJECTING  ----------
+TOS.exe+1AD6C5: 39 46 04              - cmp [esi+04],eax
+TOS.exe+1AD6C8: 8B 51 08              - mov edx,[ecx+08]
+TOS.exe+1AD6CB: 0F 94 C3              - sete bl
+TOS.exe+1AD6CE: 89 50 04              - mov [eax+04],edx
+TOS.exe+1AD6D1: 85 D2                 - test edx,edx
+TOS.exe+1AD6D3: 74 02                 - je TOS.exe+1AD6D7
+TOS.exe+1AD6D5: 89 02                 - mov [edx],eax
+TOS.exe+1AD6D7: 89 41 08              - mov [ecx+08],eax
+TOS.exe+1AD6DA: EB 6E                 - jmp TOS.exe+1AD74A
+TOS.exe+1AD6DC: 8B 51 04              - mov edx,[ecx+04]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"No description"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>TOS.exe+712952</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"No description"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>TOS.exe+182AFAC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"III"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>TOS.exe+A28134</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"II"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>TOS.exe+19E4954</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"No description"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>01DE4920</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>37</ID>
+      <Description>"No description"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>01DE4921</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>68</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInput7,TOS.exe,89 5E 34 89 7E 14) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+34],0
+  mov [esi+14],0
+  jmp return
+
+DisableInput7:
+  jmp newmem
+  nop
+return:
+registersymbol(DisableInput7)
+
+[DISABLE]
+
+DisableInput7:
+  db 89 5E 34 89 7E 14
+
+unregistersymbol(DisableInput7)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C348
+
+TOS.exe+20C32E: 89 45 F8           - mov [ebp-08],eax
+TOS.exe+20C331: 8D 45 EC           - lea eax,[ebp-14]
+TOS.exe+20C334: 8B F9              - mov edi,ecx
+TOS.exe+20C336: 50                 - push eax
+TOS.exe+20C337: 57                 - push edi
+TOS.exe+20C338: 8B F2              - mov esi,edx
+TOS.exe+20C33A: 33 DB              - xor ebx,ebx
+TOS.exe+20C33C: FF 15 CC E5 6F 00  - call dword ptr [TOS.exe+2FE5CC]
+TOS.exe+20C342: 89 5E 18           - mov [esi+18],ebx
+TOS.exe+20C345: 89 5E 38           - mov [esi+38],ebx
+// ---------- INJECTING HERE ----------
+TOS.exe+20C348: 89 5E 34           - mov [esi+34],ebx
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C34B: 89 7E 14           - mov [esi+14],edi
+TOS.exe+20C34E: 8B CF              - mov ecx,edi
+TOS.exe+20C350: C7 06 01 00 00 00  - mov [esi],00000001
+TOS.exe+20C356: 3B C3              - cmp eax,ebx
+TOS.exe+20C358: 0F 85 14 01 00 00  - jne TOS.exe+20C472
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+TOS.exe+20C367: 89 46 08           - mov [esi+08],eax
+TOS.exe+20C36A: BA 01 00 00 00     - mov edx,00000001
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>67</ID>
+      <Description>"Disable Input TEST 6"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInput6,TOS.exe,89 5E 18 89 5E 38) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+18],0
+  mov [esi+38],0
+  jmp return
+
+DisableInput6:
+  jmp newmem
+  nop
+return:
+registersymbol(DisableInput6)
+
+[DISABLE]
+
+DisableInput6:
+  db 89 5E 18 89 5E 38
+
+unregistersymbol(DisableInput6)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C342
+
+TOS.exe+20C328: 89 45 F0           - mov [ebp-10],eax
+TOS.exe+20C32B: 89 45 F4           - mov [ebp-0C],eax
+TOS.exe+20C32E: 89 45 F8           - mov [ebp-08],eax
+TOS.exe+20C331: 8D 45 EC           - lea eax,[ebp-14]
+TOS.exe+20C334: 8B F9              - mov edi,ecx
+TOS.exe+20C336: 50                 - push eax
+TOS.exe+20C337: 57                 - push edi
+TOS.exe+20C338: 8B F2              - mov esi,edx
+TOS.exe+20C33A: 33 DB              - xor ebx,ebx
+TOS.exe+20C33C: FF 15 CC E5 6F 00  - call dword ptr [TOS.exe+2FE5CC]
+// ---------- INJECTING HERE ----------
+TOS.exe+20C342: 89 5E 18           - mov [esi+18],ebx
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C345: 89 5E 38           - mov [esi+38],ebx
+TOS.exe+20C348: 89 5E 34           - mov [esi+34],ebx
+TOS.exe+20C34B: 89 7E 14           - mov [esi+14],edi
+TOS.exe+20C34E: 8B CF              - mov ecx,edi
+TOS.exe+20C350: C7 06 01 00 00 00  - mov [esi],00000001
+TOS.exe+20C356: 3B C3              - cmp eax,ebx
+TOS.exe+20C358: 0F 85 14 01 00 00  - jne TOS.exe+20C472
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>66</ID>
+      <Description>"Disable Input TEST 5"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInput5,TOS.exe,89 46 08 BA 01 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+08],0
+  mov edx,00000001
+  jmp return
+
+DisableInput5:
+  jmp newmem
+  nop 3
+return:
+registersymbol(DisableInput5)
+
+[DISABLE]
+
+DisableInput5:
+  db 89 46 08 BA 01 00 00 00
+
+unregistersymbol(DisableInput5)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C367
+
+TOS.exe+20C345: 89 5E 38           - mov [esi+38],ebx
+TOS.exe+20C348: 89 5E 34           - mov [esi+34],ebx
+TOS.exe+20C34B: 89 7E 14           - mov [esi+14],edi
+TOS.exe+20C34E: 8B CF              - mov ecx,edi
+TOS.exe+20C350: C7 06 01 00 00 00  - mov [esi],00000001
+TOS.exe+20C356: 3B C3              - cmp eax,ebx
+TOS.exe+20C358: 0F 85 14 01 00 00  - jne TOS.exe+20C472
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+// ---------- INJECTING HERE ----------
+TOS.exe+20C367: 89 46 08           - mov [esi+08],eax
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C36A: BA 01 00 00 00     - mov edx,00000001
+TOS.exe+20C36F: D3 E2              - shl edx,cl
+TOS.exe+20C371: 8B 4D F4           - mov ecx,[ebp-0C]
+TOS.exe+20C374: 0F B7 C0           - movzx eax,ax
+TOS.exe+20C377: 09 15 24 7E E2 00  - or [TOS.exe+A27E24],edx
+TOS.exe+20C37D: 8B 55 F8           - mov edx,[ebp-08]
+TOS.exe+20C380: 89 46 18           - mov [esi+18],eax
+TOS.exe+20C383: 66 8B 45 F6        - mov ax,[ebp-0A]
+TOS.exe+20C387: 66 89 56 20        - mov [esi+20],dx
+TOS.exe+20C38B: 89 4E 0C           - mov [esi+0C],ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>64</ID>
+      <Description>"Disable Inputs TEST 4"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInputs4,TOS.exe,89 4E 04 8B 50 14) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+04],0
+  mov edx,[eax+14]
+  jmp return
+
+DisableInputs4:
+  jmp newmem
+  nop
+return:
+registersymbol(DisableInputs4)
+
+[DISABLE]
+
+DisableInputs4:
+  db 89 4E 04 8B 50 14
+
+unregistersymbol(DisableInputs4)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+1A02B1
+
+TOS.exe+1A029A: CC                 - int 3 
+TOS.exe+1A029B: CC                 - int 3 
+TOS.exe+1A029C: CC                 - int 3 
+TOS.exe+1A029D: CC                 - int 3 
+TOS.exe+1A029E: CC                 - int 3 
+TOS.exe+1A029F: CC                 - int 3 
+TOS.exe+1A02A0: 8B 46 28           - mov eax,[esi+28]
+TOS.exe+1A02A3: 69 C0 60 01 00 00  - imul eax,eax,00000160
+TOS.exe+1A02A9: 05 10 49 DE 01     - add eax,TOS.exe+19E4910
+TOS.exe+1A02AE: 8B 48 10           - mov ecx,[eax+10]
+// ---------- INJECTING HERE ----------
+TOS.exe+1A02B1: 89 4E 04           - mov [esi+04],ecx
+// ---------- DONE INJECTING  ----------
+TOS.exe+1A02B4: 8B 50 14           - mov edx,[eax+14]
+TOS.exe+1A02B7: 89 56 08           - mov [esi+08],edx
+TOS.exe+1A02BA: 8B 48 18           - mov ecx,[eax+18]
+TOS.exe+1A02BD: 89 4E 0C           - mov [esi+0C],ecx
+TOS.exe+1A02C0: 8B 16              - mov edx,[esi]
+TOS.exe+1A02C2: DB 40 38           - fild dword ptr [eax+38]
+TOS.exe+1A02C5: DD 05 38 D5 87 00  - fld qword ptr [TOS.exe+47D538]
+TOS.exe+1A02CB: DC F9              - fdiv st(1),st(0)
+TOS.exe+1A02CD: D9 C9              - fxch st(1)
+TOS.exe+1A02CF: D9 5E 10           - fstp dword ptr [esi+10]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>63</ID>
+      <Description>"Disable Inputs TEST 3"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInputs3,TOS.exe,89 46 FC 89 0A) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi-04],0
+  mov [edx],ecx
+  jmp return
+
+DisableInputs3:
+  jmp newmem
+return:
+registersymbol(DisableInputs3)
+
+[DISABLE]
+
+DisableInputs3:
+  db 89 46 FC 89 0A
+
+unregistersymbol(DisableInputs3)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+17D92E
+
+TOS.exe+17D909: BF 24 49 DE 01     - mov edi,TOS.exe+19E4924
+TOS.exe+17D90E: B8 01 00 00 00     - mov eax,00000001
+TOS.exe+17D913: 89 47 EC           - mov [edi-14],eax
+TOS.exe+17D916: DB 47 24           - fild dword ptr [edi+24]
+TOS.exe+17D919: 8B 0F              - mov ecx,[edi]
+TOS.exe+17D91B: 8B 54 24 38        - mov edx,[esp+38]
+TOS.exe+17D91F: DC 35 38 D5 87 00  - fdiv qword ptr [TOS.exe+47D538]
+TOS.exe+17D925: 89 46 08           - mov [esi+08],eax
+TOS.exe+17D928: 8B 47 FC           - mov eax,[edi-04]
+TOS.exe+17D92B: 83 EC 08           - sub esp,08
+// ---------- INJECTING HERE ----------
+TOS.exe+17D92E: 89 46 FC           - mov [esi-04],eax
+// ---------- DONE INJECTING  ----------
+TOS.exe+17D931: 89 0A              - mov [edx],ecx
+TOS.exe+17D933: D9 5C 24 3C        - fstp dword ptr [esp+3C]
+TOS.exe+17D937: D9 44 24 3C        - fld dword ptr [esp+3C]
+TOS.exe+17D93B: DC 0D F0 DC 87 00  - fmul qword ptr [TOS.exe+47DCF0]
+TOS.exe+17D941: D9 5C 24 3C        - fstp dword ptr [esp+3C]
+TOS.exe+17D945: D9 44 24 3C        - fld dword ptr [esp+3C]
+TOS.exe+17D949: DD 1C 24           - fstp qword ptr [esp]
+TOS.exe+17D94C: E8 FB 47 16 00     - call TOS.exe+2E214C
+TOS.exe+17D951: E8 0A 43 16 00     - call TOS.exe+2E1C60
+TOS.exe+17D956: DB 47 28           - fild dword ptr [edi+28]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>62</ID>
+      <Description>"Disable Inputs TEST 2"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInputs2,TOS.exe,89 81 A8 DA AC 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [ecx+TOS.exe+6CDAA8],0
+  jmp return
+
+DisableInputs2:
+  jmp newmem
+  nop
+return:
+registersymbol(DisableInputs2)
+
+[DISABLE]
+
+DisableInputs2:
+  db 89 81 A8 DA AC 00
+
+unregistersymbol(DisableInputs2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+6EDF9
+
+TOS.exe+6EDD2: 8B B1 A8 DA AC 00  - mov esi,[ecx+TOS.exe+6CDAA8]
+TOS.exe+6EDD8: 33 F0              - xor esi,eax
+TOS.exe+6EDDA: 23 F0              - and esi,eax
+TOS.exe+6EDDC: 89 B1 B8 DA AC 00  - mov [ecx+TOS.exe+6CDAB8],esi
+TOS.exe+6EDE2: 8B B1 A8 DA AC 00  - mov esi,[ecx+TOS.exe+6CDAA8]
+TOS.exe+6EDE8: 8B FE              - mov edi,esi
+TOS.exe+6EDEA: 33 F8              - xor edi,eax
+TOS.exe+6EDEC: 23 FE              - and edi,esi
+TOS.exe+6EDEE: 89 B9 C8 DA AC 00  - mov [ecx+TOS.exe+6CDAC8],edi
+TOS.exe+6EDF4: BF 04 00 00 00     - mov edi,00000004
+// ---------- INJECTING HERE ----------
+TOS.exe+6EDF9: 89 81 A8 DA AC 00  - mov [ecx+TOS.exe+6CDAA8],eax
+// ---------- DONE INJECTING  ----------
+TOS.exe+6EDFF: 83 C2 10           - add edx,10
+TOS.exe+6EE02: 03 CF              - add ecx,edi
+TOS.exe+6EE04: 81 FA B0 DA AC 00  - cmp edx,TOS.exe+6CDAB0
+TOS.exe+6EE0A: 0F 8C 50 FF FF FF  - jl TOS.exe+6ED60
+TOS.exe+6EE10: 8B 15 E4 D1 AC 00  - mov edx,[TOS.exe+6CD1E4]
+TOS.exe+6EE16: 33 F6              - xor esi,esi
+TOS.exe+6EE18: 89 75 E8           - mov [ebp-18],esi
+TOS.exe+6EE1B: B1 1E              - mov cl,1E
+TOS.exe+6EE1D: 8D 49 00           - lea ecx,[ecx+00]
+TOS.exe+6EE20: 8B C6              - mov eax,esi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>61</ID>
+      <Description>"Disable Inputs TEST1"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-07-31
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DisableInput,TOS.exe,89 46 18 66 8B 45 F6) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+18],0
+  mov ax,[ebp-0A]
+  jmp return
+
+DisableInput:
+  jmp newmem
+  nop 2
+return:
+registersymbol(DisableInput)
+
+[DISABLE]
+
+DisableInput:
+  db 89 46 18 66 8B 45 F6
+
+unregistersymbol(DisableInput)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C380
+
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+TOS.exe+20C367: 89 46 08           - mov [esi+08],eax
+TOS.exe+20C36A: BA 01 00 00 00     - mov edx,00000001
+TOS.exe+20C36F: D3 E2              - shl edx,cl
+TOS.exe+20C371: 8B 4D F4           - mov ecx,[ebp-0C]
+TOS.exe+20C374: 0F B7 C0           - movzx eax,ax
+TOS.exe+20C377: 09 15 24 7E E2 00  - or [TOS.exe+A27E24],edx
+TOS.exe+20C37D: 8B 55 F8           - mov edx,[ebp-08]
+// ---------- INJECTING HERE ----------
+TOS.exe+20C380: 89 46 18           - mov [esi+18],eax
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C383: 66 8B 45 F6        - mov ax,[ebp-0A]
+TOS.exe+20C387: 66 89 56 20        - mov [esi+20],dx
+TOS.exe+20C38B: 89 4E 0C           - mov [esi+0C],ecx
+TOS.exe+20C38E: 89 56 10           - mov [esi+10],edx
+TOS.exe+20C391: 66 8B 55 FA        - mov dx,[ebp-06]
+TOS.exe+20C395: 66 89 46 1E        - mov [esi+1E],ax
+TOS.exe+20C399: 8A 45 F2           - mov al,[ebp-0E]
+TOS.exe+20C39C: 66 89 56 22        - mov [esi+22],dx
+TOS.exe+20C3A0: 0F B6 D0           - movzx edx,al
+TOS.exe+20C3A3: 89 56 24           - mov [esi+24],edx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>105</ID>
+      <Description>"Shortcut State"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>ShortcutState</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>72</ID>
+      <Description>"Symbol Set"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(BasePtr,[TOS.exe+006CE268])  //
+define(GaldPtr,BasePtr)             //Pointer for Gald
+define(PartyPtr,BasePtr+F4D)        //
+define(CharPtr,BasePtr+368)         //+118 for Each Char; +D8 for Artes
+define(ArteStoragePtr,BasePtr+114)  //
+
+registersymbol(BasePtr)
+registersymbol(GaldPtr)
+registersymbol(PartyPtR)
+registersymbol(CharPtr)
+registersymbol(ArteStoragePtr)
+
+
+[DISABLE]
+
+unregistersymbol(ArteStoragePtr)
+unregistersymbol(CharPtr)
+unregistersymbol(PartyPtr)
+unregistersymbol(GaldPtr)
+unregistersymbol(BasePtr)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>103</ID>
+      <Description>"Remove Shortcut Fix"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-26
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(RemoveShortcutFix,TOS.exe,66 89 17 C7 45 F8 1C 00 00 00) // should be unique
+alloc(Mem_RemoveShortcutFix,$1000,RemoveShortcutFix)
+
+
+Mem_RemoveShortcutFix:
+  mov [edi],dx
+  cmp eax,4
+  jb Code
+  mov eax,8
+  sub eax,ecx
+  add edi,eax
+  mov byte [edi],0
+Code:
+  mov [ebp-08],0000001C
+  jmp Ret_RemoveShortcutFix
+
+RemoveShortcutFix:
+  jmp Mem_RemoveShortcutFix
+  nop 5
+Ret_RemoveShortcutFix:
+registersymbol(RemoveShortcutFix)
+
+[DISABLE]
+
+RemoveShortcutFix:
+  db 66 89 17 C7 45 F8 1C 00 00 00
+
+unregistersymbol(RemoveShortcutFix)
+dealloc(Mem_RemoveShortcutFix)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+124658
+
+TOS.exe+124626: F7 C2 00 40 00 00           - test edx,00004000
+TOS.exe+12462C: 74 39                       - je TOS.exe+124667
+TOS.exe+12462E: 0F BF 0D B2 DD B0 00        - movsx ecx,word ptr [TOS.exe+70DDB2]
+TOS.exe+124635: 0F BF C3                    - movsx eax,bx
+TOS.exe+124638: 69 C0 8C 00 00 00           - imul eax,eax,0000008C
+TOS.exe+12463E: 03 C1                       - add eax,ecx
+TOS.exe+124640: 66 83 BC 47 40 04 00 00 00  - cmp word ptr [edi+eax*2+00000440],00
+TOS.exe+124649: 8D BC 47 40 04 00 00        - lea edi,[edi+eax*2+00000440]
+TOS.exe+124650: 0F 84 C9 15 00 00           - je TOS.exe+125C1F
+TOS.exe+124656: 33 D2                       - xor edx,edx
+// ---------- INJECTING HERE ----------
+TOS.exe+124658: 66 89 17                    - mov [edi],dx
+// ---------- DONE INJECTING  ----------
+TOS.exe+12465B: C7 45 F8 1C 00 00 00        - mov [ebp-08],0000001C
+TOS.exe+124662: E9 B8 15 00 00              - jmp TOS.exe+125C1F
+TOS.exe+124667: 8B 55 E8                    - mov edx,[ebp-18]
+TOS.exe+12466A: F7 C2 00 00 00 10           - test edx,d3d9.Ordinal6307
+TOS.exe+124670: 0F 85 97 00 00 00           - jne TOS.exe+12470D
+TOS.exe+124676: 8B CA                       - mov ecx,edx
+TOS.exe+124678: 81 E1 00 00 00 FC           - and ecx,FC000000
+TOS.exe+12467E: 75 09                       - jne TOS.exe+124689
+TOS.exe+124680: F6 C2 01                    - test dl,01
+TOS.exe+124683: 0F 85 84 00 00 00           - jne TOS.exe+12470D
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>85</ID>
+      <Description>"Trigger Fix"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(LeftTriggerFix,TOS.exe,3A D3 75 07 BF 00 04 00 00) // should be unique
+aobscanmodule(RightTriggerFix,TOS.exe,3A C3 75 05 BB 00 08 00 00) // should be unique
+
+
+LeftTriggerFix:
+  nop 4
+  mov edi,00000400
+
+RightTriggerFix:
+  nop 4
+  mov ebx,00000800
+
+
+[DISABLE]
+
+LeftTriggerFix:
+  db 3A D3 75 07 BF 00 04 00 00
+
+RightTriggerFix:
+  db 3A C3 75 05 BB 00 08 00 00
+
+
+{
+// ORIGINAL CODE - [LEFT TRIGGER] INJECTION POINT: TOS.exe+20C3B7
+
+TOS.exe+20C399: 8A 45 F2        - mov al,[ebp-0E]
+TOS.exe+20C39C: 66 89 56 22     - mov [esi+22],dx
+TOS.exe+20C3A0: 0F B6 D0        - movzx edx,al
+TOS.exe+20C3A3: 89 56 24        - mov [esi+24],edx
+TOS.exe+20C3A6: 8A 55 F3        - mov dl,[ebp-0D]
+TOS.exe+20C3A9: 0F B6 FA        - movzx edi,dl
+TOS.exe+20C3AC: 66 89 4E 1C     - mov [esi+1C],cx
+TOS.exe+20C3B0: 89 7E 28        - mov [esi+28],edi
+TOS.exe+20C3B3: 3A C3           - cmp al,bl
+TOS.exe+20C3B5: 74 0B           - je TOS.exe+20C3C2
+// ---------- INJECTING HERE ----------
+TOS.exe+20C3B7: 3A D3           - cmp dl,bl
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C3B9: 75 07           - jne TOS.exe+20C3C2
+TOS.exe+20C3BB: BF 00 04 00 00  - mov edi,00000400
+TOS.exe+20C3C0: EB 02           - jmp TOS.exe+20C3C4
+TOS.exe+20C3C2: 33 FF           - xor edi,edi
+TOS.exe+20C3C4: 89 7E 24        - mov [esi+24],edi
+TOS.exe+20C3C7: 3A D3           - cmp dl,bl
+TOS.exe+20C3C9: 74 09           - je TOS.exe+20C3D4
+TOS.exe+20C3CB: 3A C3           - cmp al,bl
+TOS.exe+20C3CD: 75 05           - jne TOS.exe+20C3D4
+TOS.exe+20C3CF: BB 00 08 00 00  - mov ebx,00000800
+}
+
+{
+// ORIGINAL CODE - [RIGHT TRIGGER] INJECTION POINT: TOS.exe+20C3CB
+
+TOS.exe+20C3B3: 3A C3                 - cmp al,bl
+TOS.exe+20C3B5: 74 0B                 - je TOS.exe+20C3C2
+TOS.exe+20C3B7: 3A D3                 - cmp dl,bl
+TOS.exe+20C3B9: 75 07                 - jne TOS.exe+20C3C2
+TOS.exe+20C3BB: BF 00 04 00 00        - mov edi,00000400
+TOS.exe+20C3C0: EB 02                 - jmp TOS.exe+20C3C4
+TOS.exe+20C3C2: 33 FF                 - xor edi,edi
+TOS.exe+20C3C4: 89 7E 24              - mov [esi+24],edi
+TOS.exe+20C3C7: 3A D3                 - cmp dl,bl
+TOS.exe+20C3C9: 74 09                 - je TOS.exe+20C3D4
+// ---------- INJECTING HERE ----------
+TOS.exe+20C3CB: 3A C3                 - cmp al,bl
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C3CD: 75 05                 - jne TOS.exe+20C3D4
+TOS.exe+20C3CF: BB 00 08 00 00        - mov ebx,00000800
+TOS.exe+20C3D4: B8 FF 7F 00 00        - mov eax,00007FFF
+TOS.exe+20C3D9: 89 5E 28              - mov [esi+28],ebx
+TOS.exe+20C3DC: 66 3B C8              - cmp cx,ax
+TOS.exe+20C3DF: 7C 09                 - jl TOS.exe+20C3EA
+TOS.exe+20C3E1: C7 46 34 00 00 08 00  - mov [esi+34],00080000
+TOS.exe+20C3E8: EB 39                 - jmp TOS.exe+20C423
+TOS.exe+20C3EA: BA 01 80 FF FF        - mov edx,FFFF8001
+TOS.exe+20C3EF: 66 3B CA              - cmp cx,dx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"Inputs"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <Color>00FFFF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version:
+  Date   : 2024-12-02
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ButtonInputs,TOS.exe,89 4E 10 8B D1) // should be unique
+alloc(Mem_ButtonInputs,$1000,ButtonInputs)
+alloc(ControlID,1)
+alloc(LoopCounter,3)
+alloc(MainControls,2)
+alloc(StoredControls,64)
+alloc(PageSwitch,2)
+
+registersymbol(ControlID)
+registersymbol(LoopCounter)
+registersymbol(MainControls)
+registersymbol(StoredControls)
+registersymbol(PageSwitch)
+registersymbol(MainArtes)
+registersymbol(StoredArtes)
+
+define(MainArtes,CharPtr+D8)
+define(StoredArtes,ArteStoragePtr)
+
+
+Mem_ButtonInputs:
+  push eax
+  push esi
+  push edi
+  //test byte [ControlID],0  //DEBUG for P1
+  //jnz IncID                //DEBUG JMP for P1
+  call Func_Inputs
+
+  test byte [TOS.exe+712CEC],1  //If in Battle
+  jz ArtesPageCheck
+  cmp byte [PauseState],0       //If Game is Not Paused
+  jne ArtesPageCheck
+  movzx ebx,byte [ControlID]     //Get Current Controller
+  movzx ecx,byte [PartyPtr+ebx]  //Get Current Char Slot
+  sub ecx,1
+  mov ebx,1
+  shl ebx,cl
+  mov eax,10
+  mul byte [ControlID]
+  cmp byte [StoredControls+eax+8],0  //Check if [LB] is Pressed
+  je ResetSwitch
+  or word [PageSwitch],bx
+  xor word [MainControls],100
+  call Func_UpdatePages
+  jmp IncID
+ResetSwitch:
+  not ebx
+  and word [PageSwitch],bx
+  call Func_UpdatePages
+  jmp IncID
+
+ArtesPageCheck:
+  test byte [ArtesPageState],0  //Check if Artes Page is Open
+  jnz ResetPages
+  cmp word [TOS.exe+70DDB0],3  //Check Cursor Area for Arte Select
+  je SkipPageReset
+  cmp byte [ShortcutState],0
+  jne IncID
+  cmp word [TOS.exe+70DDB0],2  //Check Cursor Area for Input Select
+  jne ResetPages
+  movzx ebx,byte [TOS.exe+70DDBE]  //Get Current Char Page Slot
+  movzx ecx,byte [PartyPtr+ebx]    //Get Current Char Slot
+  sub ecx,1
+  mov ebx,1
+  shl ebx,cl
+  cmp word [StoredArtes+7E],0  //Check if Artes Page is Main
+  je SkipPageReset
+  test word [StoredArtes+7E],bx
+  jz ResetPages
+SkipPageReset:
+  mov eax,10                         //
+  mul byte [ControlID]               //
+  cmp byte [StoredControls+eax+5],1  //Check if [Select] is Pressed
+  jne IncID                          //
+  xor word [PageSwitch],bx  //Set Char Page to Switch
+
+  mov ecx,1F           //Sound ID
+  call TOS.exe+17D510  //Play Sound Effect
+
+  call Func_UpdatePages
+  jmp IncID
+
+ResetPages:
+  mov word [PageSwitch],0
+  cmp word [StoredArtes+7E],0
+  je IncID
+  call Func_UpdatePages
+  jmp IncID
+
+
+
+  jmp IncID  //Error Catch
+
+
+//=============//
+//  Functions  //
+//=============//
+
+Func_Inputs:
+  mov word [MainControls],cx
+  mov eax,10
+  mul byte [ControlID]
+  mov edx,eax
+GetInputsLoop:
+  movzx ecx,byte [LoopCounter]
+  mov eax,1
+  shl ax,cl
+  add ecx,edx
+  test word [MainControls],ax
+  jz ReleasedButton
+  cmp byte [StoredControls+ecx],1E  //Check if Button is Held for 1 Sec
+  jae GetInputsEnd
+  inc byte [StoredControls+ecx]
+  jmp GetInputsEnd
+ReleasedButton:
+  mov byte [StoredControls+ecx],0
+GetInputsEnd:
+  inc byte [LoopCounter]          //Increase Loop Count
+  cmp byte [LoopCounter],10       //
+  jb GetInputsLoop                //Jump if Loop Count is Below Target
+  mov byte [LoopCounter],0
+  ret
+
+Func_ResetPages:
+  mov word [PageSwitch],0
+  call Func_UpdatePages
+  ret
+
+Func_UpdatePages:  //Swap Artes Between Main and Alt
+  lea esi,[StoredArtes]
+  lea edi,[MainArtes]
+UpdatePagesLoopMain:
+  movzx ecx,byte [LoopCounter]
+  movzx ebx,word [PageSwitch]
+  movzx eax,word [StoredArtes+7E]
+  shr ax,cl
+  shr bx,cl
+  and ax,1
+  and bx,1
+  cmp bx,ax
+  je SkipPage
+UpdatePagesLoopSub:
+  mov ecx,[esi]   //Load 4 Bytes from Main Artes to Register
+  xchg ecx,[edi]  //Exchange 4 Bytes Between Stored Artes &amp; Register
+  mov [esi],ecx   //Exchange 4 Bytes Between Main Artes &amp; Register
+  add esi,4
+  add edi,4
+  inc byte [LoopCounter+1]    //
+  cmp byte [LoopCounter+1],4  //
+  jb UpdatePagesLoopSub       //
+  mov byte [LoopCounter+1],0  //
+  sub esi,2
+  sub edi,2
+  movzx ecx,word [esi]  //Load 2 Bytes from Main Artes to Register
+  xchg cx,word [edi]    //Exchange 2 Bytes Between Stored Artes &amp; Register
+  mov word [esi],cx          //Exchange 2 Bytes Between Main Artes &amp; Register
+  sub esi,E
+  sub edi,E
+SkipPage:
+  add esi,E
+  add edi,118
+  inc byte [LoopCounter]    //
+  cmp byte [LoopCounter],9  //
+  jb UpdatePagesLoopMain    //
+  mov byte [LoopCounter],0  //
+  movzx ebx,word [PageSwitch]
+  mov word [StoredArtes+7E],bx
+  ret
+
+
+IncID:
+  inc byte [ControlID]
+  cmp byte [ControlID],3
+  jbe Code_ButtonInputs
+  mov byte [ControlID],0
+
+Code_ButtonInputs:
+  pop edi
+  pop esi
+  pop eax
+  movzx ecx,word [MainControls]
+  mov [esi+10],ecx
+  mov edx,ecx
+  jmp Ret_ButtonInputs
+{
+ControlID:
+db (int)-1
+}
+
+InputIndex:
+  db 01 02 04 08 10 20 40 80
+
+ButtonInputs:
+  jmp Mem_ButtonInputs
+Ret_ButtonInputs:
+registersymbol(ButtonInputs)
+
+[DISABLE]
+
+ButtonInputs:
+  db 89 4E 10 8B D1
+
+
+unregistersymbol(StoredArtes)
+unregistersymbol(MainArtes)
+unregistersymbol(PageSwitch)
+unregistersymbol(StoredControls)
+unregistersymbol(MainControls)
+unregistersymbol(LoopCounter)
+unregistersymbol(ControlID)
+unregistersymbol(ButtonInputs)
+
+dealloc(PageSwitch)
+dealloc(StoredControls)
+dealloc(MainControls)
+dealloc(LoopCounter)
+dealloc(ControlID)
+dealloc(Mem_ButtonInputs)
+
+{
+// ORIGINAL Code_ButtonInputs - [INPUTS] INJECTION POINT: TOS.exe+20CC53
+
+TOS.exe+20CC3F: CC        - int 3
+TOS.exe+20CC40: 55        - push ebp
+TOS.exe+20CC41: 8B EC     - mov ebp,esp
+TOS.exe+20CC43: 83 EC 20  - sub esp,20
+TOS.exe+20CC46: 8B 08     - mov ecx,[eax]
+TOS.exe+20CC48: 89 4E 0C  - mov [esi+0C],ecx
+TOS.exe+20CC4B: 8B 48 04  - mov ecx,[eax+04]
+TOS.exe+20CC4E: 53        - push ebx
+TOS.exe+20CC4F: 57        - push edi
+TOS.exe+20CC50: 8B 7E 10  - mov edi,[esi+10]
+// ---------- INJECTING HERE ----------
+TOS.exe+20CC53: 89 4E 10  - mov [esi+10],ecx
+// ---------- DONE INJECTING  ----------
+TOS.exe+20CC56: 8B D1     - mov edx,ecx
+TOS.exe+20CC58: 33 D7     - xor edx,edi
+TOS.exe+20CC5A: 8B FA     - mov edi,edx
+TOS.exe+20CC5C: 23 F9     - and edi,ecx
+TOS.exe+20CC5E: 89 7E 14  - mov [esi+14],edi
+TOS.exe+20CC61: F7 D1     - not ecx
+TOS.exe+20CC63: 23 CA     - and ecx,edx
+TOS.exe+20CC65: 8B 50 08  - mov edx,[eax+08]
+TOS.exe+20CC68: 89 4E 18  - mov [esi+18],ecx
+TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>42</ID>
+          <Description>"P1 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>5B5BFF</Color>
+          <VariableType>8 Bytes</VariableType>
+          <Address>StoredControls</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"P1 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>5B5BFF</Color>
+              <VariableType>8 Bytes</VariableType>
+              <Address>StoredControls+8</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"P2 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>FF7F5B</Color>
+          <VariableType>8 Bytes</VariableType>
+          <Address>StoredControls+10</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>74</ID>
+              <Description>"P2 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>FF7F5B</Color>
+              <VariableType>8 Bytes</VariableType>
+              <Address>StoredControls+10+8</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"P3 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>5BFF5B</Color>
+          <VariableType>8 Bytes</VariableType>
+          <Address>StoredControls+10*2</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>76</ID>
+              <Description>"P3 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>5BFF5B</Color>
+              <VariableType>8 Bytes</VariableType>
+              <Address>StoredControls+10*2+8</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"P4 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>5BFFFF</Color>
+          <VariableType>8 Bytes</VariableType>
+          <Address>StoredControls+10*3</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>78</ID>
+              <Description>"P4 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>5BFFFF</Color>
+              <VariableType>8 Bytes</VariableType>
+              <Address>StoredControls+10*3+8</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>60</ID>
+      <Description>"Debug 1"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>FF00FF</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Debug1</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>96</ID>
+      <Description>"Debug 2"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>FF00FF</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Debug2</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>99</ID>
+      <Description>"Page Storage"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>ArteStoragePtr+7E</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>100</ID>
+      <Description>"Page Switch"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>PageSwitch</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>92</ID>
+      <Description>"Main Artes Ptr"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>MainArtes</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>88</ID>
+      <Description>"Arte Sphere Storage Pointer"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>ArteStoragePtr</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>39</ID>
+      <Description>"Controller ID (Should Stay at 0)"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>ControlID</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>79</ID>
+      <Description>"Input Loop"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>LoopCounter</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>40</ID>
+      <Description>"Main 1"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>MainControls</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>41</ID>
+      <Description>"Main 2"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>MainControls+1</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"eghgg"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>01DE4925</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"rt"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>00E27FA3</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"lt"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>00E27FA2</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"rt2"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>00E27FC1</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>48</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(RightTriggerFix,64)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+RightTriggerFix: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+cmp dl,7F
+jbe TOS.exe+20C3D4
+cmp bl,bl
+
+exit:
+jmp returnhere
+
+"TOS.exe"+20C3C7:
+jmp RightTriggerFix
+nop
+returnhere:
+
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(RightTriggerFix)
+"TOS.exe"+20C3C7:
+db 3A D3 74 09 3A C3
+//cmp dl,bl
+//je TOS.exe+20C3D4
+//cmp al,bl
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>49</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>307F760+4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>50</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>0307F760</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>51</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>01DE4910</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>52</ID>
+      <Description>"inputvar"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>0307F765</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>53</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>1</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>0307F748+18</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>54</ID>
+      <Description>"No description"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>2D13DCBD</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>55</ID>
+      <Description>"No description"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>[TOS.exe+6CE268]+F4D</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>56</ID>
+      <Description>"EGG"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <GroupHeader>1</GroupHeader>
+      <Address>TOS.exe+6CE268</Address>
+      <Offsets>
+        <Offset>F4D</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>57</ID>
+      <Description>"No Description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>00E27FB0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>65</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(TESTINPUTCOUNT,TOS.exe,89 46 04 8B 45 F0 89 46) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+04],0
+  mov eax,[ebp-10]
+  jmp return
+
+TESTINPUTCOUNT:
+  jmp newmem
+  nop
+return:
+registersymbol(TESTINPUTCOUNT)
+
+[DISABLE]
+
+TESTINPUTCOUNT:
+  db 89 46 04 8B 45 F0
+
+unregistersymbol(TESTINPUTCOUNT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C361
+
+TOS.exe+20C33C: FF 15 CC E5 6F 00  - call dword ptr [TOS.exe+2FE5CC]
+TOS.exe+20C342: 89 5E 18           - mov [esi+18],ebx
+TOS.exe+20C345: 89 5E 38           - mov [esi+38],ebx
+TOS.exe+20C348: 89 5E 34           - mov [esi+34],ebx
+TOS.exe+20C34B: 89 7E 14           - mov [esi+14],edi
+TOS.exe+20C34E: 8B CF              - mov ecx,edi
+TOS.exe+20C350: C7 06 01 00 00 00  - mov [esi],00000001
+TOS.exe+20C356: 3B C3              - cmp eax,ebx
+TOS.exe+20C358: 0F 85 14 01 00 00  - jne TOS.exe+20C472
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+// ---------- INJECTING HERE ----------
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+TOS.exe+20C367: 89 46 08           - mov [esi+08],eax
+TOS.exe+20C36A: BA 01 00 00 00     - mov edx,00000001
+TOS.exe+20C36F: D3 E2              - shl edx,cl
+TOS.exe+20C371: 8B 4D F4           - mov ecx,[ebp-0C]
+TOS.exe+20C374: 0F B7 C0           - movzx eax,ax
+TOS.exe+20C377: 09 15 24 7E E2 00  - or [TOS.exe+A27E24],edx
+TOS.exe+20C37D: 8B 55 F8           - mov edx,[ebp-08]
+TOS.exe+20C380: 89 46 18           - mov [esi+18],eax
+TOS.exe+20C383: 66 8B 45 F6        - mov ax,[ebp-0A]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>69</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(InputID,TOS.exe,8B CF C7 06 01 00 00 00) // should be unique
+alloc(InputIDMem,$1000)
+alloc(ControlID,1)
+
+registersymbol(ControlID)
+
+
+InputIDMem:
+  mov ecx,edi
+  mov byte [ControlID],cl
+
+code:
+  mov [esi],00000001
+  jmp return
+
+InputID:
+  jmp InputIDMem
+  nop 3
+return:
+registersymbol(InputID)
+
+[DISABLE]
+
+InputID:
+  db 8B CF C7 06 01 00 00 00
+
+unregistersymbol(ControlID)
+unregistersymbol(InputID)
+dealloc(ControlID)
+dealloc(InputIDMem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C34E
+
+TOS.exe+20C334: 8B F9              - mov edi,ecx
+TOS.exe+20C336: 50                 - push eax
+TOS.exe+20C337: 57                 - push edi
+TOS.exe+20C338: 8B F2              - mov esi,edx
+TOS.exe+20C33A: 33 DB              - xor ebx,ebx
+TOS.exe+20C33C: FF 15 CC E5 6F 00  - call dword ptr [TOS.exe+2FE5CC]
+TOS.exe+20C342: 89 5E 18           - mov [esi+18],ebx
+TOS.exe+20C345: 89 5E 38           - mov [esi+38],ebx
+TOS.exe+20C348: 89 5E 34           - mov [esi+34],ebx
+TOS.exe+20C34B: 89 7E 14           - mov [esi+14],edi
+// ---------- INJECTING HERE ----------
+TOS.exe+20C34E: 8B CF              - mov ecx,edi
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C350: C7 06 01 00 00 00  - mov [esi],00000001
+TOS.exe+20C356: 3B C3              - cmp eax,ebx
+TOS.exe+20C358: 0F 85 14 01 00 00  - jne TOS.exe+20C472
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+TOS.exe+20C367: 89 46 08           - mov [esi+08],eax
+TOS.exe+20C36A: BA 01 00 00 00     - mov edx,00000001
+TOS.exe+20C36F: D3 E2              - shl edx,cl
+TOS.exe+20C371: 8B 4D F4           - mov ecx,[ebp-0C]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>70</ID>
+      <Description>"Controller ID"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>ControlID</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>71</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-01
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(InputID,TOS.exe,0F 85 14 01 00 00 8B 45) // should be unique
+alloc(Mem_InputID,$1000)
+
+
+
+Mem_InputID:
+
+code:
+  jne TOS.exe+20C472
+
+  jmp Ret_InputID
+
+InputID:
+  jmp Mem_InputID
+  nop
+Ret_InputID:
+registersymbol(InputID)
+
+[DISABLE]
+
+InputID:
+  db 0F 85 14 01 00 00
+
+unregistersymbol(InputID)
+dealloc(Mem_InputID)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20C358
+
+TOS.exe+20C338: 8B F2              - mov esi,edx
+TOS.exe+20C33A: 33 DB              - xor ebx,ebx
+TOS.exe+20C33C: FF 15 CC E5 6F 00  - call dword ptr [TOS.exe+2FE5CC]
+TOS.exe+20C342: 89 5E 18           - mov [esi+18],ebx
+TOS.exe+20C345: 89 5E 38           - mov [esi+38],ebx
+TOS.exe+20C348: 89 5E 34           - mov [esi+34],ebx
+TOS.exe+20C34B: 89 7E 14           - mov [esi+14],edi
+InputID: E9 AD 3C D6 02     - jmp 03370000
+TOS.exe+20C353: 0F 1F 00           - nop dword ptr [eax]
+TOS.exe+20C356: 3B C3              - cmp eax,ebx
+// ---------- INJECTING HERE ----------
+TOS.exe+20C358: 0F 85 14 01 00 00  - jne TOS.exe+20C472
+// ---------- DONE INJECTING  ----------
+TOS.exe+20C35E: 8B 45 EC           - mov eax,[ebp-14]
+TOS.exe+20C361: 89 46 04           - mov [esi+04],eax
+TOS.exe+20C364: 8B 45 F0           - mov eax,[ebp-10]
+TOS.exe+20C367: 89 46 08           - mov [esi+08],eax
+TOS.exe+20C36A: BA 01 00 00 00     - mov edx,00000001
+TOS.exe+20C36F: D3 E2              - shl edx,cl
+TOS.exe+20C371: 8B 4D F4           - mov ecx,[ebp-0C]
+TOS.exe+20C374: 0F B7 C0           - movzx eax,ax
+TOS.exe+20C377: 09 15 24 7E E2 00  - or [TOS.exe+A27E24],edx
+TOS.exe+20C37D: 8B 55 F8           - mov edx,[ebp-08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>82</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>TOS.exe+70DDC4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>84</ID>
+      <Description>"Gald"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>[TOS.exe+006CE268]</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>87</ID>
+      <Description>"Gald Pointer"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>GaldPtr</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>86</ID>
+      <Description>"Arte Sphere Storage"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>[TOS.exe+006CE268]+114</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>89</ID>
+      <Description>"Party"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C7DDCBD</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>90</ID>
+      <Description>"Party Pointer"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>PartyPtr</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>91</ID>
+      <Description>"Page Slot"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>TOS.exe+70DDBE</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>93</ID>
+      <Description>"Character Pointer"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>String</VariableType>
+      <Length>10</Length>
+      <Unicode>0</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>CharPtr</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>95</ID>
+      <Description>"No description"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>TOS.exe+70DDB2</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>97</ID>
+      <Description>"Arte Page Cursor Area"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>TOS.exe+70DDB0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>98</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>TOS.exe+70DDB0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>101</ID>
+      <Description>"Shortcut Char2"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>30A9D1BD</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>102</ID>
+      <Description>"No description"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>30A9D1BA</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Controller Inputs ???: mov [esi+18],ebx</Description>
+      <AddressString>TOS.exe+20C342</AddressString>
+      <Before>
+        <Byte>15</Byte>
+        <Byte>CC</Byte>
+        <Byte>E5</Byte>
+        <Byte>6F</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>5E</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>5E</Byte>
+        <Byte>38</Byte>
+        <Byte>89</Byte>
+        <Byte>5E</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Controller Inputs Set: mov [esi+18],eax</Description>
+      <AddressString>TOS.exe+20C380</AddressString>
+      <Before>
+        <Byte>E2</Byte>
+        <Byte>00</Byte>
+        <Byte>8B</Byte>
+        <Byte>55</Byte>
+        <Byte>F8</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>F6</Byte>
+        <Byte>66</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>R-Stick X: mov [esi+28],eax</Description>
+      <AddressString>TOS.exe+20CABB</AddressString>
+      <Before>
+        <Byte>2D</Byte>
+        <Byte>FF</Byte>
+        <Byte>7F</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>3D</Byte>
+        <Byte>7C</Byte>
+        <Byte>7F</Byte>
+        <Byte>E2</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>R-Stick Xw: mov [esi+28],eax</Description>
+      <AddressString>TOS.exe+20C93B</AddressString>
+      <Before>
+        <Byte>2D</Byte>
+        <Byte>FF</Byte>
+        <Byte>7F</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>BF</Byte>
+        <Byte>C3</Byte>
+        <Byte>99</Byte>
+        <Byte>6A</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Rotation?: fstp dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A88E</AddressString>
+      <Before>
+        <Byte>B8</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>9E</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5B</Byte>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Unison Start: mov byte ptr [edx+00009108],03</Description>
+      <AddressString>TOS.exe+7135A</AddressString>
+      <Before>
+        <Byte>91</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>33</Byte>
+        <Byte>C9</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>82</Byte>
+        <Byte>08</Byte>
+        <Byte>91</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>8A</Byte>
+        <Byte>0E</Byte>
+        <Byte>91</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Unison End: mov byte ptr [esi+00009108],00</Description>
+      <AddressString>TOS.exe+71404</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>75</Byte>
+        <Byte>0F</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>86</Byte>
+        <Byte>08</Byte>
+        <Byte>91</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>B0</Byte>
+        <Byte>01</Byte>
+        <Byte>5F</Byte>
+        <Byte>5E</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fstp dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A87C</AddressString>
+      <Before>
+        <Byte>AE</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>9E</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5B</Byte>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov esp,ebp</Description>
+      <AddressString>TOS.exe+3A883</AddressString>
+      <Before>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>5B</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+      </Actual>
+      <After>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+        <Byte>DD</Byte>
+        <Byte>D8</Byte>
+        <Byte>B8</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fstp dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A854</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>9E</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5B</Byte>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fld dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A85F</AddressString>
+      <Before>
+        <Byte>5B</Byte>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>86</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>C1</Byte>
+        <Byte>D8</Byte>
+        <Byte>C3</Byte>
+        <Byte>DE</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fstp dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A825</AddressString>
+      <Before>
+        <Byte>41</Byte>
+        <Byte>75</Byte>
+        <Byte>0A</Byte>
+        <Byte>D9</Byte>
+        <Byte>C9</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>9E</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>02</Byte>
+        <Byte>DD</Byte>
+        <Byte>D9</Byte>
+        <Byte>D9</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fstp dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A808</AddressString>
+      <Before>
+        <Byte>F6</Byte>
+        <Byte>C4</Byte>
+        <Byte>41</Byte>
+        <Byte>75</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>9E</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>02</Byte>
+        <Byte>DD</Byte>
+        <Byte>D8</Byte>
+        <Byte>D9</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fld dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A7F7</AddressString>
+      <Before>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>04</Byte>
+        <Byte>EB</Byte>
+        <Byte>E5</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>86</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>D8</Byte>
+        <Byte>E2</Byte>
+        <Byte>D8</Byte>
+        <Byte>D1</Byte>
+        <Byte>DF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fsubp st(2),st(0)</Description>
+      <AddressString>TOS.exe+3A83D</AddressString>
+      <Before>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>0C</Byte>
+        <Byte>D9</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>DE</Byte>
+        <Byte>EA</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>CA</Byte>
+        <Byte>DE</Byte>
+        <Byte>D9</Byte>
+        <Byte>DF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fld dword ptr [esi+000138AC]</Description>
+      <AddressString>TOS.exe+3A82F</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>EB</Byte>
+        <Byte>02</Byte>
+        <Byte>DD</Byte>
+        <Byte>D9</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>86</Byte>
+        <Byte>AC</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>C1</Byte>
+        <Byte>D9</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>BattlePause?: mov byte ptr [esi+000093CE],01</Description>
+      <AddressString>TOS.exe+5D8D3</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>4D</Byte>
+        <Byte>16</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>86</Byte>
+        <Byte>CE</Byte>
+        <Byte>93</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>08</Byte>
+        <Byte>5F</Byte>
+        <Byte>5E</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle Unpause?: mov byte ptr [esi+000093CE],00</Description>
+      <AddressString>TOS.exe+5D927</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>08</Byte>
+        <Byte>5F</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>86</Byte>
+        <Byte>CE</Byte>
+        <Byte>93</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5E</Byte>
+        <Byte>5B</Byte>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle Start: mov [eax+0C],00000001</Description>
+      <AddressString>TOS.exe+1AD6BE</AddressString>
+      <Before>
+        <Byte>8B</Byte>
+        <Byte>30</Byte>
+        <Byte>8B</Byte>
+        <Byte>48</Byte>
+        <Byte>04</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>40</Byte>
+        <Byte>0C</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>39</Byte>
+        <Byte>46</Byte>
+        <Byte>04</Byte>
+        <Byte>8B</Byte>
+        <Byte>51</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle End: mov [eax+0C],00000000</Description>
+      <AddressString>TOS.exe+1AD3B2</AddressString>
+      <Before>
+        <Byte>FC</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>07</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>40</Byte>
+        <Byte>0C</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle End?: mov byte ptr [TOS.exe+182AF71],00</Description>
+      <AddressString>TOS.exe+C3F71</AddressString>
+      <Before>
+        <Byte>C4</Byte>
+        <Byte>66</Byte>
+        <Byte>C3</Byte>
+        <Byte>01</Byte>
+        <Byte>01</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>05</Byte>
+        <Byte>71</Byte>
+        <Byte>AF</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>A3</Byte>
+        <Byte>A8</Byte>
+        <Byte>66</Byte>
+        <Byte>C3</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle Start?: mov byte ptr [TOS.exe+182AF70],01</Description>
+      <AddressString>TOS.exe+164E76</AddressString>
+      <Before>
+        <Byte>70</Byte>
+        <Byte>AF</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>C3</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>05</Byte>
+        <Byte>70</Byte>
+        <Byte>AF</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>01</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>A1</Byte>
+        <Byte>68</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle End???: mov byte ptr [TOS.exe+182AFAC],00</Description>
+      <AddressString>TOS.exe+C42E7</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>3D</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>05</Byte>
+        <Byte>AC</Byte>
+        <Byte>AF</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>3D</Byte>
+        <Byte>BA</Byte>
+        <Byte>0A</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Battle Start???: mov byte ptr [TOS.exe+182AFAC],01</Description>
+      <AddressString>TOS.exe+1650CC</AddressString>
+      <Before>
+        <Byte>66</Byte>
+        <Byte>03</Byte>
+        <Byte>E3</Byte>
+        <Byte>DD</Byte>
+        <Byte>D8</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>05</Byte>
+        <Byte>AC</Byte>
+        <Byte>AF</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>01</Byte>
+      </Actual>
+      <After>
+        <Byte>88</Byte>
+        <Byte>15</Byte>
+        <Byte>AD</Byte>
+        <Byte>AF</Byte>
+        <Byte>C2</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [ecx+24],edx</Description>
+      <AddressString>TOS.exe+20CCA4</AddressString>
+      <Before>
+        <Byte>51</Byte>
+        <Byte>20</Byte>
+        <Byte>8B</Byte>
+        <Byte>50</Byte>
+        <Byte>2C</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>51</Byte>
+        <Byte>24</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>50</Byte>
+        <Byte>30</Byte>
+        <Byte>89</Byte>
+        <Byte>51</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+2C],eax</Description>
+      <AddressString>TOS.exe+20C96E</AddressString>
+      <Before>
+        <Byte>2D</Byte>
+        <Byte>FF</Byte>
+        <Byte>7F</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>2C</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>30</Byte>
+        <Byte>F7</Byte>
+        <Byte>D8</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+2C],eax</Description>
+      <AddressString>TOS.exe+20CA57</AddressString>
+      <Before>
+        <Byte>2D</Byte>
+        <Byte>FF</Byte>
+        <Byte>7F</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>2C</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>B6</Byte>
+        <Byte>0D</Byte>
+        <Byte>96</Byte>
+        <Byte>7F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [ebx],eax</Description>
+      <AddressString>TOS.exe+20CFB2</AddressString>
+      <Before>
+        <Byte>4C</Byte>
+        <Byte>0D</Byte>
+        <Byte>00</Byte>
+        <Byte>5F</Byte>
+        <Byte>5E</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>5B</Byte>
+        <Byte>8B</Byte>
+        <Byte>E5</Byte>
+        <Byte>5D</Byte>
+        <Byte>C2</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of lea edi,[esp+18]</Description>
+      <AddressString>TOS.exe+20CBDD</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>8B</Byte>
+        <Byte>F3</Byte>
+      </Before>
+      <Actual>
+        <Byte>8D</Byte>
+        <Byte>7C</Byte>
+        <Byte>24</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>A5</Byte>
+        <Byte>8B</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Game Inputs: mov [esi+10],ecx</Description>
+      <AddressString>TOS.exe+20CC53</AddressString>
+      <Before>
+        <Byte>53</Byte>
+        <Byte>57</Byte>
+        <Byte>8B</Byte>
+        <Byte>7E</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>D1</Byte>
+        <Byte>33</Byte>
+        <Byte>D7</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+14],edi</Description>
+      <AddressString>TOS.exe+20CC5E</AddressString>
+      <Before>
+        <Byte>D7</Byte>
+        <Byte>8B</Byte>
+        <Byte>FA</Byte>
+        <Byte>23</Byte>
+        <Byte>F9</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>7E</Byte>
+        <Byte>14</Byte>
+      </Actual>
+      <After>
+        <Byte>F7</Byte>
+        <Byte>D1</Byte>
+        <Byte>23</Byte>
+        <Byte>CA</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of or [TOS.exe+A27E24],edx</Description>
+      <AddressString>TOS.exe+20C377</AddressString>
+      <Before>
+        <Byte>4D</Byte>
+        <Byte>F4</Byte>
+        <Byte>0F</Byte>
+        <Byte>B7</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>09</Byte>
+        <Byte>15</Byte>
+        <Byte>24</Byte>
+        <Byte>7E</Byte>
+        <Byte>E2</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>55</Byte>
+        <Byte>F8</Byte>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+08],eax</Description>
+      <AddressString>TOS.exe+20C367</AddressString>
+      <Before>
+        <Byte>46</Byte>
+        <Byte>04</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>F0</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>BA</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+28],edi</Description>
+      <AddressString>TOS.exe+20C3B0</AddressString>
+      <Before>
+        <Byte>FA</Byte>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>1C</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>7E</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>3A</Byte>
+        <Byte>C3</Byte>
+        <Byte>74</Byte>
+        <Byte>0B</Byte>
+        <Byte>3A</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+28],ebx</Description>
+      <AddressString>TOS.exe+20C3D9</AddressString>
+      <Before>
+        <Byte>B8</Byte>
+        <Byte>FF</Byte>
+        <Byte>7F</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>5E</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>3B</Byte>
+        <Byte>C8</Byte>
+        <Byte>7C</Byte>
+        <Byte>09</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of je TOS.exe+20C3D4</Description>
+      <AddressString>TOS.exe+20C3C9</AddressString>
+      <Before>
+        <Byte>89</Byte>
+        <Byte>7E</Byte>
+        <Byte>24</Byte>
+        <Byte>3A</Byte>
+        <Byte>D3</Byte>
+      </Before>
+      <Actual>
+        <Byte>74</Byte>
+        <Byte>09</Byte>
+      </Actual>
+      <After>
+        <Byte>3A</Byte>
+        <Byte>C3</Byte>
+        <Byte>75</Byte>
+        <Byte>05</Byte>
+        <Byte>BB</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of cmp al,bl</Description>
+      <AddressString>TOS.exe+20C3CB</AddressString>
+      <Before>
+        <Byte>24</Byte>
+        <Byte>3A</Byte>
+        <Byte>D3</Byte>
+        <Byte>74</Byte>
+        <Byte>09</Byte>
+      </Before>
+      <Actual>
+        <Byte>3A</Byte>
+        <Byte>C3</Byte>
+      </Actual>
+      <After>
+        <Byte>75</Byte>
+        <Byte>05</Byte>
+        <Byte>BB</Byte>
+        <Byte>00</Byte>
+        <Byte>08</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of jne TOS.exe+20C3D4</Description>
+      <AddressString>TOS.exe+20C3CD</AddressString>
+      <Before>
+        <Byte>D3</Byte>
+        <Byte>74</Byte>
+        <Byte>09</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>75</Byte>
+        <Byte>05</Byte>
+      </Actual>
+      <After>
+        <Byte>BB</Byte>
+        <Byte>00</Byte>
+        <Byte>08</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov edi,TOS.exe+A27F28</Description>
+      <AddressString>TOS.exe+20C4B7</AddressString>
+      <Before>
+        <Byte>B9</Byte>
+        <Byte>17</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>BF</Byte>
+        <Byte>28</Byte>
+        <Byte>7F</Byte>
+        <Byte>E2</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>A5</Byte>
+        <Byte>8B</Byte>
+        <Byte>4D</Byte>
+        <Byte>FC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of cmp dl,bl</Description>
+      <AddressString>TOS.exe+20C3B7</AddressString>
+      <Before>
+        <Byte>28</Byte>
+        <Byte>3A</Byte>
+        <Byte>C3</Byte>
+        <Byte>74</Byte>
+        <Byte>0B</Byte>
+      </Before>
+      <Actual>
+        <Byte>3A</Byte>
+        <Byte>D3</Byte>
+      </Actual>
+      <After>
+        <Byte>75</Byte>
+        <Byte>07</Byte>
+        <Byte>BF</Byte>
+        <Byte>00</Byte>
+        <Byte>04</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Inc Arte Cursor :inc word ptr [TOS.exe+70DDB2]</Description>
+      <AddressString>TOS.exe+1246C8</AddressString>
+      <Before>
+        <Byte>49</Byte>
+        <Byte>3B</Byte>
+        <Byte>D1</Byte>
+        <Byte>7D</Byte>
+        <Byte>13</Byte>
+      </Before>
+      <Actual>
+        <Byte>66</Byte>
+        <Byte>FF</Byte>
+        <Byte>05</Byte>
+        <Byte>B2</Byte>
+        <Byte>DD</Byte>
+        <Byte>B0</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C7</Byte>
+        <Byte>45</Byte>
+        <Byte>F8</Byte>
+        <Byte>1C</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>SFX ECX=SndID :call TOS.exe+17D510</Description>
+      <AddressString>TOS.exe+125CEA</AddressString>
+      <Before>
+        <Byte>66</Byte>
+        <Byte>3B</Byte>
+        <Byte>CA</Byte>
+        <Byte>74</Byte>
+        <Byte>15</Byte>
+      </Before>
+      <Actual>
+        <Byte>E8</Byte>
+        <Byte>21</Byte>
+        <Byte>78</Byte>
+        <Byte>05</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5F</Byte>
+        <Byte>5E</Byte>
+        <Byte>33</Byte>
+        <Byte>C0</Byte>
+        <Byte>5B</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>[Sound IDs]
+00 = Water Gyser? (Loop)
+01 = Rheihard Hover (Loop)
+02 = Wind Woosh?
+03 = Field Forest Step
+04 = Thud
+05 = Chest Open
+06 = Door Open
+07 = Menu Error
+08 = Menu Open
+09 = Sorcerer's Ring
+0A = Comical Fall
+0B = Stone/Dirt Step?
+0C = Grass Step
+0D = Stone Step 1
+0E = Stone Step 2
+0F = Wood Step
+10 = Nothing?
+11 = Sand Step
+12 = Snow Step 1
+13 = Snow Step 2
+14 = ?
+15 = Mud Step?
+16 = Water Step
+17 = Bubble?
+18 = Dirt/Snow?
+19 = Item Got
+1A = Menu Cancel
+1B = Menu Accept
+1C = Menu Move
+1D = Memory Circle Entered
+1E = Menu Status Recover
+1F = Menu Page Up/Down
+20 = Screen Shatter
+21 = Water Gyser? (Loop)
+22+ = Nothing?
+</Comments>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>62F16D4E</Address>
+      <Comment>60
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>62F16D58</Address>
+      <Comment>71
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>62F16D64</Address>
+      <Comment>90
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
+</CheatTable>
