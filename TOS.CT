@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>15</ID>
       <Description>"[Enable]"</Description>
-      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
       <Color>FFFF00</Color>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>[ENABLE]
@@ -9575,9 +9575,7 @@ Func_GetController:
 
 IncID:
   inc byte [ControlID]
-  cmp byte [ControlID],4
-  jb Code_ButtonInputs
-  mov byte [ControlID],0
+  and byte [ControlID],3
 
 Code_ButtonInputs:
   pop edi
