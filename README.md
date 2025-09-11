@@ -10,15 +10,22 @@ This currently features:
 - Equipment Tool (Currently only Weapons)
 - Item Tool (Consumables/Materials/Equipment/Ingredients/Key Items)
 - Artes Tool (Able to Swap Artes)
-- Artes Sphere Scipt v2.0 (Finally!) (Activate by Holding [LB] in Battle; In Artes Menu Press [Select])
 
-[NOTICE] Create a Seperate Save if you plan to use the Arte Sphere!
+[NEW]
+- Artes Sphere Scipt v3.0 (Activate by holding [LB | L1] in battle; in artes menu press [Back | Select])
+- R-Stick Shortcuts (Built into Artes Sphere v3.0)
+- Modified Freerun (Built into Artes Sphere v3.0)
+- Remove Shortcuts Fix (Built into Artes Sphere v3.0)
+- Save Anywhere
+- Arte Family Combo (Can combo arte families, e.g. [Demon Fang] → [Double Demon Fang], ect.)  
+
+(Vanilla game wouldn't remove assigned characters from shortcuts leading to odd stutter if the shortcut was pressed) 
+
+[NOTICE] Create a Seperate Save if you plan to use the Artes Sphere Script!
 
 (Artes now save per file, but I am unsure if any event flags will be messed up!)
 
-(You can change Strategies again through the Battle Menu, but anything that causes pauses (Like Spells) will allow you to swap the Strategy mid-gameplay.)
-
-(Unison still requires each person to hold [LB] to use their Alt Artes. That's some true teamwork!)
+(Player 1 now has control over everyone's Arte Page during Unison Attack)
 
 - Free Running (By: u4ick)
-- Name Fixes [EN] (e.g. Indignation Judg., Tech --> Artes, Holy Binds --> Shining Bind, Ax --> Axe, ect.)
+- Name Fixes & Alts [EN] (e.g. Genis's "" → "Indignation Judg.", "Tech" → "Artes", "Holy Binds" → "Shining Bind", "Ax" → [Alt] "Axe", "Falcon's Crest" → [Alt] "Chaos Blade", ect.)
