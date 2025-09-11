@@ -1229,11 +1229,157 @@ TOS.exe+20C3A3: 89 56 24           - mov [esi+24],edx
       <Address>ShortcutState</Address>
     </CheatEntry>
     <CheatEntry>
-      <ID>58</ID>
-      <Description>"Detect Battle Paused TEST"</Description>
+      <ID>72</ID>
+      <Description>"Symbol Set"</Description>
       <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
       <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : TOS.exe
+      <AssemblerScript>[ENABLE]
+
+aobscan(TextPtr,55 2E 20 41 74 74 61 63 6B 00 00 00 00 00 00 00 53 74 72 61 74 00 00 00 00 00 00 00 00 00 00 00 45 71 75 69 70 00 00 00 00 00 00 00 00 00 00 00 49 74 65 6D 00 00 00 00 00 00 00 00 00 00 00 00 45 73 63 61 70 65 00 00 00 00 00 00 00 00 00 00)
+alloc(IndJudgTitle,32)
+alloc(Debug1,4)
+
+registersymbol(IndJudgTitle)
+registersymbol(Debug1)
+registersymbol(TextPtr)
+
+registersymbol(BasePtr)
+registersymbol(GaldPtr)
+
+registersymbol(PartyPtR)
+registersymbol(CharPtr)
+registersymbol(ArteStoragePtr)
+//Item
+registersymbol(ItemPtr)
+registersymbol(IngrPtr)
+registersymbol(KeyPtr)
+//Weapon
+registersymbol(TwinBladePtr)
+registersymbol(ChakramPtr)
+registersymbol(KendamaPtr)
+registersymbol(RodPtr)
+registersymbol(CardPtr)
+registersymbol(DaggerPtr)
+registersymbol(SwordPtr)
+registersymbol(AxePtr)
+registersymbol(GreavesPtr)
+//Body
+registersymbol(ArmorPtr)
+registersymbol(GuardPtr)
+registersymbol(CloakPtr)
+registersymbol(RobePtr)
+//Head
+registersymbol(HelmetPtr)
+registersymbol(RibbonPtr)
+registersymbol(HatPtr)
+registersymbol(CircletPtr)
+//Arm
+registersymbol(ShieldPtr)
+registersymbol(GauntletPtr)
+registersymbol(BraceletPtr)
+registersymbol(GlovesPtr)
+//Accessory
+registersymbol(CharmPtr)
+registersymbol(RingPtr)
+registersymbol(SymbolPtr)
+registersymbol(CapePtr)
+registersymbol(BootsPtr)
+registersymbol(JewelPtr)
+registersymbol(DollPtr)
+//============================================================================//
+define(BasePtr,[TOS.exe+006CE268])  //
+define(GaldPtr,BasePtr)             //Pointer for Gald
+
+define(PartyPtr,BasePtr+F4D)        //
+define(CharPtr,BasePtr+368)         //+118 for Each Char; +D8 for Artes
+define(ArteStoragePtr,BasePtr+114)  //
+//Item
+define(ItemPtr,BasePtr+F5E)
+define(IngrPtr,ItemPtr+54)
+define(KeyPtr,ItemPtr+33)
+//Weapon
+define(TwinBladePtr,ItemPtr+86)
+define(ChakramPtr,ItemPtr+9E)
+define(KendamaPtr,ItemPtr+AE)
+define(RodPtr,ItemPtr+BD)
+define(CardPtr,ItemPtr+CC)
+define(DaggerPtr,ItemPtr+DA)
+define(SwordPtr,ItemPtr+E3)
+define(AxePtr,ItemPtr+F1)
+define(GreavesPtr,ItemPtr+101)
+//Body
+define(ArmorPtr,ItemPtr+111)
+define(GuardPtr,ArmorPtr+11)
+define(CloakPtr,ArmorPtr+A)
+define(RobePtr,ArmorPtr+A)
+//Head
+define(HelmetPtr,ItemPtr+140)
+define(RibbonPtr,HelmetPtr+B)
+define(HatPtr,HelmetPtr+13)
+define(CircletPtr,HelmetPtr+1B)
+//Arm
+define(ShieldPtr,ItemPtr+163)
+define(GauntletPtr,ShieldPtr+B)
+define(BraceletPtr,ShieldPtr+14)
+define(GlovesPtr,ShieldPtr+1C)
+//Accessory
+define(CharmPtr,ItemPtr+187)
+define(RingPtr,CharmPtr+E)
+define(SymbolPtr,CharmPtr+1A)
+define(CapePtr,CharmPtr+25)
+define(BootsPtr,CharmPtr+2D)
+define(JewelPtr,CharmPtr+35)
+define(DollPtr,CharmPtr+41)
+
+IndJudgTitle:
+  db 49 6E 64 69 67 6E 61 74 69 6F 6E 20 4A 75 64 67 2E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+[DISABLE]
+
+unregistersymbol(DollPtr)
+unregistersymbol(JewelPtr)
+unregistersymbol(BootsPtr)
+unregistersymbol(CapePtr)
+unregistersymbol(SymbolPtr)
+unregistersymbol(RingPtr)
+unregistersymbol(CharmPtr)
+
+unregistersymbol(GlovesPtr)
+unregistersymbol(BraceletPtr)
+unregistersymbol(GauntletPtr)
+unregistersymbol(ShieldPtr)
+
+unregistersymbol(CircletPtr)
+unregistersymbol(HatPtr)
+unregistersymbol(RibbonPtr)
+unregistersymbol(HelmetPtr)
+
+unregistersymbol(RobePtr)
+unregistersymbol(CloakPtr)
+unregistersymbol(GuardPtr)
+unregistersymbol(ArmorPtr)
+
+unregistersymbol(ArteStoragePtr)
+unregistersymbol(CharPtr)
+unregistersymbol(PartyPtr)
+unregistersymbol(GaldPtr)
+unregistersymbol(BasePtr)
+
+unregistersymbol(TextPtr)
+unregistersymbol(Debug1)
+unregistersymbol(IndJudgTitle)
+
+dealloc(Debug1)
+dealloc(IndJudgTitle)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"Detect Battle Paused TEST"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TOS.exe
   Version: 
   Date   : 2024-11-30
   Author : sdail
@@ -1355,13 +1501,13 @@ TOS.exe+5D937: CC                          - int 3
 TOS.exe+5D938: CC                          - int 3
 }
 </AssemblerScript>
-      <CheatEntries>
-        <CheatEntry>
-          <ID>59</ID>
-          <Description>"Detect Unison Start TEST"</Description>
-          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : TOS.exe
+          <CheatEntries>
+            <CheatEntry>
+              <ID>59</ID>
+              <Description>"Detect Unison Start TEST"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : TOS.exe
   Version: 
   Date   : 2024-11-30
   Author : sdail
@@ -1481,13 +1627,13 @@ TOS.exe+7141E: BA FF 00 00 00        - mov edx,000000FF
 TOS.exe+71423: 89 8E 14 94 00 00     - mov [esi+00009414],ecx
 }
 </AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>104</ID>
-              <Description>"Detect Shortcut Open TEST"</Description>
-              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-              <VariableType>Auto Assembler Script</VariableType>
-              <AssemblerScript>{ Game   : TOS.exe
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>104</ID>
+                  <Description>"Detect Shortcut Open TEST"</Description>
+                  <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : TOS.exe
   Version:
   Date   : 2024-08-21
   Author : sdail
@@ -1606,13 +1752,13 @@ TOS.exe+124924: 83 C9 FF              - or ecx,-01
 TOS.exe+124927: C6 05 C5 DD B0 00 04  - mov byte ptr [TOS.exe+70DDC5],04
 }
 </AssemblerScript>
-              <CheatEntries>
-                <CheatEntry>
-                  <ID>80</ID>
-                  <Description>"Detect Artes Page Open TEST"</Description>
-                  <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-                  <VariableType>Auto Assembler Script</VariableType>
-                  <AssemblerScript>{ Game   : TOS.exe
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>80</ID>
+                      <Description>"Detect Artes Page Open TEST"</Description>
+                      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                      <VariableType>Auto Assembler Script</VariableType>
+                      <AssemblerScript>{ Game   : TOS.exe
   Version:
   Date   : 2024-08-21
   Author : sdail
@@ -1828,13 +1974,13 @@ TOS.exe+1258E8: A9 00 20 00 08        - test eax,08002000
 TOS.exe+1258ED: 0F 85 1E 03 00 00     - jne TOS.exe+125C11
 }
 </AssemblerScript>
-                  <CheatEntries>
-                    <CheatEntry>
-                      <ID>107</ID>
-                      <Description>"Detect Unison Page Open TEST"</Description>
-                      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-                      <VariableType>Auto Assembler Script</VariableType>
-                      <AssemblerScript>{ Game   : TOS.exe
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>107</ID>
+                          <Description>"Detect Unison Page Open TEST"</Description>
+                          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                          <VariableType>Auto Assembler Script</VariableType>
+                          <AssemblerScript>{ Game   : TOS.exe
   Version: 
   Date   : 2024-11-30
   Author : sdail
@@ -1953,50 +2099,835 @@ TOS.exe+1273E3: 80 05 02 BC C2 01 33  - add byte ptr [TOS.exe+182BC02],33
 TOS.exe+1273EA: 5F                    - pop edi
 }
 </AssemblerScript>
-                    </CheatEntry>
-                  </CheatEntries>
-                </CheatEntry>
-              </CheatEntries>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>72</ID>
-      <Description>"Symbol Set"</Description>
-      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>[ENABLE]
+                          <CheatEntries>
+                            <CheatEntry>
+                              <ID>38</ID>
+                              <Description>"Inputs"</Description>
+                              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                              <Color>00FFFF</Color>
+                              <VariableType>Auto Assembler Script</VariableType>
+                              <AssemblerScript>{ Game   : TOS.exe
+  Version:
+  Date   : 2024-12-02
+  Author : sdail
 
-define(BasePtr,[TOS.exe+006CE268])  //
-define(GaldPtr,BasePtr)             //Pointer for Gald
-define(PartyPtr,BasePtr+F4D)        //
-define(CharPtr,BasePtr+368)         //+118 for Each Char; +D8 for Artes
-define(ArteStoragePtr,BasePtr+114)  //
+  This script does blah blah blah
+}
 
-registersymbol(BasePtr)
-registersymbol(GaldPtr)
-registersymbol(PartyPtR)
-registersymbol(CharPtr)
-registersymbol(ArteStoragePtr)
+[ENABLE]
+
+aobscanmodule(ButtonInputs,TOS.exe,89 4E 10 8B D1) // should be unique
+alloc(Mem_ButtonInputs,$1000,ButtonInputs)
+alloc(ControlID,1)
+alloc(LoopCounter,3)
+alloc(MainControls,2)
+alloc(StoredControls,64)
+alloc(PageSwitch,2)
+
+registersymbol(ControlID)
+registersymbol(LoopCounter)
+registersymbol(MainControls)
+registersymbol(StoredControls)
+registersymbol(PageSwitch)
+registersymbol(MainArtes)
+registersymbol(StoredArtes)
+
+define(MainArtes,CharPtr+D8)
+define(StoredArtes,ArteStoragePtr)
+
+
+Mem_ButtonInputs:
+  push eax
+  push esi
+  push edi
+  call Func_GetInputs
+  //cmp byte [ControlID],0  //DEBUG for P1
+  //jne IncID               //DEBUG JMP for P1
+  movzx eax,byte [ControlID]  //
+  cmp byte [PartyPtr+eax],0   //Check if Controller has Char
+  je IncID                    //
+
+  cmp byte [TOS.exe+712CEC],0  //Check if in Battle
+  je PageCheck
+  test byte [PauseState],1       //Check if Game is Paused
+  jne PageCheck
+  and word [MainControls],F3FF
+  movzx ebx,byte [ControlID]
+  call Func_GetPartySlot
+  test byte [UnisonState],1  //Check if in Unison Attack
+  jne UnisonStart
+  call Func_GetController
+  cmp byte [StoredControls+eax+8],0  //Check if [LB] is Pressed
+  je ResetPage
+  jmp SkipUnison
+UnisonStart:
+  cmp byte [StoredControls+8],0  //Check if P1 [LB] is Not Pressed
+  je ResetPage              //Jump if Equal
+SkipUnison:
+  or word [PageSwitch],bx  //Set Page Flag
+  and word [MainControls],FEFF
+  call Func_UpdatePages
+  jmp IncID
+ResetPage:
+  not ebx
+  and word [PageSwitch],bx  //Clear Page Flag
+  call Func_UpdatePages
+  jmp IncID
+
+PageCheck:  //Check for an Active Page
+  test byte [ArtesPageState],1  //Check if Artes Page is Open
+  jne ArtesPageCheck
+  test byte [UnisonPageState],1  //Check if Unison Page is Open
+  jne UnisonPageCheck
+ResetAllPages:
+  mov word [PageSwitch],0
+  cmp word [StoredArtes+7E],0
+  je IncID
+  call Func_UpdatePages
+  jmp IncID  //End
+
+UnisonPageCheck:
+  test word [TOS.exe+182BBF0],1  //Check if Selecting Arte
+  jne IncID
+  movzx ecx word [TOS.exe+182BC06]  //Current Unison Char
+  mov ebx,1
+  shl ebx,cl
+  jmp MergePageCheck
+ArtesPageCheck:
+  cmp word [TOS.exe+70DDB0],3  //Check Cursor Area for Selecting Arte
+  je SkipResetAllPages
+  test byte [ShortcutState],1
+  jne IncID
+  cmp word [TOS.exe+70DDB0],2  //Check Cursor Area for Input Select
+  jne ResetAllPages
+  movzx ebx,byte [TOS.exe+70DDBE]  //Get Current Char Page Slot
+  call Func_GetPartySlot
+MergePageCheck:
+  cmp word [StoredArtes+7E],0  //Check if Artes Page Switched
+  je SkipResetAllPages
+  test word [StoredArtes+7E],bx
+  je ResetAllPages
+SkipResetAllPages:
+  call Func_GetController            //
+  cmp byte [StoredControls+eax+5],1  //Check if [Select] is Pressed
+  jne IncID                          //
+  xor word [PageSwitch],bx  //Set Char Page to Switch
+  mov ecx,1F           //Sound ID
+  call TOS.exe+17D510  //Play Sound Effect
+  call Func_UpdatePages
+  jmp IncID  //End
+
+
+//=============//
+//  Functions  //
+//=============//
+
+Func_GetInputs:
+  mov word [MainControls],cx
+  mov eax,10
+  mul byte [ControlID]
+  mov edx,eax
+GetInputsLoop:
+  movzx ecx,byte [LoopCounter]
+  mov eax,1
+  shl ax,cl
+  add ecx,edx
+  test word [MainControls],ax
+  je ReleasedButton
+  cmp byte [StoredControls+ecx],1E  //Check if Button is Held for 1 Sec
+  jae GetInputsEnd
+  inc byte [StoredControls+ecx]
+  jmp GetInputsEnd
+ReleasedButton:
+  mov byte [StoredControls+ecx],0
+GetInputsEnd:
+  inc byte [LoopCounter]          //Increase Loop Count
+  cmp byte [LoopCounter],10       //
+  jb GetInputsLoop                //Jump if Loop Count is Below Target
+  mov byte [LoopCounter],0
+  ret
+
+Func_ResetPage:  //Requires EBX to have Char to Reset
+  not ebx
+  and word [PageSwitch],bx
+  ret
+
+Func_ResetAllPages:
+  mov word [PageSwitch],0
+  call Func_UpdatePages
+  ret
+
+Func_UpdatePages:  //Swap Artes Between Main and Alt
+  lea esi,[StoredArtes]
+  lea edi,[MainArtes]
+UpdatePagesLoopMain:
+  movzx ecx,byte [LoopCounter]
+  movzx ebx,word [PageSwitch]
+  movzx eax,word [StoredArtes+7E]
+  shr ax,cl
+  shr bx,cl
+  and ax,1
+  and bx,1
+  cmp bx,ax
+  je SkipUpdatePage
+UpdatePagesLoopSub:
+  mov ecx,[esi]   //Load 4 Bytes from Main Artes to Register
+  xchg ecx,[edi]  //Exchange 4 Bytes Between Stored Artes &amp; Register
+  mov [esi],ecx   //Exchange 4 Bytes Between Main Artes &amp; Register
+  add esi,4
+  add edi,4
+  inc byte [LoopCounter+1]    //
+  cmp byte [LoopCounter+1],4  //
+  jb UpdatePagesLoopSub       //
+  mov byte [LoopCounter+1],0  //
+  sub esi,2
+  sub edi,2
+  movzx ecx,word [esi]  //Load 2 Bytes from Main Artes to Register
+  xchg cx,word [edi]    //Exchange 2 Bytes Between Stored Artes &amp; Register
+  mov word [esi],cx          //Exchange 2 Bytes Between Main Artes &amp; Register
+  sub esi,E
+  sub edi,E
+SkipUpdatePage:
+  add esi,E
+  add edi,118
+  inc byte [LoopCounter]    //
+  cmp byte [LoopCounter],9  //
+  jb UpdatePagesLoopMain    //
+  mov byte [LoopCounter],0  //
+  movzx ebx,word [PageSwitch]
+  mov word [StoredArtes+7E],bx
+  ret
+
+Func_GetPartySlot:
+  movzx ecx,byte [PartyPtr+ebx]    //Get Current Char Slot
+  sub ecx,1
+  mov ebx,1
+  shl ebx,cl
+  ret
+
+Func_GetController:
+  mov eax,10
+  mul byte [ControlID]
+  ret
+
+IncID:
+  inc byte [ControlID]
+  and byte [ControlID],3
+
+Code_ButtonInputs:
+  pop edi
+  pop esi
+  pop eax
+  movzx ecx,word [MainControls]
+  mov [esi+10],ecx
+  mov edx,ecx
+  jmp Ret_ButtonInputs
+
+ButtonInputs:
+  jmp Mem_ButtonInputs
+Ret_ButtonInputs:
+registersymbol(ButtonInputs)
 
 
 [DISABLE]
 
-unregistersymbol(ArteStoragePtr)
-unregistersymbol(CharPtr)
-unregistersymbol(PartyPtr)
-unregistersymbol(GaldPtr)
-unregistersymbol(BasePtr)
+ButtonInputs:
+  db 89 4E 10 8B D1
+
+
+unregistersymbol(StoredArtes)
+unregistersymbol(MainArtes)
+unregistersymbol(PageSwitch)
+unregistersymbol(StoredControls)
+unregistersymbol(MainControls)
+unregistersymbol(LoopCounter)
+unregistersymbol(ControlID)
+unregistersymbol(ButtonInputs)
+
+dealloc(PageSwitch)
+dealloc(StoredControls)
+dealloc(MainControls)
+dealloc(LoopCounter)
+dealloc(ControlID)
+dealloc(Mem_ButtonInputs)
+
+
+{
+// ORIGINAL Code_ButtonInputs - [INPUTS] INJECTION POINT: TOS.exe+20CC53
+
+TOS.exe+20CC3F: CC        - int 3
+TOS.exe+20CC40: 55        - push ebp
+TOS.exe+20CC41: 8B EC     - mov ebp,esp
+TOS.exe+20CC43: 83 EC 20  - sub esp,20
+TOS.exe+20CC46: 8B 08     - mov ecx,[eax]
+TOS.exe+20CC48: 89 4E 0C  - mov [esi+0C],ecx
+TOS.exe+20CC4B: 8B 48 04  - mov ecx,[eax+04]
+TOS.exe+20CC4E: 53        - push ebx
+TOS.exe+20CC4F: 57        - push edi
+TOS.exe+20CC50: 8B 7E 10  - mov edi,[esi+10]
+// ---------- INJECTING HERE ----------
+TOS.exe+20CC53: 89 4E 10  - mov [esi+10],ecx
+// ---------- DONE INJECTING  ----------
+TOS.exe+20CC56: 8B D1     - mov edx,ecx
+TOS.exe+20CC58: 33 D7     - xor edx,edi
+TOS.exe+20CC5A: 8B FA     - mov edi,edx
+TOS.exe+20CC5C: 23 F9     - and edi,ecx
+TOS.exe+20CC5E: 89 7E 14  - mov [esi+14],edi
+TOS.exe+20CC61: F7 D1     - not ecx
+TOS.exe+20CC63: 23 CA     - and ecx,edx
+TOS.exe+20CC65: 8B 50 08  - mov edx,[eax+08]
+TOS.exe+20CC68: 89 4E 18  - mov [esi+18],ecx
+TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
+}
 </AssemblerScript>
-      <CheatEntries>
-        <CheatEntry>
-          <ID>103</ID>
-          <Description>"Remove Shortcut Fix"</Description>
-          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : TOS.exe
+                              <CheatEntries>
+                                <CheatEntry>
+                                  <ID>112</ID>
+                                  <Description>"all stick walk check (Walk Fix During Freerun)"</Description>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+test byte ptr [edx*4+TOS.exe+6CDAA8],08
+jne goog
+test byte ptr [edx*4+TOS.exe+6CDAA8],02
+jne goog
+test byte ptr [edx*4+TOS.exe+6CDAA8],04
+jne goog
+test byte ptr [edx*4+TOS.exe+6CDAA8],01
+goog:
+
+exit:
+jmp returnhere
+
+"TOS.exe"+767D4:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"TOS.exe"+767D4:
+test byte ptr [edx*4+TOS.exe+6CDAA8],08
+//Alt: db F6 04 95 A8 DA AC 00 08
+</AssemblerScript>
+                                </CheatEntry>
+                                <CheatEntry>
+                                  <ID>113</ID>
+                                  <Description>"fr poc 1 (Disables Jump During Freerun)"</Description>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>[ENABLE]
+alloc(newmem6,2048)
+label(returnhere6)
+label(originalcode6)
+label(exit6)
+
+alloc(freerun_mem,128)
+registersymbol(freerun_mem)
+
+newmem6: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode6:
+
+push ebx
+mov ebx,[chr_freerun]
+cmp ebx,0
+pop ebx
+
+jg here_do
+
+test ah,05
+jp TOS.exe+76606
+
+here_do:
+
+fld dword ptr [edi+000138D8]
+
+exit6:
+jmp returnhere6
+
+"TOS.exe"+765E4:
+jmp newmem6
+nop 3
+returnhere6:
+
+alloc(newmem5,2048)
+label(returnhere5)
+label(originalcode5)
+label(exit5)
+
+newmem5: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode5:
+
+push ebx
+mov ebx,[chr_freerun]
+cmp ebx,0
+pop ebx
+jg here_go
+
+test ah,05
+jp TOS.exe+764B7
+
+here_go:
+
+fld dword ptr [edi+000138D8]
+
+exit5:
+jmp returnhere5
+
+"TOS.exe"+76495:
+jmp newmem5
+nop 3
+returnhere5:
+
+alloc(newmem4,2048)
+label(returnhere4)
+label(originalcode4)
+label(exit4)
+
+newmem4: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode4:
+jp TOS.exe+76765
+push eax
+mov eax,[chr_freerun]
+cmp eax,0
+pop eax
+
+jg TOS.exe+76765
+
+fld dword ptr [edi+000138D8]
+
+exit4:
+jmp returnhere4
+
+"TOS.exe"+76737:
+jmp newmem4
+nop 3
+returnhere4:
+
+alloc(newmem3,2048)
+label(returnhere3)
+label(originalcode3)
+label(exit3)
+
+newmem3: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode3:
+jp TOS.exe+763BF
+
+push eax
+mov eax,[chr_freerun]
+cmp eax,0
+pop eax
+
+jg TOS.exe+763bf
+
+fld dword ptr [edi+000138D8]
+
+exit3:
+jmp returnhere3
+
+"TOS.exe"+76391:
+jmp newmem3
+nop 3
+returnhere3:
+
+
+/*
+//run test
+TOS.exe+76391:
+db EB 2C
+
+//walk test
+TOS.exe+76737:
+db EB 2C
+*/
+
+alloc(newmem2,2048)
+label(returnhere2)
+label(originalcode2)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode2:
+
+//mov bl,0
+
+push eax
+mov eax,[chr_freerun]
+cmp eax,0
+pop eax
+jne TOS.exe+7688d
+
+cmp word ptr [eax+TOS.exe+6CDA72],28
+
+exit2:
+jmp returnhere2
+
+"TOS.exe"+767EF:
+jmp newmem2
+nop 3
+returnhere2:
+
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+push ebx
+push esi
+
+xor ebx,ebx
+mov [chr_freerun],ebx
+
+mov ebx,eax
+mov [Debug1],eax
+mov eax,[eax*4+TOS.exe+6CDAA8]
+
+
+//mov eax,00080008
+//mov [Debug1],eax
+//test eax,400  //Old
+push eax
+mov ecx,edx
+push edx
+and ecx,3
+//mov ecx,eax
+//push eax
+mov eax,10
+mul ecx
+mov ecx,eax
+pop edx
+pop eax
+//mov ecx,eax
+//pop eax
+//pop edx
+cmp byte [StoredControls+ecx+A],0
+je death
+//mov eax,[eax*4+TOS.exe+6CDAA8]
+test eax,4000
+jne death
+
+//mov bl,1
+mov [chr_freerun],1
+mov [freerun_mem+ebx*4],1
+
+movzx eax,[ebx*4+TOS.exe+6CDAAA]
+cmp al,00
+jle death
+
+mov ebx,eax
+mov eax,00080008
+mov esi,[edi+1321]
+
+cmp bl,08
+je rwalk
+
+cmp bl,04
+je lwalk
+
+rwalk:
+test dl,10
+jne erflag
+
+jmp after
+
+lwalk:
+test dl,10
+je adflag
+jmp after
+
+erflag:
+sub dl,10
+
+jmp after
+
+adflag:
+add dl,10
+
+jmp after
+
+
+//mov [edi+1321],si
+
+//mov edx,0000
+
+
+life:
+
+after:
+
+//mov [edi+1321],si
+
+death:
+mov [freerun_mem+ebx*4],0
+
+
+pop esi
+pop ebx
+
+exit:
+jmp returnhere
+chr_freerun:
+dd (int)0
+tst:
+
+
+"TOS.exe"+76209:
+jmp newmem
+nop 2
+returnhere:
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem6)
+"TOS.exe"+765E4:
+jp TOS.exe+76606
+fld dword ptr [edi+000138D8]
+//Alt: db 7A 20 D9 87 D8 38 01 00
+dealloc(newmem5)
+"TOS.exe"+76495:
+jp TOS.exe+764B7
+fld dword ptr [edi+000138D8]
+//Alt: db 7A 20 D9 87 D8 38 01 00
+dealloc(newmem4)
+"TOS.exe"+76737:
+jp TOS.exe+76765
+fld dword ptr [edi+000138D8]
+//Alt: db 7A 2C D9 87 D8 38 01 00
+dealloc(newmem3)
+"TOS.exe"+76391:
+jp TOS.exe+763BF
+fld dword ptr [edi+000138D8]
+//Alt: db 7A 2C D9 87 D8 38 01 00
+dealloc(newmem2)
+"TOS.exe"+767EF:
+cmp word ptr [eax+TOS.exe+6CDA72],28
+//Alt: db 66 83 B8 72 DA AC 00 28
+
+/*
+TOS.exe+76391:
+db 7A 2C
+
+TOS.exe+76737:
+db 7A 2C
+*/
+
+dealloc(freerun_mem)
+unregistersymbol(freerun_mem)
+
+dealloc(newmem)
+"TOS.exe"+76209:
+mov eax,[eax*4+TOS.exe+6CDAA8]
+//Alt: db 8B 04 85 A8 DA AC 00
+</AssemblerScript>
+                                </CheatEntry>
+                                <CheatEntry>
+                                  <ID>114</ID>
+                                  <Description>"fr poc 2"</Description>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+add ecx,00013958
+
+
+push ecx
+push edx
+push eax
+push ebx
+push esi
+
+
+movzx eax,byte ptr [ebx+00001322]
+cmp eax,0
+je non_ghost
+
+movzx eax,byte [ebx+1321]
+
+and eax,03
+//test [eax*4+TOS.exe+6CDAA8],400  //Old
+and [Debug1],0
+
+mov ecx,10
+mul ecx
+cmp byte [StoredControls+eax+A],0
+je non_ghost
+
+//mov eax,ecx //byte ptr [ebx+00001321]
+movzx eax,byte [ebx+1321]
+and eax,03
+
+push ebx
+imul ebx,eax,10
+
+//stick x
+movsx ecx,[ebx+TOS.exe+6CDA70]
+//stick y
+movsx edx,[ebx+TOS.exe+6CDA72]
+
+//by default output is capped at 72
+
+//mov ecx,48
+//mov edx,48
+
+pop ebx
+
+movq xmm3,ecx
+movq xmm5,edx
+
+cvtdq2ps,xmm3,xmm3
+cvtdq2ps,xmm5,xmm5
+
+mulss xmm3,[mval+4]
+mulss xmm5,[mval+4]
+
+mulss xmm3,[mval+1c]
+//divss xmm3,[mval+18]
+//divss xmm5,[mval+18]
+
+movss [fcalc+30],xmm3
+movss [fcalc+38],xmm5
+
+fld [fcalc+30]
+fld [fcalc+38]
+call TOS.exe+2E32E4
+fstp [fcalc+28]
+
+push edx
+
+mov edx,[TOS.exe+6CD1DC] //cam angle
+
+//cam angle to radians
+movss xmm6,[mval+0c]
+movss xmm7,[mval+10]
+
+divss xmm6,xmm7
+movss xmm7,[edx+50]
+//addss xmm7,[mval+14]
+mulss xmm7,xmm6
+
+addss xmm7,[fcalc+28] //stick to cam
+
+movss [fcalc],xmm7
+
+fld [fcalc]
+FSINCOS
+
+fstp [fcalc]
+fstp [fcalc+4]
+
+pop edx
+
+movss xmm6,[fcalc+4]
+movss xmm7,[fcalc]
+
+mulss xmm7,[mval+1c]
+mulss xmm6,[mval+1c]
+
+movss [esi+8],xmm6
+movss [esi],xmm7
+
+xor eax,eax
+
+pop esi
+pop ebx
+pop eax
+pop edx
+pop ecx
+
+exit:
+//jmp returnhere
+jmp TOS.exe+84D14
+
+non_ghost:
+pop esi
+pop ebx
+pop eax
+pop edx
+pop ecx
+
+jmp returnhere
+
+mval:
+align 2
+
+dd (float)0.01
+dd (float)1.4
+dd (float)0.1
+dd (float)3.14159265
+dd (float)180
+dd (float)-90
+dd (float)100
+dd (float)-1
+gtest:
+dq (double)32
+dq (double)16
+dd (int)32
+dd (int)32
+ftest:
+dd (float)32
+dd (float)16
+fcalc:
+
+
+"TOS.exe"+84D09:
+jmp newmem
+nop
+returnhere:
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"TOS.exe"+84D09:
+add ecx,00013958
+//Alt: db 81 C1 58 39 01 00
+</AssemblerScript>
+                                </CheatEntry>
+                                <CheatEntry>
+                                  <ID>103</ID>
+                                  <Description>"Remove Shortcut Fix"</Description>
+                                  <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>{ Game   : TOS.exe
   Version: 
   Date   : 2025-08-26
   Author : sdail
@@ -2067,12 +2998,12 @@ TOS.exe+124680: F6 C2 01                    - test dl,01
 TOS.exe+124683: 0F 85 84 00 00 00           - jne TOS.exe+12470D
 }
 </AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>85</ID>
-              <Description>"Trigger Fix"</Description>
-              <VariableType>Auto Assembler Script</VariableType>
-              <AssemblerScript>{ Game   : TOS.exe
+                                </CheatEntry>
+                                <CheatEntry>
+                                  <ID>85</ID>
+                                  <Description>"Trigger Fix"</Description>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>{ Game   : TOS.exe
   Version: 
   Date   : 2025-08-01
   Author : sdail
@@ -2160,20 +3091,14 @@ TOS.exe+20C3EA: BA 01 80 FF FF        - mov edx,FFFF8001
 TOS.exe+20C3EF: 66 3B CA              - cmp cx,dx
 }
 </AssemblerScript>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>38</ID>
-      <Description>"Inputs"</Description>
-      <Options moManualExpandCollapse="1"/>
-      <Color>00FFFF</Color>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : TOS.exe
-  Version:
-  Date   : 2024-12-02
+                                </CheatEntry>
+                                <CheatEntry>
+                                  <ID>119</ID>
+                                  <Description>"R-Stick Shortcuts"</Description>
+                                  <VariableType>Auto Assembler Script</VariableType>
+                                  <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-31
   Author : sdail
 
   This script does blah blah blah
@@ -2181,356 +3106,230 @@ TOS.exe+20C3EF: 66 3B CA              - cmp cx,dx
 
 [ENABLE]
 
-aobscanmodule(ButtonInputs,TOS.exe,89 4E 10 8B D1) // should be unique
-alloc(Mem_ButtonInputs,$1000,ButtonInputs)
-alloc(ControlID,1)
-alloc(LoopCounter,3)
-alloc(MainControls,2)
-alloc(StoredControls,64)
-alloc(PageSwitch,2)
-
-registersymbol(ControlID)
-registersymbol(LoopCounter)
-registersymbol(MainControls)
-registersymbol(StoredControls)
-registersymbol(PageSwitch)
-registersymbol(MainArtes)
-registersymbol(StoredArtes)
-
-define(MainArtes,CharPtr+D8)
-define(StoredArtes,ArteStoragePtr)
+aobscanmodule(DisableRStickX,TOS.exe,89 51 20 8B 50 2C) // should be unique
+aobscanmodule(DisableRStickY,TOS.exe,89 51 24 8B 50 30) // should be unique
+alloc(Mem_DisableRStickX,128)
+alloc(Mem_DisableRStickY,128)
 
 
-Mem_ButtonInputs:
-  push eax
-  push esi
-  push edi
-  call Func_GetInputs
-  //cmp byte [ControlID],0  //DEBUG for P1
-  //jne IncID               //DEBUG JMP for P1
-  movzx eax,byte [ControlID]  //
-  cmp byte [PartyPtr+eax],0   //Check if Controller has Char
-  je IncID                    //
+Mem_DisableRStickX:
+  xor edx,edx
 
-  test byte [TOS.exe+712CEC],1  //If in Battle
-  jz PageCheck
-  cmp byte [PauseState],0       //If Game is Not Paused
-  jne PageCheck
-  movzx ebx,byte [ControlID]
-  call Func_GetPartySlot
-  test byte [UnisonState],1  //Check if in Unison Attack
-  jnz UnisonStart
-  call Func_GetController
-  cmp byte [StoredControls+eax+8],0  //Check if [LB] is Pressed
-  je ResetPage
-  jmp SkipUnison
-UnisonStart:
-  cmp byte [StoredControls+8],0  //Check if P1 [LB] is Not Pressed
-  je ResetPage              //Jump if Equal
-SkipUnison:
-  or word [PageSwitch],bx  //Set Page Flag
-  and word [MainControls],FEFF
-  call Func_UpdatePages
-  jmp IncID
-ResetPage:
-  not ebx
-  and word [PageSwitch],bx  //Clear Page Flag
-  call Func_UpdatePages
-  jmp IncID
+Code_DisableRStickX:
+  mov [ecx+20],edx
+  mov edx,[eax+2C]
+  jmp Ret_DisableRStickX
 
-PageCheck:  //Check for an Active Page
-  test byte [ArtesPageState],1  //Check if Artes Page is Open
-  jnz ArtesPageCheck
-  test byte [UnisonPageState],1  //Check if Unison Page is Open
-  jnz UnisonPageCheck
-ResetAllPages:
-  mov word [PageSwitch],0
-  cmp word [StoredArtes+7E],0
-  je IncID
-  call Func_UpdatePages
-  jmp IncID  //End
+DisableRStickX:
+  jmp Mem_DisableRStickX
+  nop
+Ret_DisableRStickX:
+//============================================================================//
+Mem_DisableRStickY:
+  cmp byte [TOS.exe+712CEC],0  //If in Battle
+  je Code_DisableRStickY
+  test byte [PauseState],1
+  jne Code_DisableRStickY
+  push edx
+  test edx,edx
+  jge ObtainedABS
+  neg edx
+ObtainedABS:
+  cmp edx,738E  //Deadzone
+  jl StickDeadzone
+  pop edx
 
-UnisonPageCheck:
-  test word [TOS.exe+182BBF0],1  //Check if Selecting Arte
-  jnz IncID
-  movzx ecx word [TOS.exe+182BC06]  //Current Unison Char
-  mov ebx,1
-  shl ebx,cl
-  jmp MergePageCheck
-ArtesPageCheck:
-  cmp word [TOS.exe+70DDB0],3  //Check Cursor Area for Selecting Arte
-  je SkipResetAllPages
-  test byte [ShortcutState],1
-  jnz IncID
-  cmp word [TOS.exe+70DDB0],2  //Check Cursor Area for Input Select
-  jne ResetAllPages
-  movzx ebx,byte [TOS.exe+70DDBE]  //Get Current Char Page Slot
-  call Func_GetPartySlot
-MergePageCheck:
-  cmp word [StoredArtes+7E],0  //Check if Artes Page Switched
-  je SkipResetAllPages
-  test word [StoredArtes+7E],bx
-  jz ResetAllPages
-SkipResetAllPages:
-  call Func_GetController            //
-  cmp byte [StoredControls+eax+5],1  //Check if [Select] is Pressed
-  jne IncID                          //
-  xor word [PageSwitch],bx  //Set Char Page to Switch
-  mov ecx,1F           //Sound ID
-  call TOS.exe+17D510  //Play Sound Effect
-  call Func_UpdatePages
-  jmp IncID  //End
+  cmp edx,0
+  jl TestLow
+  movzx edx,word [esi+10]
+  or dx,800
+  jmp ReassignEnd
+TestLow:
+  movzx edx,word [esi+10]
+  or dx,400
+ReassignEnd:
+  mov [esi+10],edx
+  jmp ClearStickY
+StickDeadzone:
+  pop edx
+ClearStickY:
+  xor edx,edx
+Code_DisableRStickY:
+  mov [ecx+24],edx
+  mov edx,[eax+30]
+  jmp Ret_DisableRStickY
 
+DisableRStickY:
+  jmp Mem_DisableRStickY
+  nop
+Ret_DisableRStickY:
+registersymbol(DisableRStickX)
+registersymbol(DisableRStickY)
 
-//=============//
-//  Functions  //
-//=============//
-
-Func_GetInputs:
-  mov word [MainControls],cx
-  mov eax,10
-  mul byte [ControlID]
-  mov edx,eax
-GetInputsLoop:
-  movzx ecx,byte [LoopCounter]
-  mov eax,1
-  shl ax,cl
-  add ecx,edx
-  test word [MainControls],ax
-  jz ReleasedButton
-  cmp byte [StoredControls+ecx],1E  //Check if Button is Held for 1 Sec
-  jae GetInputsEnd
-  inc byte [StoredControls+ecx]
-  jmp GetInputsEnd
-ReleasedButton:
-  mov byte [StoredControls+ecx],0
-GetInputsEnd:
-  inc byte [LoopCounter]          //Increase Loop Count
-  cmp byte [LoopCounter],10       //
-  jb GetInputsLoop                //Jump if Loop Count is Below Target
-  mov byte [LoopCounter],0
-  ret
-
-Func_ResetPage:  //Requires EBX to have Char to Reset
-  not ebx
-  and word [PageSwitch],bx
-  ret
-
-Func_ResetAllPages:
-  mov word [PageSwitch],0
-  call Func_UpdatePages
-  ret
-
-Func_UpdatePages:  //Swap Artes Between Main and Alt
-  lea esi,[StoredArtes]
-  lea edi,[MainArtes]
-UpdatePagesLoopMain:
-  movzx ecx,byte [LoopCounter]
-  movzx ebx,word [PageSwitch]
-  movzx eax,word [StoredArtes+7E]
-  shr ax,cl
-  shr bx,cl
-  and ax,1
-  and bx,1
-  cmp bx,ax
-  je SkipUpdatePage
-UpdatePagesLoopSub:
-  mov ecx,[esi]   //Load 4 Bytes from Main Artes to Register
-  xchg ecx,[edi]  //Exchange 4 Bytes Between Stored Artes &amp; Register
-  mov [esi],ecx   //Exchange 4 Bytes Between Main Artes &amp; Register
-  add esi,4
-  add edi,4
-  inc byte [LoopCounter+1]    //
-  cmp byte [LoopCounter+1],4  //
-  jb UpdatePagesLoopSub       //
-  mov byte [LoopCounter+1],0  //
-  sub esi,2
-  sub edi,2
-  movzx ecx,word [esi]  //Load 2 Bytes from Main Artes to Register
-  xchg cx,word [edi]    //Exchange 2 Bytes Between Stored Artes &amp; Register
-  mov word [esi],cx          //Exchange 2 Bytes Between Main Artes &amp; Register
-  sub esi,E
-  sub edi,E
-SkipUpdatePage:
-  add esi,E
-  add edi,118
-  inc byte [LoopCounter]    //
-  cmp byte [LoopCounter],9  //
-  jb UpdatePagesLoopMain    //
-  mov byte [LoopCounter],0  //
-  movzx ebx,word [PageSwitch]
-  mov word [StoredArtes+7E],bx
-  ret
-
-Func_GetPartySlot:
-  movzx ecx,byte [PartyPtr+ebx]    //Get Current Char Slot
-  sub ecx,1
-  mov ebx,1
-  shl ebx,cl
-  ret
-
-Func_GetController:
-  mov eax,10
-  mul byte [ControlID]
-  ret
-
-IncID:
-  inc byte [ControlID]
-  cmp byte [ControlID],4
-  jb Code_ButtonInputs
-  mov byte [ControlID],0
-
-Code_ButtonInputs:
-  pop edi
-  pop esi
-  pop eax
-  movzx ecx,word [MainControls]
-  mov [esi+10],ecx
-  mov edx,ecx
-  jmp Ret_ButtonInputs
-{
-ControlID:
-db (int)-1
-}
-
-InputIndex:
-  db 01 02 04 08 10 20 40 80
-
-ButtonInputs:
-  jmp Mem_ButtonInputs
-Ret_ButtonInputs:
-registersymbol(ButtonInputs)
 
 [DISABLE]
 
-ButtonInputs:
-  db 89 4E 10 8B D1
+DisableRStickX:
+  db 89 51 20 8B 50 2C
+
+DisableRStickY:
+  db 89 51 24 8B 50 30
 
 
-unregistersymbol(StoredArtes)
-unregistersymbol(MainArtes)
-unregistersymbol(PageSwitch)
-unregistersymbol(StoredControls)
-unregistersymbol(MainControls)
-unregistersymbol(LoopCounter)
-unregistersymbol(ControlID)
-unregistersymbol(ButtonInputs)
+unregistersymbol(DisableRStickX)
+unregistersymbol(DisableRStickY)
 
-dealloc(PageSwitch)
-dealloc(StoredControls)
-dealloc(MainControls)
-dealloc(LoopCounter)
-dealloc(ControlID)
-dealloc(Mem_ButtonInputs)
+dealloc(Mem_DisableRStickX)
+dealloc(Mem_DisableRStickY)
 
 {
-// ORIGINAL Code_ButtonInputs - [INPUTS] INJECTION POINT: TOS.exe+20CC53
+// ORIGINAL CODE - [DISABLE R-STICK X] INJECTION POINT: TOS.exe+20CC9E
 
-TOS.exe+20CC3F: CC        - int 3
-TOS.exe+20CC40: 55        - push ebp
-TOS.exe+20CC41: 8B EC     - mov ebp,esp
-TOS.exe+20CC43: 83 EC 20  - sub esp,20
-TOS.exe+20CC46: 8B 08     - mov ecx,[eax]
-TOS.exe+20CC48: 89 4E 0C  - mov [esi+0C],ecx
-TOS.exe+20CC4B: 8B 48 04  - mov ecx,[eax+04]
-TOS.exe+20CC4E: 53        - push ebx
-TOS.exe+20CC4F: 57        - push edi
-TOS.exe+20CC50: 8B 7E 10  - mov edi,[esi+10]
+TOS.exe+20CC80: 89 51 0C  - mov [ecx+0C],edx
+TOS.exe+20CC83: 8B 50 18  - mov edx,[eax+18]
+TOS.exe+20CC86: 89 51 10  - mov [ecx+10],edx
+TOS.exe+20CC89: 8B 50 1C  - mov edx,[eax+1C]
+TOS.exe+20CC8C: 89 51 14  - mov [ecx+14],edx
+TOS.exe+20CC8F: 8B 50 20  - mov edx,[eax+20]
+TOS.exe+20CC92: 89 51 18  - mov [ecx+18],edx
+TOS.exe+20CC95: 8B 50 24  - mov edx,[eax+24]
+TOS.exe+20CC98: 89 51 1C  - mov [ecx+1C],edx
+TOS.exe+20CC9B: 8B 50 28  - mov edx,[eax+28]
 // ---------- INJECTING HERE ----------
-TOS.exe+20CC53: 89 4E 10  - mov [esi+10],ecx
+TOS.exe+20CC9E: 89 51 20  - mov [ecx+20],edx
 // ---------- DONE INJECTING  ----------
-TOS.exe+20CC56: 8B D1     - mov edx,ecx
-TOS.exe+20CC58: 33 D7     - xor edx,edi
-TOS.exe+20CC5A: 8B FA     - mov edi,edx
-TOS.exe+20CC5C: 23 F9     - and edi,ecx
-TOS.exe+20CC5E: 89 7E 14  - mov [esi+14],edi
-TOS.exe+20CC61: F7 D1     - not ecx
-TOS.exe+20CC63: 23 CA     - and ecx,edx
-TOS.exe+20CC65: 8B 50 08  - mov edx,[eax+08]
-TOS.exe+20CC68: 89 4E 18  - mov [esi+18],ecx
-TOS.exe+20CC6B: 89 56 20  - mov [esi+20],edx
+TOS.exe+20CCA1: 8B 50 2C  - mov edx,[eax+2C]
+TOS.exe+20CCA4: 89 51 24  - mov [ecx+24],edx
+TOS.exe+20CCA7: 8B 50 30  - mov edx,[eax+30]
+TOS.exe+20CCAA: 89 51 28  - mov [ecx+28],edx
+TOS.exe+20CCAD: 8B 50 34  - mov edx,[eax+34]
+TOS.exe+20CCB0: 89 51 2C  - mov [ecx+2C],edx
+TOS.exe+20CCB3: 8B 50 38  - mov edx,[eax+38]
+TOS.exe+20CCB6: 8B 40 3C  - mov eax,[eax+3C]
+TOS.exe+20CCB9: 89 51 30  - mov [ecx+30],edx
+TOS.exe+20CCBC: 8D 56 24  - lea edx,[esi+24]
+}
+
+{
+// ORIGINAL CODE - [DISABLE R-STICK Y] INJECTION POINT: TOS.exe+20CCA4
+
+TOS.exe+20CC86: 89 51 10  - mov [ecx+10],edx
+TOS.exe+20CC89: 8B 50 1C  - mov edx,[eax+1C]
+TOS.exe+20CC8C: 89 51 14  - mov [ecx+14],edx
+TOS.exe+20CC8F: 8B 50 20  - mov edx,[eax+20]
+TOS.exe+20CC92: 89 51 18  - mov [ecx+18],edx
+TOS.exe+20CC95: 8B 50 24  - mov edx,[eax+24]
+TOS.exe+20CC98: 89 51 1C  - mov [ecx+1C],edx
+TOS.exe+20CC9B: 8B 50 28  - mov edx,[eax+28]
+TOS.exe+20CC9E: 89 51 20  - mov [ecx+20],edx
+TOS.exe+20CCA1: 8B 50 2C  - mov edx,[eax+2C]
+// ---------- INJECTING HERE ----------
+TOS.exe+20CCA4: 89 51 24  - mov [ecx+24],edx
+// ---------- DONE INJECTING  ----------
+TOS.exe+20CCA7: 8B 50 30  - mov edx,[eax+30]
+TOS.exe+20CCAA: 89 51 28  - mov [ecx+28],edx
+TOS.exe+20CCAD: 8B 50 34  - mov edx,[eax+34]
+TOS.exe+20CCB0: 89 51 2C  - mov [ecx+2C],edx
+TOS.exe+20CCB3: 8B 50 38  - mov edx,[eax+38]
+TOS.exe+20CCB6: 8B 40 3C  - mov eax,[eax+3C]
+TOS.exe+20CCB9: 89 51 30  - mov [ecx+30],edx
+TOS.exe+20CCBC: 8D 56 24  - lea edx,[esi+24]
+TOS.exe+20CCBF: 52        - push edx
+TOS.exe+20CCC0: 89 41 34  - mov [ecx+34],eax
 }
 </AssemblerScript>
+                                </CheatEntry>
+                              </CheatEntries>
+                            </CheatEntry>
+                          </CheatEntries>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>42</ID>
+      <Description>"P1 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>5B5BFF</Color>
+      <VariableType>8 Bytes</VariableType>
+      <Address>StoredControls</Address>
       <CheatEntries>
         <CheatEntry>
-          <ID>42</ID>
-          <Description>"P1 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ID>43</ID>
+          <Description>"P1 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <Color>5B5BFF</Color>
           <VariableType>8 Bytes</VariableType>
-          <Address>StoredControls</Address>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>43</ID>
-              <Description>"P1 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <Color>5B5BFF</Color>
-              <VariableType>8 Bytes</VariableType>
-              <Address>StoredControls+8</Address>
-            </CheatEntry>
-          </CheatEntries>
+          <Address>StoredControls+8</Address>
         </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>73</ID>
+      <Description>"P2 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>FF7F5B</Color>
+      <VariableType>8 Bytes</VariableType>
+      <Address>StoredControls+10</Address>
+      <CheatEntries>
         <CheatEntry>
-          <ID>73</ID>
-          <Description>"P2 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ID>74</ID>
+          <Description>"P2 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <Color>FF7F5B</Color>
           <VariableType>8 Bytes</VariableType>
-          <Address>StoredControls+10</Address>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>74</ID>
-              <Description>"P2 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <Color>FF7F5B</Color>
-              <VariableType>8 Bytes</VariableType>
-              <Address>StoredControls+10+8</Address>
-            </CheatEntry>
-          </CheatEntries>
+          <Address>StoredControls+10+8</Address>
         </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>75</ID>
+      <Description>"P3 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>5BFF5B</Color>
+      <VariableType>8 Bytes</VariableType>
+      <Address>StoredControls+10*2</Address>
+      <CheatEntries>
         <CheatEntry>
-          <ID>75</ID>
-          <Description>"P3 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ID>76</ID>
+          <Description>"P3 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <Color>5BFF5B</Color>
           <VariableType>8 Bytes</VariableType>
-          <Address>StoredControls+10*2</Address>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>76</ID>
-              <Description>"P3 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <Color>5BFF5B</Color>
-              <VariableType>8 Bytes</VariableType>
-              <Address>StoredControls+10*2+8</Address>
-            </CheatEntry>
-          </CheatEntries>
+          <Address>StoredControls+10*2+8</Address>
         </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>77</ID>
+      <Description>"P4 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>5BFFFF</Color>
+      <VariableType>8 Bytes</VariableType>
+      <Address>StoredControls+10*3</Address>
+      <CheatEntries>
         <CheatEntry>
-          <ID>77</ID>
-          <Description>"P4 Controls [U/D/L/R/Start/Select/LSB/RSB]"</Description>
+          <ID>78</ID>
+          <Description>"P4 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <Color>5BFFFF</Color>
           <VariableType>8 Bytes</VariableType>
-          <Address>StoredControls+10*3</Address>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>78</ID>
-              <Description>"P4 Controls [LB/RB/LT/RT/A/B/X/Y]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <Color>5BFFFF</Color>
-              <VariableType>8 Bytes</VariableType>
-              <Address>StoredControls+10*3+8</Address>
-            </CheatEntry>
-          </CheatEntries>
+          <Address>StoredControls+10*3+8</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -3091,6 +3890,101 @@ TOS.exe+20C37D: 8B 55 F8           - mov edx,[ebp-08]
       <Description>"Overworld Page Transition"</Description>
       <VariableType>2 Bytes</VariableType>
       <Address>TOS.exe+182BA42</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>115</ID>
+      <Description>"No Description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>01DE4958</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>117</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOS.exe
+  Version: 
+  Date   : 2025-08-30
+  Author : sdail
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(RStickTest,TOS.exe,DB 03 57 D9 5C 24 1C) // should be unique
+alloc(Mem_RStickTest,$1000)
+
+
+Mem_RStickTest:
+  mov [Debug1],0
+  fild dword [Debug1]
+
+Code_RStickTest:
+
+  //fild dword ptr [ebx]
+  //push eax
+  //mov eax,dword [ebx]
+  //mov [Debug1],eax
+  //pop eax
+
+  push edi
+  fstp dword ptr [esp+1C]
+  jmp Ret_RStickTest
+
+RStickTest:
+  jmp Mem_RStickTest
+  nop 2
+Ret_RStickTest:
+registersymbol(RStickTest)
+
+[DISABLE]
+
+RStickTest:
+  db DB 03 57 D9 5C 24 1C
+
+unregistersymbol(RStickTest)
+dealloc(Mem_RStickTest)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TOS.exe+20CE29
+
+TOS.exe+20CE11: 8B EC                 - mov ebp,esp
+TOS.exe+20CE13: 83 E4 F8              - and esp,-08
+TOS.exe+20CE16: 83 EC 1C              - sub esp,1C
+TOS.exe+20CE19: 8B 45 08              - mov eax,[ebp+08]
+TOS.exe+20CE1C: DB 00                 - fild dword ptr [eax]
+TOS.exe+20CE1E: 8B 01                 - mov eax,[ecx]
+TOS.exe+20CE20: 53                    - push ebx
+TOS.exe+20CE21: 8B 5D 0C              - mov ebx,[ebp+0C]
+TOS.exe+20CE24: D9 5C 24 10           - fstp dword ptr [esp+10]
+TOS.exe+20CE28: 56                    - push esi
+// ---------- INJECTING HERE ----------
+TOS.exe+20CE29: DB 03                 - fild dword ptr [ebx]
+// ---------- DONE INJECTING  ----------
+TOS.exe+20CE2B: 57                    - push edi
+TOS.exe+20CE2C: D9 5C 24 1C           - fstp dword ptr [esp+1C]
+TOS.exe+20CE30: D9 EE                 - fldz 
+TOS.exe+20CE32: 83 F8 03              - cmp eax,03
+TOS.exe+20CE35: 0F 87 C7 00 00 00     - ja TOS.exe+20CF02
+TOS.exe+20CE3B: FF 24 85 BC CF 60 00  - jmp dword ptr [eax*4+TOS.exe+20CFBC]
+TOS.exe+20CE42: D9 44 24 18           - fld dword ptr [esp+18]
+TOS.exe+20CE46: DD 05 48 D5 87 00     - fld qword ptr [TOS.exe+47D548]
+TOS.exe+20CE4C: D8 D1                 - fcom st(0),st(1)
+TOS.exe+20CE4E: DF E0                 - fnstsw ax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>118</ID>
+      <Description>"No Description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>01DE4954</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>120</ID>
+      <Description>"No Description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>01DE4950</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
@@ -4129,17 +5023,76 @@ TOS.exe+20C37D: 8B 55 F8           - mov edx,[ebp-08]
         <Byte>5B</Byte>
       </After>
     </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fidivr [eax+44]</Description>
+      <AddressString>TOS.exe+1A02E2</AddressString>
+      <Before>
+        <Byte>D8</Byte>
+        <Byte>F1</Byte>
+        <Byte>D9</Byte>
+        <Byte>5E</Byte>
+        <Byte>18</Byte>
+      </Before>
+      <Actual>
+        <Byte>DA</Byte>
+        <Byte>78</Byte>
+        <Byte>44</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>5E</Byte>
+        <Byte>1C</Byte>
+        <Byte>D9</Byte>
+        <Byte>EE</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fild dword ptr [edi+30]</Description>
+      <AddressString>TOS.exe+17D9BE</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>A2</Byte>
+        <Byte>42</Byte>
+        <Byte>16</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>DB</Byte>
+        <Byte>47</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>3C</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of fild dword ptr [ebx]</Description>
+      <AddressString>TOS.exe+20CE29</AddressString>
+      <Before>
+        <Byte>D9</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>10</Byte>
+        <Byte>56</Byte>
+      </Before>
+      <Actual>
+        <Byte>DB</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>57</Byte>
+        <Byte>D9</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>1C</Byte>
+      </After>
+    </CodeEntry>
   </CheatCodes>
-  <UserdefinedSymbols>
-    <SymbolEntry>
-      <Name>artePropPTR</Name>
-      <Address>3140000</Address>
-    </SymbolEntry>
-    <SymbolEntry>
-      <Name>newmem</Name>
-      <Address>3240000</Address>
-    </SymbolEntry>
-  </UserdefinedSymbols>
+  <UserdefinedSymbols/>
   <Comments>[Sound IDs]
 00 = Water Gyser? (Loop)
 01 = Rheihard Hover (Loop)
