@@ -16,9 +16,9 @@ This currently features:
 - R-Stick Shortcuts (Built into Artes Sphere v3.0)
 - Modified Freerun (Built into Artes Sphere v3.0)
 - Remove Shortcuts Fix (Built into Artes Sphere v3.0)
+- Enable Japanese Voiced Skits (Allows the Japanese voices for skits to play even if the language is set to English)
 - Save Anywhere
 - Arte Family Combo (Can combo arte families, e.g. [Demon Fang] → [Double Demon Fang], ect.)
-- Enable Japanese Voiced Skits (Allows the Japanese voices for skits to play even if the language is set to English)
 
 (Vanilla game wouldn't remove assigned characters from shortcuts leading to odd stutter if the shortcut was pressed) 
 
