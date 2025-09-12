@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>15</ID>
       <Description>"[Enable]"</Description>
-      <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
       <Color>FFFF00</Color>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>[ENABLE]
@@ -11481,3 +11481,4 @@ dealloc(IndJudgTitle)
     </DisassemblerComment>
   </DisassemblerComments>
 </CheatTable>
+
