@@ -1,3 +1,6 @@
+# NOTICE
+I am no longer working on the TSFix version due to problems caused by TSFix, instead I have been working on the latest vanilla version with new and improved features. 
+
 # Symphonia Cheat Table
 I decided to create a cheat table that would be easy to update and will work for the latest TSFix version.
 
